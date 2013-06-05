@@ -8,6 +8,15 @@ The decoding and encoding are done using the [Java Audio Video Encoder](http://w
 
 The most current version is v0.1
 
+### Running the Program ###
+To run the audio extractor, go to AudioExtractor/dist/ and run AudioExtractor.jar by double-clicking on it. Alternatively, you can run it from the command line using:
+    
+    $ java -jar AudioExtractor.jar
+    
+Alternatively, you can open up the project in NetBeans.
+
+Note that the program has only been tested on Windows 8 so far. The results are not known for other operating systems.
+
 ### Features ###
 The Audio Extractor features the following:
 * Supports multiple video file types (Currently MP4, M4A, MPEG, MPG, MOV, FLV, AVI)
