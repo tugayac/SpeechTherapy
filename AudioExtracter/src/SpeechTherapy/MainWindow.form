@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Audio Extractor"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="progressInformationPanel" max="32767" attributes="0"/>
+                  <Component id="outputSettingsPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="inputInformationPanel" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="inputInformationPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="outputSettingsPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="progressInformationPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="inputInformationPanel">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Input Information"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Component id="videoFileLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="inputVideoFilePathTextField" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="videoFileChooserButton" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Component id="infoTableScrollPane" alignment="1" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="inputVideoFilePathTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="videoFileChooserButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="videoFileLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="infoTableScrollPane" min="-2" pref="209" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="videoFileChooserButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Select File"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="videoFileChooserButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="inputVideoFilePathTextField">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Enter the path for the video file"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputVideoFilePathTextFieldActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="videoFileLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Input Video File(s):"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="infoTableScrollPane">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="infoTable">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="0" rowCount="0"/>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0"/>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="outputSettingsPanel">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Output Settings"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Component id="outputLocationLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="outputLocationTextField" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="selectLocationButton" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <Component id="bitRateLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="bitRateTextField" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="bitRateUnitLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="sampleLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="sampleTextField" min="-2" pref="53" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="sampleUnitLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="spinnerLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="channelSpinner" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="audioFileTypeLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="audioFileTypeComboBox" min="-2" pref="65" max="-2" attributes="0"/>
+                  <EmptySpace pref="69" max="32767" attributes="0"/>
+                  <Component id="extractButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="stopButton" min="-2" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="outputLocationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="outputLocationTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="selectLocationButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="bitRateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bitRateTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bitRateUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sampleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sampleTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sampleUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spinnerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="channelSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="audioFileTypeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="audioFileTypeComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="extractButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="stopButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JFormattedTextField" name="outputLocationTextField">
+        </Component>
+        <Component class="javax.swing.JButton" name="selectLocationButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Select Location"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectLocationButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="outputLocationLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Output Location:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="audioFileTypeLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Audio File Type:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="extractButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Extract"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="extractButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="audioFileTypeComboBox">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;MP3&quot;, &quot;AAC&quot;, &quot;FLAC&quot;, &quot;OGG&quot;, &quot;WAV&quot; })" type="code"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="audioFileTypeComboBoxActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="sampleTextField">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="44100"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="sampleUnitLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="kHz"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="sampleLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sample:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="bitRateUnitLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="kb/s"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="bitRateTextField">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="256"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="bitRateLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Bit Rate:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="spinnerLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Channels:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="channelSpinner">
+          <Properties>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="2" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="stopButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Stop"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stopButtonActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="progressInformationPanel">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Progress Information"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="currentProgressBarLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="overallProgressBarLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="overallProgressBar" pref="258" max="32767" attributes="0"/>
+                              <Component id="currentProgressBar" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="fileInformationPanel" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="completedFilesListScrollPane" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="completedFilesLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="currentProgressBarLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="currentProgressBar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="completedFilesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="overallProgressBarLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="overallProgressBar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="fileInformationPanel" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="completedFilesListScrollPane" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="currentProgressBarLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Current Progress:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JProgressBar" name="currentProgressBar">
+          <Properties>
+            <Property name="maximum" type="int" value="1000"/>
+            <Property name="stringPainted" type="boolean" value="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="overallProgressBarLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Overall Progress:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JProgressBar" name="overallProgressBar">
+          <Properties>
+            <Property name="maximum" type="int" value="1000"/>
+            <Property name="stringPainted" type="boolean" value="true"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="completedFilesListScrollPane">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JList" name="completedFilesList">
+              <Properties>
+                <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JLabel" name="completedFilesLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Completed Files:"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JPanel" name="fileInformationPanel">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="File Information"/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="fileInfoBitRateLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="fileInfoFileNameLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="fileInfoSamplingRateLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="fileInfoFileTypeLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="fileInfoChannelsLabel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="fileInfoFileTypeValueLabel" pref="42" max="32767" attributes="0"/>
+                                  <Component id="fileInfoChannelsValueLabel" max="32767" attributes="0"/>
+                                  <Component id="fileInfoSamplingRateValueLabel" max="32767" attributes="0"/>
+                                  <Component id="fileInfoBitRateValueLabel" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="fileInfoSamplingRateUnitLabel" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="fileInfoBitRateUnitLabel" alignment="1" pref="40" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="170" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="fileInfoFileNameValueLabel" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="fileInfoFileNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fileInfoFileNameValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="fileInfoBitRateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fileInfoBitRateValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fileInfoBitRateUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="fileInfoSamplingRateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fileInfoSamplingRateValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fileInfoSamplingRateUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="fileInfoChannelsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fileInfoChannelsValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="fileInfoFileTypeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fileInfoFileTypeValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="fileInfoFileNameLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="File Name:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="fileInfoBitRateLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Bit Rate:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="fileInfoSamplingRateLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sampling Rate:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="fileInfoChannelsLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Channels:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="fileInfoFileTypeLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="File Type:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="fileInfoFileNameValueLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="N/A"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="fileInfoBitRateValueLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="N/A"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="fileInfoSamplingRateValueLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="N/A"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="fileInfoChannelsValueLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="N/A"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="fileInfoFileTypeValueLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="N/A"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="fileInfoBitRateUnitLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="kb/s"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="fileInfoSamplingRateUnitLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="kHz"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
