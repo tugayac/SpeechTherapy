@@ -580,25 +580,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void getFileInfoForTable() {
-        Encoder encoder;
-        if(os.isMac()) {
-            FFMPEGLocator ffmpegLocation = new FFMPEGLocator() {
-
-                @Override
-                protected String getFFMPEGExecutablePath() {
-                    String input = JOptionPane.showInputDialog(MainWindow.this, "Macintosh Operating System detected. Please enter the location of the ffmpeg executable:", "FFMpeg Folder", JOptionPane.INFORMATION_MESSAGE);
-                    if (input != null) {
-                        return input;
-                    } else {
-                        System.exit(1);
-                    }
-                    return null;
-                }
-            };
-            encoder = new Encoder(ffmpegLocation);
-        } else {
-            encoder = new Encoder();
-        }
+        Encoder encoder = new Encoder();
         
         DefaultTableModel dtm = new DefaultTableModel(INFO_TABLE_COLUMN_NAMES, 0);
         this.infoTable.setModel(dtm);
