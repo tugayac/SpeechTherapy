@@ -6,6 +6,7 @@ import it.sauronsoftware.jave.Encoder;
 import it.sauronsoftware.jave.EncoderException;
 import it.sauronsoftware.jave.EncoderProgressListener;
 import it.sauronsoftware.jave.EncodingAttributes;
+import it.sauronsoftware.jave.FFMPEGLocator;
 import it.sauronsoftware.jave.InputFormatException;
 import it.sauronsoftware.jave.MultimediaInfo;
 import java.io.File;
@@ -22,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MainWindow extends javax.swing.JFrame {
     private static final String[] INFO_TABLE_COLUMN_NAMES = {"File Name", "Bit Rate", "Channel", "Sampling Rate", "Decoder"};
+    private OSDetector os;
     
     private File[] inputFiles;
     private int progress = 0;
@@ -35,6 +37,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         this.stopButton.setEnabled(false);
+        this.os = new OSDetector();
     }
 
     /**
@@ -414,7 +417,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(outputSettingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(progressInformationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -531,7 +534,7 @@ public class MainWindow extends javax.swing.JFrame {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+         */       
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -577,10 +580,29 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void getFileInfoForTable() {
+        Encoder encoder;
+        if(os.isMac()) {
+            FFMPEGLocator ffmpegLocation = new FFMPEGLocator() {
+
+                @Override
+                protected String getFFMPEGExecutablePath() {
+                    String input = JOptionPane.showInputDialog(MainWindow.this, "Macintosh Operating System detected. Please enter the location of the ffmpeg executable:", "FFMpeg Folder", JOptionPane.INFORMATION_MESSAGE);
+                    if (input != null) {
+                        return input;
+                    } else {
+                        System.exit(1);
+                    }
+                    return null;
+                }
+            };
+            encoder = new Encoder(ffmpegLocation);
+        } else {
+            encoder = new Encoder();
+        }
+        
         DefaultTableModel dtm = new DefaultTableModel(INFO_TABLE_COLUMN_NAMES, 0);
         this.infoTable.setModel(dtm);
         
-        Encoder encoder = new Encoder();
         File source;
         AudioInfo audioInfo;
         ArrayList<Object> data = new ArrayList<>();
