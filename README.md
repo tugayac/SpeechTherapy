@@ -13,9 +13,14 @@ To run the audio extractor, go to AudioExtractor/dist/ and run AudioExtractor.ja
     
     $ java -jar AudioExtractor.jar
     
-Alternatively, you can open up the project in NetBeans.
+You can also open up the project in NetBeans and change it as you like.
 
-Note that the program has only been tested on Windows 8 so far. The results are not known for other operating systems.
+### Requirements ###
+* Java 7
+
+* The program has been tested on Windows 8 and does run. It should run properly on earlier versions of Windows; however, there is no guarantee.
+* The program has been tested on Mac OSX 10.7.5 and <b>does not run</b>. This is because JAVE does not provide an ffmpeg executable for MAC OSX. Latest versions of ffmpeg executables do not work. Apple Mac users can check out [ffmpegX](http://www.ffmpegx.com/download.html) as an alternative.
+* The program has been tested on Linux (Ubuntu 12.04) and does run. It should run properly on other versions of Ubuntu/Debian based Linux systems; however, there is no guarantee. 
 
 ### Features ###
 The Audio Extractor features the following:
