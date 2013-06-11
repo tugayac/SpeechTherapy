@@ -7,10 +7,11 @@
 //
 
 #import "AppDelegate.h"
-
-#import "MasterViewController.h"
+#import "UserViewController.h"
 
 @implementation AppDelegate
+
+@synthesize navigationController;
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -19,13 +20,24 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-    UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-    splitViewController.delegate = (id)navigationController.topViewController;
-
-    UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
-    MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
-    controller.managedObjectContext = self.managedObjectContext;
+//    UISplitViewController *splitViewController = (UISplitViewController *) self.window.rootViewController;
+//    UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+//    splitViewController.delegate = (id)navigationController.topViewController;
+//
+//    UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
+//    MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
+//    controller.managedObjectContext = self.managedObjectContext;
+    UserViewController *userViewController = [UserViewController alloc];
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    if (!context) {
+        // Handle the error
+    }
+    userViewController.managedObjectContext = context;
+    
+    UINavigationController *mainNavigationController = [[UINavigationController alloc] initWithRootViewController:userViewController];
+    self.navigationController = mainNavigationController;
+    
     return YES;
 }
 							

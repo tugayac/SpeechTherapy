@@ -21,6 +21,12 @@
 		019B4B2C1766A70E001403C3 /* Speech_Therapy_App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B2A1766A70E001403C3 /* Speech_Therapy_App.xcdatamodeld */; };
 		019B4B2F1766A70E001403C3 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B2E1766A70E001403C3 /* MasterViewController.m */; };
 		019B4B321766A70E001403C3 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B311766A70E001403C3 /* DetailViewController.m */; };
+		019B4B3B1766A95A001403C3 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B3A1766A95A001403C3 /* UserViewController.m */; };
+		019B4B3F1766AD22001403C3 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B3E1766AD22001403C3 /* UserCell.m */; };
+		019B4B421766B078001403C3 /* UserCellBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B411766B078001403C3 /* UserCellBackground.m */; };
+		019B4B491766CA88001403C3 /* User.png in Resources */ = {isa = PBXBuildFile; fileRef = 019B4B481766CA88001403C3 /* User.png */; };
+		019B4B4B1766CA96001403C3 /* PlusSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 019B4B4A1766CA96001403C3 /* PlusSign.png */; };
+		019B4B4E1766D340001403C3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B4D1766D340001403C3 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +50,16 @@
 		019B4B2E1766A70E001403C3 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		019B4B301766A70E001403C3 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		019B4B311766A70E001403C3 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		019B4B391766A95A001403C3 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		019B4B3A1766A95A001403C3 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		019B4B3D1766AD22001403C3 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		019B4B3E1766AD22001403C3 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
+		019B4B401766B078001403C3 /* UserCellBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCellBackground.h; sourceTree = "<group>"; };
+		019B4B411766B078001403C3 /* UserCellBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCellBackground.m; sourceTree = "<group>"; };
+		019B4B481766CA88001403C3 /* User.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = User.png; sourceTree = "<group>"; };
+		019B4B4A1766CA96001403C3 /* PlusSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlusSign.png; sourceTree = "<group>"; };
+		019B4B4C1766D340001403C3 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		019B4B4D1766D340001403C3 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,11 +111,9 @@
 				019B4B1E1766A70D001403C3 /* AppDelegate.h */,
 				019B4B1F1766A70D001403C3 /* AppDelegate.m */,
 				019B4B271766A70E001403C3 /* MainStoryboard.storyboard */,
-				019B4B2D1766A70E001403C3 /* MasterViewController.h */,
-				019B4B2E1766A70E001403C3 /* MasterViewController.m */,
-				019B4B301766A70E001403C3 /* DetailViewController.h */,
-				019B4B311766A70E001403C3 /* DetailViewController.m */,
 				019B4B2A1766A70E001403C3 /* Speech_Therapy_App.xcdatamodeld */,
+				019B4B441766B244001403C3 /* Models */,
+				019B4B381766A92C001403C3 /* View Controllers */,
 				019B4B161766A70D001403C3 /* Supporting Files */,
 			);
 			path = "Speech Therapy App";
@@ -108,6 +122,8 @@
 		019B4B161766A70D001403C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				019B4B4A1766CA96001403C3 /* PlusSign.png */,
+				019B4B481766CA88001403C3 /* User.png */,
 				019B4B171766A70D001403C3 /* Speech Therapy App-Info.plist */,
 				019B4B181766A70D001403C3 /* InfoPlist.strings */,
 				019B4B1B1766A70D001403C3 /* main.m */,
@@ -117,6 +133,40 @@
 				019B4B251766A70E001403C3 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		019B4B381766A92C001403C3 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				019B4B3C1766ACEF001403C3 /* UserViewControllers */,
+				019B4B2D1766A70E001403C3 /* MasterViewController.h */,
+				019B4B2E1766A70E001403C3 /* MasterViewController.m */,
+				019B4B301766A70E001403C3 /* DetailViewController.h */,
+				019B4B311766A70E001403C3 /* DetailViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		019B4B3C1766ACEF001403C3 /* UserViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				019B4B391766A95A001403C3 /* UserViewController.h */,
+				019B4B3A1766A95A001403C3 /* UserViewController.m */,
+				019B4B3D1766AD22001403C3 /* UserCell.h */,
+				019B4B3E1766AD22001403C3 /* UserCell.m */,
+				019B4B401766B078001403C3 /* UserCellBackground.h */,
+				019B4B411766B078001403C3 /* UserCellBackground.m */,
+			);
+			name = UserViewControllers;
+			sourceTree = "<group>";
+		};
+		019B4B441766B244001403C3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				019B4B4C1766D340001403C3 /* User.h */,
+				019B4B4D1766D340001403C3 /* User.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +225,8 @@
 				019B4B241766A70E001403C3 /* Default@2x.png in Resources */,
 				019B4B261766A70E001403C3 /* Default-568h@2x.png in Resources */,
 				019B4B291766A70E001403C3 /* MainStoryboard.storyboard in Resources */,
+				019B4B491766CA88001403C3 /* User.png in Resources */,
+				019B4B4B1766CA96001403C3 /* PlusSign.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +242,10 @@
 				019B4B2C1766A70E001403C3 /* Speech_Therapy_App.xcdatamodeld in Sources */,
 				019B4B2F1766A70E001403C3 /* MasterViewController.m in Sources */,
 				019B4B321766A70E001403C3 /* DetailViewController.m in Sources */,
+				019B4B3B1766A95A001403C3 /* UserViewController.m in Sources */,
+				019B4B3F1766AD22001403C3 /* UserCell.m in Sources */,
+				019B4B421766B078001403C3 /* UserCellBackground.m in Sources */,
+				019B4B4E1766D340001403C3 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
