@@ -7,6 +7,7 @@
 //
 
 #import "UserViewController.h"
+#import "NewUserViewController.h"
 #import "User.h"
 #import "UserCell.h"
 #import "AppDelegate.h"
@@ -49,6 +50,16 @@
     cell.userImage.image = [UIImage imageNamed:[user imageURL]];
     
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath row] == [self.users count] - 1) {
+        NewUserViewController *newUserViewController = [[NewUserViewController alloc] init];
+        [newUserViewController setModalPresentationStyle:UIModalPresentationFormSheet];
+        [newUserViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+        [self presentViewController:newUserViewController animated:YES completion:nil];
+    }
 }
 
 - (void)addUserWithUsername:(NSString *)username firstName:(NSString *)firstName lastName:(NSString *)lastName imageFile:(NSString *)imageURL
