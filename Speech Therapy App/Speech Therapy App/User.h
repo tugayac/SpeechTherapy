@@ -15,6 +15,10 @@
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString * username;
+@property (nonatomic, retain) NSString * password;
 @property (nonatomic, retain) NSString * imageURL;
+
++ (User *)addUserWithUsername:(NSString *)username firstName:(NSString *)firstName lastName:(NSString *)lastName password:(NSString *)password imageFile:(NSString *)imageURL;
++ (NSArray *)getAllUsers;
 
 @end

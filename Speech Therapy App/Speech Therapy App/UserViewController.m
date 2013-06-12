@@ -7,10 +7,10 @@
 //
 
 #import "UserViewController.h"
-#import "NewUserViewController.h"
 #import "User.h"
 #import "UserCell.h"
 #import "AppDelegate.h"
+#import "ViewConstants.h"
 
 @implementation UserViewController
 
@@ -21,12 +21,12 @@
     [super viewDidLoad];
     self.users = [[NSMutableArray alloc] init];
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    self.managedObjectContext = [appDelegate managedObjectContext];
-    [self addUserWithUsername:@"Add User" firstName:@"Add" lastName:@"User" imageFile:@"PlusSign.png"];
+    User *user = [User addUserWithUsername:@"Add User" firstName:@"Add" lastName:@"User" password:@"adduser" imageFile:kPlusSignImageURL];
+
+    self.users = [[User getAllUsers] mutableCopy];
+    [self.users removeObject:user];
+    [self.users addObject:user];
     
-    // Create Dummy User for testing
-    [self addUserWithUsername:@"dummyuser" firstName:@"Dummy" lastName:@"User" imageFile:@"User.png"];
     [self.userCollection reloadData];
 }
 
@@ -42,7 +42,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UserCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UserCell" forIndexPath:indexPath];
+    UserCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:kUserCellIdentifier forIndexPath:indexPath];
     
     User *user = [self.users objectAtIndex:[indexPath row]];
     
@@ -56,27 +56,22 @@
 {
     if ([indexPath row] == [self.users count] - 1) {
         NewUserViewController *newUserViewController = [[NewUserViewController alloc] init];
+        newUserViewController.delegate = self; // Set delegation
+        CGRect xibBounds = newUserViewController.view.bounds;
         [newUserViewController setModalPresentationStyle:UIModalPresentationFormSheet];
         [newUserViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
         [self presentViewController:newUserViewController animated:YES completion:nil];
+        
+        newUserViewController.view.superview.bounds = xibBounds; // Change size of form sheet
+        newUserViewController.view.superview.center = self.view.center;
     }
 }
 
-- (void)addUserWithUsername:(NSString *)username firstName:(NSString *)firstName lastName:(NSString *)lastName imageFile:(NSString *)imageURL
-{    
-    User *user = (User *)[NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:managedObjectContext];
-    
-    [user setUsername:username];
-    [user setFirstName:firstName];
-    [user setLastName:lastName];
-    [user setImageURL:imageURL];
-    
-    NSError *error = nil;
-    if (![managedObjectContext save:&error]) {
-        // Handle the error
-    }
-
-    [users insertObject:user atIndex:0];
+- (void)newUserViewControllerSubmitButtonPressed:(NewUserViewController *)nuvc
+{
+    User *user = [User addUserWithUsername:nuvc.usernameField.text firstName:nuvc.firstNameField.text lastName:nuvc.lastNameField.text password:nuvc.passwordField.text imageFile:kUserImageURL];
+    [self.users insertObject:user atIndex:0];
+    [self.userCollection reloadData];
 }
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewUserViewController.h"
 
-@interface UserViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate> {
+@interface UserViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, NewUserViewControllerDelegate> {
     NSMutableArray *users;
     NSManagedObjectContext *managedObjectContext;
 }
@@ -16,7 +17,5 @@
 @property (nonatomic, strong) IBOutlet UICollectionView *userCollection;
 @property (nonatomic, strong) NSMutableArray *users;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-
-- (void)addUserWithUsername:(NSString *)username firstName:(NSString *)firstName lastName:(NSString *)lastName imageFile:(NSString *)imageURL;
 
 @end

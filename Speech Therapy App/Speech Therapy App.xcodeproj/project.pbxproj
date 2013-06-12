@@ -27,6 +27,9 @@
 		019B4B491766CA88001403C3 /* User.png in Resources */ = {isa = PBXBuildFile; fileRef = 019B4B481766CA88001403C3 /* User.png */; };
 		019B4B4B1766CA96001403C3 /* PlusSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 019B4B4A1766CA96001403C3 /* PlusSign.png */; };
 		019B4B4E1766D340001403C3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B4D1766D340001403C3 /* User.m */; };
+		01C3D34B1766FB7200ADCD42 /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C3D3491766FB7200ADCD42 /* NewUserViewController.m */; };
+		01C3D34C1766FB7200ADCD42 /* NewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01C3D34A1766FB7200ADCD42 /* NewUserViewController.xib */; };
+		01C3D3501767BF1D00ADCD42 /* ViewConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C3D34F1767BF1D00ADCD42 /* ViewConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +63,11 @@
 		019B4B4A1766CA96001403C3 /* PlusSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlusSign.png; sourceTree = "<group>"; };
 		019B4B4C1766D340001403C3 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		019B4B4D1766D340001403C3 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		01C3D3481766FB7200ADCD42 /* NewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserViewController.h; sourceTree = "<group>"; };
+		01C3D3491766FB7200ADCD42 /* NewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserViewController.m; sourceTree = "<group>"; };
+		01C3D34A1766FB7200ADCD42 /* NewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserViewController.xib; sourceTree = "<group>"; };
+		01C3D34E1767BF1D00ADCD42 /* ViewConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewConstants.h; sourceTree = "<group>"; };
+		01C3D34F1767BF1D00ADCD42 /* ViewConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +120,10 @@
 				019B4B1F1766A70D001403C3 /* AppDelegate.m */,
 				019B4B271766A70E001403C3 /* MainStoryboard.storyboard */,
 				019B4B2A1766A70E001403C3 /* Speech_Therapy_App.xcdatamodeld */,
-				019B4B441766B244001403C3 /* Models */,
+				01C3D34D1767BEEE00ADCD42 /* Constants */,
+				01C3D3461766F9E000ADCD42 /* Views */,
 				019B4B381766A92C001403C3 /* View Controllers */,
+				019B4B441766B244001403C3 /* Models */,
 				019B4B161766A70D001403C3 /* Supporting Files */,
 			);
 			path = "Speech Therapy App";
@@ -138,6 +148,7 @@
 		019B4B381766A92C001403C3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				01C3D3471766FA2400ADCD42 /* Overlay View Controllers */,
 				019B4B3C1766ACEF001403C3 /* UserViewControllers */,
 				019B4B2D1766A70E001403C3 /* MasterViewController.h */,
 				019B4B2E1766A70E001403C3 /* MasterViewController.m */,
@@ -167,6 +178,32 @@
 				019B4B4D1766D340001403C3 /* User.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		01C3D3461766F9E000ADCD42 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				01C3D34A1766FB7200ADCD42 /* NewUserViewController.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		01C3D3471766FA2400ADCD42 /* Overlay View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				01C3D3481766FB7200ADCD42 /* NewUserViewController.h */,
+				01C3D3491766FB7200ADCD42 /* NewUserViewController.m */,
+			);
+			name = "Overlay View Controllers";
+			sourceTree = "<group>";
+		};
+		01C3D34D1767BEEE00ADCD42 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				01C3D34E1767BF1D00ADCD42 /* ViewConstants.h */,
+				01C3D34F1767BF1D00ADCD42 /* ViewConstants.m */,
+			);
+			name = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +264,7 @@
 				019B4B291766A70E001403C3 /* MainStoryboard.storyboard in Resources */,
 				019B4B491766CA88001403C3 /* User.png in Resources */,
 				019B4B4B1766CA96001403C3 /* PlusSign.png in Resources */,
+				01C3D34C1766FB7200ADCD42 /* NewUserViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +284,8 @@
 				019B4B3F1766AD22001403C3 /* UserCell.m in Sources */,
 				019B4B421766B078001403C3 /* UserCellBackground.m in Sources */,
 				019B4B4E1766D340001403C3 /* User.m in Sources */,
+				01C3D34B1766FB7200ADCD42 /* NewUserViewController.m in Sources */,
+				01C3D3501767BF1D00ADCD42 /* ViewConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +410,7 @@
 				019B4B371766A70E001403C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
