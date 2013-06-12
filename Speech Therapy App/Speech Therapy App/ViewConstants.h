@@ -10,9 +10,9 @@
 
 @interface ViewConstants : NSObject
 
-#pragma mark - UserViewController constants
 extern NSString* const kPlusSignImageURL;
 extern NSString* const kUserImageURL;
 extern NSString* const kUserCellIdentifier;
+extern NSString* const kUserLoggedIn;
 
 @end

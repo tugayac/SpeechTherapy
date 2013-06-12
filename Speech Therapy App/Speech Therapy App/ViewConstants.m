@@ -13,6 +13,11 @@
 #pragma mark - file constants
 NSString* const kPlusSignImageURL = @"PlusSign.png";
 NSString* const kUserImageURL = @"User.png";
+
+#pragma mark - cell identifiers
 NSString* const kUserCellIdentifier = @"UserCell";
+
+#pragma mark - segue identifiers
+NSString* const kUserLoggedIn = @"DisplayPatients";
 
 @end

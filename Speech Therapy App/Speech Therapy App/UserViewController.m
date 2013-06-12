@@ -7,6 +7,7 @@
 //
 
 #import "UserViewController.h"
+#import "MasterViewController.h"
 #import "User.h"
 #import "UserCell.h"
 #import "AppDelegate.h"
@@ -20,12 +21,8 @@
 {
     [super viewDidLoad];
     self.users = [[NSMutableArray alloc] init];
-    
-    User *user = [User addUserWithUsername:@"Add User" firstName:@"Add" lastName:@"User" password:@"adduser" imageFile:kPlusSignImageURL];
 
     self.users = [[User getAllUsers] mutableCopy];
-    [self.users removeObject:user];
-    [self.users addObject:user];
     
     [self.userCollection reloadData];
 }
@@ -54,17 +51,20 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath row] == [self.users count] - 1) {
-        NewUserViewController *newUserViewController = [[NewUserViewController alloc] init];
-        newUserViewController.delegate = self; // Set delegation
-        CGRect xibBounds = newUserViewController.view.bounds;
-        [newUserViewController setModalPresentationStyle:UIModalPresentationFormSheet];
-        [newUserViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-        [self presentViewController:newUserViewController animated:YES completion:nil];
-        
-        newUserViewController.view.superview.bounds = xibBounds; // Change size of form sheet
-        newUserViewController.view.superview.center = self.view.center;
-    }
+    
+}
+
+- (IBAction)addNewUser:(id)sender
+{
+    NewUserViewController *newUserViewController = [[NewUserViewController alloc] init];
+    newUserViewController.delegate = self; // Set delegation
+    CGRect xibBounds = newUserViewController.view.bounds;
+    [newUserViewController setModalPresentationStyle:UIModalPresentationFormSheet];
+    [newUserViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [self presentViewController:newUserViewController animated:YES completion:nil];
+    
+    newUserViewController.view.superview.bounds = xibBounds; // Change size of form sheet
+    newUserViewController.view.superview.center = self.view.center;
 }
 
 - (void)newUserViewControllerSubmitButtonPressed:(NewUserViewController *)nuvc
@@ -72,6 +72,11 @@
     User *user = [User addUserWithUsername:nuvc.usernameField.text firstName:nuvc.firstNameField.text lastName:nuvc.lastNameField.text password:nuvc.passwordField.text imageFile:kUserImageURL];
     [self.users insertObject:user atIndex:0];
     [self.userCollection reloadData];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
 }
 
 @end

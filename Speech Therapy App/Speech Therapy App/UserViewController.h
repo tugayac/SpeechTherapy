@@ -18,4 +18,8 @@
 @property (nonatomic, strong) NSMutableArray *users;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
+@property (nonatomic, weak) IBOutlet UIButton *addUserImage;
+
+- (IBAction)addNewUser:(id)sender;
+
 @end
