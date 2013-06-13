@@ -9,16 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "NewUserViewController.h"
 
-@interface UserViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, NewUserViewControllerDelegate> {
-    NSMutableArray *users;
-    NSManagedObjectContext *managedObjectContext;
-}
+@interface UserViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, NewUserViewControllerDelegate>
 
 @property (nonatomic, strong) IBOutlet UICollectionView *userCollection;
 @property (nonatomic, strong) NSMutableArray *users;
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-
-@property (nonatomic, weak) IBOutlet UIButton *addUserImage;
 
 - (IBAction)addNewUser:(id)sender;
 

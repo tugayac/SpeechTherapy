@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Patient;
 
 @interface User : NSManagedObject
 
@@ -17,8 +18,10 @@
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * password;
 @property (nonatomic, retain) NSString * imageURL;
+@property (nonatomic, retain) Patient * supervising;
 
 + (User *)addUserWithUsername:(NSString *)username firstName:(NSString *)firstName lastName:(NSString *)lastName password:(NSString *)password imageFile:(NSString *)imageURL;
 + (NSArray *)getAllUsers;
++ (User *)getUser:(User *)user;
 
 @end

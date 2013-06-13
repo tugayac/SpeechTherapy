@@ -16,6 +16,7 @@
 @dynamic username;
 @dynamic password;
 @dynamic imageURL;
+@dynamic supervising;
 
 + (User *)addUserWithUsername:(NSString *)username firstName:(NSString *)firstName lastName:(NSString *)lastName password:(NSString *)password imageFile:(NSString *)imageURL;
 {
@@ -35,6 +36,7 @@
     [user setLastName:lastName];
     [user setPassword:password];
     [user setImageURL:imageURL];
+    [user setSupervising:nil];
     
     NSError *error = nil;
     if (![[appDelegate managedObjectContext] save:&error]) {
@@ -58,6 +60,25 @@
         return nil;
     } else {
         return fetchResults;
+    }
+}
+
++ (User *)getUser:(User *)user
+{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:[appDelegate managedObjectContext]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"username like '%@'", user.username]];
+    [request setPredicate:predicate];
+    [request setEntity:entity];
+    
+    NSError *error = nil;
+    User *fetchResult = [[[appDelegate managedObjectContext] executeFetchRequest:request error:&error] objectAtIndex:0];
+    if (fetchResult == nil) {
+        return nil;
+    } else {
+        return fetchResult;
     }
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "UserViewController.h"
-#import "MasterViewController.h"
+#import "RecordingsViewController.h"
 #import "User.h"
 #import "UserCell.h"
 #import "AppDelegate.h"
@@ -15,7 +15,7 @@
 
 @implementation UserViewController
 
-@synthesize userCollection, users, managedObjectContext;
+@synthesize userCollection, users;
 
 - (void)viewDidLoad
 {
@@ -49,11 +49,6 @@
     return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
-
 - (IBAction)addNewUser:(id)sender
 {
     NewUserViewController *newUserViewController = [[NewUserViewController alloc] init];
@@ -76,7 +71,9 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
+    if ([segue.identifier isEqualToString:kUserLoggedIn]) {
+        RecordingsViewController *recordingsViewController = segue.destinationViewController;
+    }
 }
 
 @end
