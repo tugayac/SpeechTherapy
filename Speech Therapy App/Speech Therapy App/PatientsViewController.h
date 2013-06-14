@@ -10,9 +10,9 @@
 
 @interface PatientsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *createNewPatientButton;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *doneButton;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIBarButtonItem *createNewPatientButton;
+@property (nonatomic, strong) UIBarButtonItem *doneButton;
 
 - (IBAction)createNewPatient:(id)sender;
 

@@ -27,13 +27,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)checkTextFieldContentLength:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+}
+
+- (IBAction)usernameAvailabilityCheck:(id)sender
+{
+    
+}
+
+- (IBAction)submitButtonClicked:(id)sender
+{
+    
+}
+
+- (IBAction)cancelButtonClicked:(id)sender
+{
+    
 }
 
 @end

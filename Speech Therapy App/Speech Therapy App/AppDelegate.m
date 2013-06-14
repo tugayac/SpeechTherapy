@@ -25,7 +25,6 @@
     if (!context) {
         // Handle the error
     }
-    userViewController.managedObjectContext = context;
     
     UINavigationController *mainNavigationController = [[UINavigationController alloc] initWithRootViewController:userViewController];
     self.navigationController = mainNavigationController;

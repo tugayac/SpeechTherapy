@@ -14,11 +14,6 @@
 
 @synthesize tableView, createNewPatientButton, doneButton;
 
-- (id)init
-{
-    return [self initWithNibName:@"PatientsViewController" bundle:nil];
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,6 +27,14 @@
 {
     [super viewDidLoad];
     
+    self.tableView = [[UITableView alloc] init];
+//    [self.view addSubview:self.tableView];
+    
+    self.createNewPatientButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewPatient:)];
+    [self.navigationItem setLeftBarButtonItem:self.createNewPatientButton];
+    
+    self.doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:nil];
+    [self.navigationItem setRightBarButtonItem:self.doneButton];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -46,7 +49,7 @@
 
 - (CGSize)contentSizeForViewInPopover
 {
-    return self.view.frame.size;
+    return CGSizeMake(320, 600);
 }
 
 - (IBAction)createNewPatient:(id)sender

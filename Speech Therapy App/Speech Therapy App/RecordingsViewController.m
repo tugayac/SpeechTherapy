@@ -47,7 +47,8 @@
 - (IBAction)viewPatients:(id)sender
 {
     PatientsViewController *patientsViewController = [[PatientsViewController alloc] init];
-    self.patientsPopover = [[UIPopoverController alloc] initWithContentViewController:patientsViewController];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:patientsViewController];
+    self.patientsPopover = [[UIPopoverController alloc] initWithContentViewController:navController];
     [self.patientsPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 

@@ -17,7 +17,7 @@
 @property (nonatomic, weak) IBOutlet UITextField *firstNameField;
 @property (nonatomic, weak) IBOutlet UITextField *lastNameField;
 @property (nonatomic, weak) IBOutlet UITextField *usernameField;
-@property (nonatomic, weak) IBOutlet UITextField *typeOfAutismField;
+@property (nonatomic, strong) IBOutlet UITextField *typeOfAutismField;
 
 - (IBAction)checkTextFieldContentLength:(id)sender;
 - (IBAction)usernameAvailabilityCheck:(id)sender;
