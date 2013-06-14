@@ -42,7 +42,7 @@
     [patient setLastTestDate:nil];
     
     User *existingUser = [User getUser:user];
-    [existingUser setSupervising:patient];
+    patient.supervisedBy = existingUser;
     
     NSError *error = nil;
     if (![[appDelegate managedObjectContext] save:&error]) {

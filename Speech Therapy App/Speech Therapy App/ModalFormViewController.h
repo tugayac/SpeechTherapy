@@ -24,6 +24,6 @@
 @protocol ModalFormViewControllerDelegate <NSObject>
 
 @optional
-- (void)modalFormViewControllerDelegateSubmitButtonTouched:(ModalFormViewController *)mfvc;
+- (void)modalFormViewControllerSubmitButtonTouched:(ModalFormViewController *)mfvc;
 
 @end

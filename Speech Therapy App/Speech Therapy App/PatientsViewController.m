@@ -17,30 +17,27 @@
 
 - (id)init
 {
-    return [self initWithNibName:nil bundle:nil];
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {   
+    self = [super init];
+    if (self) {
         self.patientsTable = [[UITableView alloc] init];
-        [self setView:self.patientsTable];
+        [self.patientsTable setDataSource:self];
+        [self.patientsTable setDelegate:self];
         
         self.createNewPatientButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewPatient:)];
         [self.navigationItem setLeftBarButtonItem:self.createNewPatientButton];
         
         self.doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:nil];
         [self.navigationItem setRightBarButtonItem:self.doneButton];
+        
+        self.patients = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [self setView:self.patientsTable];
     
-    self.patients = [[NSMutableArray alloc] init];
     self.patients = [[Patient getPatientsForUser:self.currentUser] mutableCopy];
     [self.patientsTable reloadData];
 }
@@ -52,11 +49,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PatientCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PatientCell"];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PatientCell"];
+    }
     
     Patient *patient = [self.patients objectAtIndex:[indexPath row]];
     
-    cell.textLabel.text = patient.username;
+    cell.textLabel.text = patient.firstName;
     
     return cell;
 }
@@ -70,6 +71,7 @@
 {
     NewPatientViewController *newPatientViewController = [[NewPatientViewController alloc] init];
     newPatientViewController.currentUser = self.currentUser;
+    newPatientViewController.delegate = self;
     CGRect xibBounds = newPatientViewController.view.bounds;
     [newPatientViewController setModalPresentationStyle:UIModalPresentationFormSheet];
     [newPatientViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
@@ -78,7 +80,7 @@
     newPatientViewController.view.superview.bounds = xibBounds;
 }
 
-- (void)modalFormViewControllerDelegateSubmitButtonTouched:(ModalFormViewController *)mfvc
+- (void)modalFormViewControllerSubmitButtonTouched:(ModalFormViewController *)mfvc
 {
     NewPatientViewController *npvc = (NewPatientViewController *) mfvc;
     Patient *patient = [Patient addPatientWithUsername:npvc.usernameField.text firstName:npvc.firstNameField.text lastName:npvc.lastNameField.text typeOfAutism:npvc.typeOfAutismField.text supervisor:self.currentUser];

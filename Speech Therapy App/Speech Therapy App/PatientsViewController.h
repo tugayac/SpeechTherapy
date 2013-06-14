@@ -18,7 +18,7 @@
 @property (nonatomic, strong) UIBarButtonItem *doneButton;
 
 @property (nonatomic, strong) NSMutableArray *patients;
-@property (nonatomic, weak) User *currentUser;
+@property (nonatomic, strong) User *currentUser;
 
 - (void)createNewPatient:(id)sender;
 

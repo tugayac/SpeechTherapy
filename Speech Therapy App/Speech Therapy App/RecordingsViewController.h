@@ -11,7 +11,7 @@
 #import "ModalFormViewController.h"
 #import "User.h"
 
-@interface RecordingsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface RecordingsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;

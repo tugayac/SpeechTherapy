@@ -91,7 +91,7 @@
     newUserViewController.view.superview.center = self.view.center;
 }
 
-- (void)modalFormViewControllerDelegateSubmitButtonTouched:(ModalFormViewController *)mfvc
+- (void)modalFormViewControllerSubmitButtonTouched:(ModalFormViewController *)mfvc
 {
     NewUserViewController *nuvc = (NewUserViewController *) mfvc;
     User *user = [User addUserWithUsername:nuvc.usernameField.text firstName:nuvc.firstNameField.text lastName:nuvc.lastNameField.text password:nuvc.passwordField.text imageFile:kUserImageURL];

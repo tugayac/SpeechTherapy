@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12A269" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Patient" representedClassName="Patient" syncable="YES">
-        <attribute name="dateAdded" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateAdded" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastTestDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -15,11 +15,11 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="supervising" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="supervisedBy" inverseEntity="Patient" syncable="YES"/>
+        <relationship name="supervising" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Patient" inverseName="supervisedBy" inverseEntity="Patient" syncable="YES"/>
         <userInfo/>
     </entity>
     <elements>
-        <element name="User" positionX="261" positionY="189" width="128" height="133"/>
-        <element name="Patient" positionX="511" positionY="339" width="128" height="148"/>
+        <element name="Patient" positionX="511" positionY="339" width="128" height="150"/>
+        <element name="User" positionX="261" positionY="189" width="128" height="135"/>
     </elements>
 </model>

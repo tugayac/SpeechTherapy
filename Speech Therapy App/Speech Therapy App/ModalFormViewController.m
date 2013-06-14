@@ -36,8 +36,8 @@
 
 - (IBAction)submitButtonClicked:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(modalFormViewControllerDelegateSubmitButtonTouched:)]) {
-        [self.delegate modalFormViewControllerDelegateSubmitButtonTouched:self];
+    if ([self.delegate respondsToSelector:@selector(modalFormViewControllerSubmitButtonTouched:)]) {
+        [self.delegate modalFormViewControllerSubmitButtonTouched:self];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
