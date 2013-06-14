@@ -4851,6 +4851,15 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">typeOfAutismSuggestions:</string>
+						<reference key="source" ref="1010838475"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">18</int>
+					</object>
+					<int key="connectionID">167</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">checkTextFieldContentLength:</string>
 						<reference key="source" ref="716615086"/>
 						<reference key="destination" ref="841351856"/>
@@ -5728,7 +5737,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">164</int>
+			<int key="maxID">167</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5767,11 +5776,16 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<string key="superclassName">ModalFormViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="checkTextFieldContentLength:">id</string>
+						<string key="typeOfAutismSuggestions:">id</string>
 						<string key="usernameAvailabilityCheck:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="checkTextFieldContentLength:">
 							<string key="name">checkTextFieldContentLength:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="typeOfAutismSuggestions:">
+							<string key="name">typeOfAutismSuggestions:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="usernameAvailabilityCheck:">

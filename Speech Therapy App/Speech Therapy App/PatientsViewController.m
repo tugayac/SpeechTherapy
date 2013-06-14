@@ -9,11 +9,11 @@
 #import "PatientsViewController.h"
 #import "NewPatientViewController.h"
 #import "Patient.h"
+#import "CoreDataUtil.h"
 
 @implementation PatientsViewController
 
-@synthesize patientsTable, createNewPatientButton, doneButton;
-@synthesize currentUser;
+@synthesize patientsTable, currentUser;
 
 - (id)init
 {
@@ -23,11 +23,12 @@
         [self.patientsTable setDataSource:self];
         [self.patientsTable setDelegate:self];
         
-        self.createNewPatientButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewPatient:)];
-        [self.navigationItem setLeftBarButtonItem:self.createNewPatientButton];
+        UIBarButtonItem *createNewPatientButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewPatient)];
+        [self.navigationItem setLeftBarButtonItem:createNewPatientButton];
         
-        self.doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:nil];
-        [self.navigationItem setRightBarButtonItem:self.doneButton];
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:nil];
+        UIBarButtonItem *removePatientButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removePatient)];
+        [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:doneButton, removePatientButton, nil]];
         
         self.patients = [[NSMutableArray alloc] init];
     }
@@ -36,6 +37,8 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     [self setView:self.patientsTable];
     
     self.patients = [[Patient getPatientsForUser:self.currentUser] mutableCopy];
@@ -52,14 +55,24 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PatientCell"];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PatientCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PatientCell"];
     }
     
     Patient *patient = [self.patients objectAtIndex:[indexPath row]];
     
-    cell.textLabel.text = patient.firstName;
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", patient.firstName, patient.lastName];
+    cell.detailTextLabel.text = patient.typeOfAutism;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [CoreDataUtil deleteObject:[self.patients objectAtIndex:[indexPath row]]];
+        [self.patients removeObjectAtIndex:[indexPath row]];
+        [self.patientsTable reloadData];
+    }
 }
 
 - (CGSize)contentSizeForViewInPopover
@@ -67,7 +80,7 @@
     return CGSizeMake(320, 600);
 }
 
-- (void)createNewPatient:(id)sender
+- (void)createNewPatient
 {
     NewPatientViewController *newPatientViewController = [[NewPatientViewController alloc] init];
     newPatientViewController.currentUser = self.currentUser;
@@ -78,6 +91,15 @@
     [self presentViewController:newPatientViewController animated:YES completion:nil];
     
     newPatientViewController.view.superview.bounds = xibBounds;
+}
+
+- (void)removePatient
+{
+    if ([self.patientsTable isEditing]) {
+        [self.patientsTable setEditing:NO animated:YES];
+    } else {
+        [self.patientsTable setEditing:YES animated:YES];
+    }
 }
 
 - (void)modalFormViewControllerSubmitButtonTouched:(ModalFormViewController *)mfvc

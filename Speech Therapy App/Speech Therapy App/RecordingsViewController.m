@@ -46,11 +46,17 @@
 
 - (IBAction)viewPatients:(id)sender
 {
-    PatientsViewController *patientsViewController = [[PatientsViewController alloc] init];
-    patientsViewController.currentUser = self.currentUser;
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:patientsViewController];
-    self.patientsPopover = [[UIPopoverController alloc] initWithContentViewController:navController];
-    [self.patientsPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    if (!self.patientsPopover) {
+        PatientsViewController *patientsViewController = [[PatientsViewController alloc] init];
+        patientsViewController.currentUser = self.currentUser;
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:patientsViewController];
+        self.patientsPopover = [[UIPopoverController alloc] initWithContentViewController:navController];
+        [self.patientsPopover setDelegate:self];
+        [self.patientsPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    } else {
+        [self.patientsPopover dismissPopoverAnimated:YES];
+        self.patientsPopover = nil;
+    }
 }
 
 - (IBAction)createNewRecording:(id)sender
@@ -60,7 +66,7 @@
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-    [self.patientsPopover dismissPopoverAnimated:YES];
+    self.patientsPopover = nil;
 }
 
 @end

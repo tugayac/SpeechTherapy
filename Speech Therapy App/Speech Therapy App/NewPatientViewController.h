@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "ModalFormViewController.h"
+#import "AutoCompleteViewController.h"
 #import "User.h"
 
 @interface NewPatientViewController : ModalFormViewController
@@ -17,10 +18,12 @@
 @property (nonatomic, weak) IBOutlet UITextField *lastNameField;
 @property (nonatomic, weak) IBOutlet UITextField *usernameField;
 @property (nonatomic, weak) IBOutlet UITextField *typeOfAutismField;
+@property (nonatomic, strong) AutoCompleteViewController *acvc;
 
 @property (nonatomic, strong) User *currentUser;
 
 - (IBAction)checkTextFieldContentLength:(id)sender;
 - (IBAction)usernameAvailabilityCheck:(id)sender;
+- (IBAction)typeOfAutismSuggestions:(id)sender;
 
 @end

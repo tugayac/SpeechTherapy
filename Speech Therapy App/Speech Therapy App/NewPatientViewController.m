@@ -11,18 +11,12 @@
 
 @implementation NewPatientViewController
 
+@synthesize currentUser;
+
 - (id)init
 {
+    self.acvc = [[AutoCompleteViewController alloc] initWithFrame:CGRectZero];
     return [self initWithNibName:@"NewPatientViewController" bundle:nil];
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
 }
 
 - (void)viewDidLoad
@@ -56,6 +50,13 @@
     }
     
     [self setTextFieldBorder:self.usernameField toColor:[UIColor greenColor]];
+}
+
+- (IBAction)typeOfAutismSuggestions:(id)sender
+{
+    CGRect frame = self.typeOfAutismField.frame;
+    AutoCompleteViewController *acvc = [[AutoCompleteViewController alloc] initWithFrame:frame];
+    [self.view addSubview:acvc.view];
 }
 
 @end

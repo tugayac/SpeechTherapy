@@ -14,12 +14,11 @@
 @interface PatientsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ModalFormViewControllerDelegate>
 
 @property (nonatomic, strong) UITableView *patientsTable;
-@property (nonatomic, strong) UIBarButtonItem *createNewPatientButton;
-@property (nonatomic, strong) UIBarButtonItem *doneButton;
 
 @property (nonatomic, strong) NSMutableArray *patients;
 @property (nonatomic, strong) User *currentUser;
 
-- (void)createNewPatient:(id)sender;
+- (void)createNewPatient;
+- (void)removePatient;
 
 @end

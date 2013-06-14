@@ -33,6 +33,7 @@
     
     Patient *patient = (Patient *)[NSEntityDescription insertNewObjectForEntityForName:@"Patient" inManagedObjectContext:[appDelegate managedObjectContext]];
     
+    [patient setUsername:username];
     [patient setFirstName:firstName];
     [patient setLastName:lastName];
     [patient setTypeOfAutism:typeOfAutism];
@@ -40,9 +41,6 @@
     
     [patient setDateAdded:[NSDate date]];
     [patient setLastTestDate:nil];
-    
-    User *existingUser = [User getUser:user];
-    patient.supervisedBy = existingUser;
     
     NSError *error = nil;
     if (![[appDelegate managedObjectContext] save:&error]) {
