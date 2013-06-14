@@ -7,6 +7,7 @@
 //
 
 #import "NewPatientViewController.h"
+#import "Patient.h"
 
 @implementation NewPatientViewController
 
@@ -31,22 +32,30 @@
 
 - (IBAction)checkTextFieldContentLength:(id)sender
 {
-    
+    UITextField *textField = (UITextField *) sender;
+    if (textField.text.length < 1) {
+        [self setTextFieldBorder:textField toColor:[UIColor redColor]];
+    } else {
+        [self setTextFieldBorder:textField toColor:[UIColor greenColor]];
+    }
 }
 
 - (IBAction)usernameAvailabilityCheck:(id)sender
 {
+    NSArray *existingPatients = [Patient getPatientsForUser:self.currentUser];
+    for (Patient *patient in existingPatients) {
+        if ([patient.username isEqualToString:self.usernameField.text]) {
+            UIAlertView *usernameExistsAlert = [[UIAlertView alloc] initWithTitle:@"Unavailable Username" message:@"The username you have chosen already exists. Please choose another username." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [usernameExistsAlert setAlertViewStyle:UIAlertViewStyleDefault];
+            [usernameExistsAlert show];
+            
+            [self.usernameField setText:@""];
+            [self setTextFieldBorder:self.usernameField toColor:[UIColor redColor]];
+            return;
+        }
+    }
     
-}
-
-- (IBAction)submitButtonClicked:(id)sender
-{
-    
-}
-
-- (IBAction)cancelButtonClicked:(id)sender
-{
-    
+    [self setTextFieldBorder:self.usernameField toColor:[UIColor greenColor]];
 }
 
 @end

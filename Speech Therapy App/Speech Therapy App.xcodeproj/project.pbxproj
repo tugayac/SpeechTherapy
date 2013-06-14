@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		013D0BF4176AAB0C0090AD44 /* ModalFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D0BF3176AAB0C0090AD44 /* ModalFormViewController.m */; };
 		019B4B0E1766A70D001403C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 019B4B0D1766A70D001403C3 /* UIKit.framework */; };
 		019B4B101766A70D001403C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 019B4B0F1766A70D001403C3 /* Foundation.framework */; };
 		019B4B121766A70D001403C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 019B4B111766A70D001403C3 /* CoreGraphics.framework */; };
@@ -27,16 +28,18 @@
 		019B4B4E1766D340001403C3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B4D1766D340001403C3 /* User.m */; };
 		01AA454D176973FD0039F53B /* NewPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AA454B176973FD0039F53B /* NewPatientViewController.m */; };
 		01AA454E176973FD0039F53B /* NewPatientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AA454C176973FD0039F53B /* NewPatientViewController.xib */; };
+		01AA4559176982E10039F53B /* TypesOfAutism.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01AA4558176982E10039F53B /* TypesOfAutism.plist */; };
 		01AEB8F11769570500649A5F /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AEB8F01769570500649A5F /* Patient.m */; };
 		01AEB8F417695DCE00649A5F /* RecordingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AEB8F317695DCE00649A5F /* RecordingsViewController.m */; };
 		01AEB8F81769639800649A5F /* PatientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AEB8F61769639800649A5F /* PatientsViewController.m */; };
-		01AEB8F91769639800649A5F /* PatientsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01AEB8F71769639800649A5F /* PatientsViewController.xib */; };
 		01C3D34B1766FB7200ADCD42 /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C3D3491766FB7200ADCD42 /* NewUserViewController.m */; };
 		01C3D34C1766FB7200ADCD42 /* NewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01C3D34A1766FB7200ADCD42 /* NewUserViewController.xib */; };
 		01C3D3501767BF1D00ADCD42 /* ViewConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C3D34F1767BF1D00ADCD42 /* ViewConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		013D0BF2176AAB0C0090AD44 /* ModalFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalFormViewController.h; sourceTree = "<group>"; };
+		013D0BF3176AAB0C0090AD44 /* ModalFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalFormViewController.m; sourceTree = "<group>"; };
 		019B4B0A1766A70D001403C3 /* Speech Therapy App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Speech Therapy App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		019B4B0D1766A70D001403C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		019B4B0F1766A70D001403C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -66,13 +69,13 @@
 		01AA454A176973FD0039F53B /* NewPatientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPatientViewController.h; sourceTree = "<group>"; };
 		01AA454B176973FD0039F53B /* NewPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPatientViewController.m; sourceTree = "<group>"; };
 		01AA454C176973FD0039F53B /* NewPatientViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewPatientViewController.xib; sourceTree = "<group>"; };
+		01AA4558176982E10039F53B /* TypesOfAutism.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TypesOfAutism.plist; sourceTree = "<group>"; };
 		01AEB8EF1769570500649A5F /* Patient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patient.h; sourceTree = "<group>"; };
 		01AEB8F01769570500649A5F /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
 		01AEB8F217695DCE00649A5F /* RecordingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingsViewController.h; sourceTree = "<group>"; };
 		01AEB8F317695DCE00649A5F /* RecordingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingsViewController.m; sourceTree = "<group>"; };
 		01AEB8F51769639800649A5F /* PatientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientsViewController.h; sourceTree = "<group>"; };
 		01AEB8F61769639800649A5F /* PatientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientsViewController.m; sourceTree = "<group>"; };
-		01AEB8F71769639800649A5F /* PatientsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientsViewController.xib; sourceTree = "<group>"; };
 		01C3D3481766FB7200ADCD42 /* NewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserViewController.h; sourceTree = "<group>"; };
 		01C3D3491766FB7200ADCD42 /* NewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserViewController.m; sourceTree = "<group>"; };
 		01C3D34A1766FB7200ADCD42 /* NewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserViewController.xib; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 		019B4B151766A70D001403C3 /* Speech Therapy App */ = {
 			isa = PBXGroup;
 			children = (
+				01AA4558176982E10039F53B /* TypesOfAutism.plist */,
 				019B4B1E1766A70D001403C3 /* AppDelegate.h */,
 				019B4B1F1766A70D001403C3 /* AppDelegate.m */,
 				019B4B271766A70E001403C3 /* MainStoryboard.storyboard */,
@@ -196,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				01AA454C176973FD0039F53B /* NewPatientViewController.xib */,
-				01AEB8F71769639800649A5F /* PatientsViewController.xib */,
 				01C3D34A1766FB7200ADCD42 /* NewUserViewController.xib */,
 			);
 			name = Views;
@@ -205,6 +208,8 @@
 		01C3D3471766FA2400ADCD42 /* Overlay View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				013D0BF2176AAB0C0090AD44 /* ModalFormViewController.h */,
+				013D0BF3176AAB0C0090AD44 /* ModalFormViewController.m */,
 				01C3D3481766FB7200ADCD42 /* NewUserViewController.h */,
 				01C3D3491766FB7200ADCD42 /* NewUserViewController.m */,
 				01AA454A176973FD0039F53B /* NewPatientViewController.h */,
@@ -281,8 +286,8 @@
 				019B4B491766CA88001403C3 /* User.png in Resources */,
 				019B4B4B1766CA96001403C3 /* PlusSign.png in Resources */,
 				01C3D34C1766FB7200ADCD42 /* NewUserViewController.xib in Resources */,
-				01AEB8F91769639800649A5F /* PatientsViewController.xib in Resources */,
 				01AA454E176973FD0039F53B /* NewPatientViewController.xib in Resources */,
+				01AA4559176982E10039F53B /* TypesOfAutism.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +311,7 @@
 				01AEB8F417695DCE00649A5F /* RecordingsViewController.m in Sources */,
 				01AEB8F81769639800649A5F /* PatientsViewController.m in Sources */,
 				01AA454D176973FD0039F53B /* NewPatientViewController.m in Sources */,
+				013D0BF4176AAB0C0090AD44 /* ModalFormViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,10 +398,13 @@
 		019B4B361766A70E001403C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Speech Therapy App/Speech Therapy App-Prefix.pch";
 				INFOPLIST_FILE = "Speech Therapy App/Speech Therapy App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -403,10 +412,13 @@
 		019B4B371766A70E001403C3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Speech Therapy App/Speech Therapy App-Prefix.pch";
 				INFOPLIST_FILE = "Speech Therapy App/Speech Therapy App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

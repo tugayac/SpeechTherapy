@@ -7,18 +7,21 @@
 //
 
 #import "RecordingsViewController.h"
+#import "NewPatientViewController.h"
 #import "PatientsViewController.h"
+#import "Patient.h"
 #import "ViewConstants.h"
 
 @implementation RecordingsViewController
 
 @synthesize tableView, searchBar, createNewRecordingButton, patientsButton;
+@synthesize currentUser;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        // Custom init
     }
     return self;
 }
@@ -26,12 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    [self.navigationItem setLeftItemsSupplementBackButton:YES];
+    [self.navigationItem setHidesBackButton:NO];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -47,6 +47,7 @@
 - (IBAction)viewPatients:(id)sender
 {
     PatientsViewController *patientsViewController = [[PatientsViewController alloc] init];
+    patientsViewController.currentUser = self.currentUser;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:patientsViewController];
     self.patientsPopover = [[UIPopoverController alloc] initWithContentViewController:navController];
     [self.patientsPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
@@ -60,11 +61,6 @@
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
     [self.patientsPopover dismissPopoverAnimated:YES];
-}
-
-- (void)newPatientViewControllerSubmitButtonPressed:(NewPatientViewController *)npvc
-{
-    
 }
 
 @end

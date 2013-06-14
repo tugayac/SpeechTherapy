@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol NewUserViewControllerDelegate;
+#import "ModalFormViewController.h"
 
-@interface NewUserViewController : UIViewController<UITextFieldDelegate>
-
-@property (nonatomic, weak) id<NewUserViewControllerDelegate> delegate;
+@interface NewUserViewController : ModalFormViewController
 
 @property (nonatomic, weak) IBOutlet UITextField *usernameField;
 @property (nonatomic, weak) IBOutlet UITextField *firstNameField;
@@ -23,14 +21,5 @@
 - (IBAction)checkTextFieldContentLength:(id)sender;
 - (IBAction)usernameAvailabilityCheck:(id)sender;
 - (IBAction)passwordValidityCheck:(id)sender;
-- (IBAction)submitButtonClicked:(id)sender;
-- (IBAction)cancelButtonClicked:(id)sender;
-
-@end
-
-@protocol NewUserViewControllerDelegate <NSObject>
-
-@optional
-- (void)newUserViewControllerSubmitButtonPressed:(NewUserViewController *)nuvc;
 
 @end

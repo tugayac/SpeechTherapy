@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NewUserViewController.h"
 
-@interface UserViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, NewUserViewControllerDelegate>
+#import "ModalFormViewController.h"
+#import "User.h"
+
+@interface UserViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, ModalFormViewControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UICollectionView *userCollection;
+
 @property (nonatomic, strong) NSMutableArray *users;
+@property (nonatomic, strong) User *selectedUser;
 
 - (IBAction)addNewUser:(id)sender;
 

@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Arda Tugay. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
-
 #import "NewUserViewController.h"
 #import "User.h"
 
@@ -32,14 +30,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-}
-
-- (void)setTextFieldBorder:(UITextField *)textField toColor:(UIColor *)color
-{
-    [textField.layer setCornerRadius:8.0f];
-    [textField.layer setMasksToBounds:YES];
-    [textField.layer setBorderColor:[color CGColor]];
-    [textField.layer setBorderWidth:1.0f];
 }
 
 - (IBAction)checkTextFieldContentLength:(id)sender
@@ -79,19 +69,6 @@
         
         [self setTextFieldBorder:self.passwordAgainField toColor:[UIColor redColor]];
     }
-}
-
-- (IBAction)submitButtonClicked:(id)sender
-{
-    if ([self.delegate respondsToSelector:@selector(newUserViewControllerSubmitButtonPressed:)]) {
-        [self.delegate newUserViewControllerSubmitButtonPressed:self];
-    }
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)cancelButtonClicked:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

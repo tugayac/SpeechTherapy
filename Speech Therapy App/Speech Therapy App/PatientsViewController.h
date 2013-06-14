@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PatientsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+#import "ModalFormViewController.h"
+#import "User.h"
 
-@property (nonatomic, strong) UITableView *tableView;
+@interface PatientsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ModalFormViewControllerDelegate>
+
+@property (nonatomic, strong) UITableView *patientsTable;
 @property (nonatomic, strong) UIBarButtonItem *createNewPatientButton;
 @property (nonatomic, strong) UIBarButtonItem *doneButton;
 
-- (IBAction)createNewPatient:(id)sender;
+@property (nonatomic, strong) NSMutableArray *patients;
+@property (nonatomic, weak) User *currentUser;
+
+- (void)createNewPatient:(id)sender;
 
 @end

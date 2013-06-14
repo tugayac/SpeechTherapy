@@ -8,27 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol NewPatientViewControllerDelegate;
+#import "ModalFormViewController.h"
+#import "User.h"
 
-@interface NewPatientViewController : UIViewController<UITextFieldDelegate>
-
-@property (nonatomic, weak) id<NewPatientViewControllerDelegate> delegate;
+@interface NewPatientViewController : ModalFormViewController
 
 @property (nonatomic, weak) IBOutlet UITextField *firstNameField;
 @property (nonatomic, weak) IBOutlet UITextField *lastNameField;
 @property (nonatomic, weak) IBOutlet UITextField *usernameField;
-@property (nonatomic, strong) IBOutlet UITextField *typeOfAutismField;
+@property (nonatomic, weak) IBOutlet UITextField *typeOfAutismField;
+
+@property (nonatomic, weak) User *currentUser;
 
 - (IBAction)checkTextFieldContentLength:(id)sender;
 - (IBAction)usernameAvailabilityCheck:(id)sender;
-- (IBAction)submitButtonClicked:(id)sender;
-- (IBAction)cancelButtonClicked:(id)sender;
-
-@end
-
-@protocol NewPatientViewControllerDelegate <NSObject>
-
-@optional
-- (void)newPatientViewControllerSubmitButtonPressed:(NewPatientViewController *)npvc;
 
 @end

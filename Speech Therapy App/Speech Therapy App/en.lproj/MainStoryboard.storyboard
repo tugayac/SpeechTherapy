@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12A269" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="pSN-rd-jhw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="pSN-rd-jhw">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -19,7 +19,7 @@
             </objects>
             <point key="canvasLocation" x="-3652" y="-767"/>
         </scene>
-        <!--User View Controller-->
+        <!--User View Controller - User Login-->
         <scene sceneID="ogh-Om-7X3">
             <objects>
                 <viewController id="3uq-98-prZ" customClass="UserViewController" sceneMemberID="viewController">
@@ -70,7 +70,6 @@
                                         <connections>
                                             <outlet property="userImage" destination="bIp-bA-gjz" id="FTt-1Z-OCE"/>
                                             <outlet property="userLabel" destination="efC-k6-q39" id="KY8-6u-NsA"/>
-                                            <segue destination="JIo-j9-18j" kind="push" identifier="DisplayPatients" id="uhf-ft-0eb"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -98,7 +97,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yiN-gO-u5A">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Mgd-zo-nAb"/>
-                                    <constraint firstAttribute="width" constant="75" id="PcP-lF-06b"/>
+                                    <constraint firstAttribute="width" constant="75" id="NIr-id-0px"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -115,32 +114,33 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="wUw-p4-cQg" firstAttribute="centerX" secondItem="BFs-Yn-8q5" secondAttribute="centerX" type="default" id="3Pe-zL-QFW"/>
+                            <constraint firstItem="wUw-p4-cQg" firstAttribute="centerX" secondItem="Rdz-ZT-2wL" secondAttribute="centerX" type="default" id="ARL-Ct-Ew7"/>
                             <constraint firstItem="yiN-gO-u5A" firstAttribute="leading" secondItem="wUw-p4-cQg" secondAttribute="leading" type="default" id="BK8-vK-8Rt"/>
-                            <constraint firstItem="826-Xo-6gH" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="21" id="CbA-9r-TGi"/>
-                            <constraint firstItem="wUw-p4-cQg" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="78" id="DPh-9w-pWq"/>
-                            <constraint firstItem="BFs-Yn-8q5" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="160" id="Hr9-PI-Zfz"/>
+                            <constraint firstItem="Asy-tK-CWG" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="195" id="Cyx-VG-0To"/>
+                            <constraint firstItem="826-Xo-6gH" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="21" id="FHg-Ng-Bof"/>
                             <constraint firstItem="303-Be-j4j" firstAttribute="centerX" secondItem="826-Xo-6gH" secondAttribute="centerX" type="default" id="Jaa-UW-vmx"/>
-                            <constraint firstItem="Asy-tK-CWG" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="195" id="RLh-Gf-1td"/>
                             <constraint firstItem="yiN-gO-u5A" firstAttribute="top" secondItem="wUw-p4-cQg" secondAttribute="top" type="default" id="SDp-Rt-hr3"/>
                             <constraint firstItem="yiN-gO-u5A" firstAttribute="trailing" secondItem="wUw-p4-cQg" secondAttribute="trailing" type="default" id="SDz-P7-Ytg"/>
-                            <constraint firstItem="BFs-Yn-8q5" firstAttribute="centerX" secondItem="Rdz-ZT-2wL" secondAttribute="centerX" type="default" id="bzV-bS-BMP"/>
-                            <constraint firstItem="303-Be-j4j" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="47" id="c6i-S2-Fh7"/>
+                            <constraint firstItem="303-Be-j4j" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="47" id="cNE-BK-tLI"/>
                             <constraint firstItem="wUw-p4-cQg" firstAttribute="bottom" secondItem="yiN-gO-u5A" secondAttribute="bottom" type="default" id="dW3-RI-cqE"/>
                             <constraint firstItem="Asy-tK-CWG" firstAttribute="leading" secondItem="Rdz-ZT-2wL" secondAttribute="leading" constant="2" id="eK6-e5-opW"/>
+                            <constraint firstItem="BFs-Yn-8q5" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="160" id="hR4-Ws-20C"/>
                             <constraint firstItem="wUw-p4-cQg" firstAttribute="centerX" secondItem="303-Be-j4j" secondAttribute="centerX" type="default" id="nqh-K6-0DV"/>
+                            <constraint firstItem="yiN-gO-u5A" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="78" id="r7Y-w2-0WV"/>
+                            <constraint firstItem="yiN-gO-u5A" firstAttribute="centerX" secondItem="BFs-Yn-8q5" secondAttribute="centerX" type="default" id="zpK-SF-UyQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3aT-XH-eG2"/>
+                    <navigationItem key="navigationItem" title="User Login" id="3aT-XH-eG2"/>
                     <connections>
                         <outlet property="userCollection" destination="Asy-tK-CWG" id="Ek2-sS-luC"/>
+                        <segue destination="JIo-j9-18j" kind="push" identifier="DisplayPatients" id="ZxL-wO-t4L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="90B-jW-R5v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2632" y="-767"/>
         </scene>
-        <!--Recordings View Controller-->
+        <!--Recordings View Controller - Recordings-->
         <scene sceneID="CNw-hU-D7m">
             <objects>
                 <viewController id="JIo-j9-18j" customClass="RecordingsViewController" sceneMemberID="viewController">
@@ -173,10 +173,10 @@
                             <constraint firstItem="oe8-wB-ISu" firstAttribute="leading" secondItem="fxs-c2-rDX" secondAttribute="leading" type="default" id="y0d-sd-PSe"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Ciw-qM-Iyc">
-                        <barButtonItem key="leftBarButtonItem" title="Patients" id="iYM-8C-NFH">
+                    <navigationItem key="navigationItem" title="Recordings" id="Ciw-qM-Iyc">
+                        <barButtonItem key="leftBarButtonItem" title="Patients" id="rjX-WC-Bkm">
                             <connections>
-                                <action selector="viewPatients:" destination="JIo-j9-18j" id="Bnc-7g-Qd2"/>
+                                <action selector="viewPatients:" destination="JIo-j9-18j" id="OnE-V9-pem"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="New Recording" id="4Tb-Tx-xlG">
@@ -187,7 +187,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="createNewRecordingButton" destination="4Tb-Tx-xlG" id="UMA-ZW-Hrq"/>
-                        <outlet property="patientsButton" destination="iYM-8C-NFH" id="6Ao-td-Znm"/>
+                        <outlet property="patientsButton" destination="rjX-WC-Bkm" id="3hx-4Y-0Mf"/>
                         <outlet property="searchBar" destination="oe8-wB-ISu" id="PXq-sP-Cc0"/>
                         <outlet property="searchDisplayController" destination="uqe-ys-Nuh" id="daH-3F-IvQ"/>
                         <outlet property="tableView" destination="D2Z-LY-hW5" id="yLn-Ov-DTo"/>
@@ -209,6 +209,48 @@
     <resources>
         <image name="PlusSign.png" width="450" height="450"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RecordingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecordingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createNewRecording:"/>
+                <relationship kind="action" name="viewPatients:"/>
+                <relationship kind="outlet" name="createNewRecordingButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="patientsButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+        <class className="UserCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="userImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="userLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="UserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addNewUser:"/>
+                <relationship kind="outlet" name="userCollection" candidateClass="UICollectionView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
