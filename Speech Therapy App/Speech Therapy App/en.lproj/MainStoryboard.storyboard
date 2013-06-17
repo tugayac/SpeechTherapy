@@ -40,7 +40,7 @@
                                     <inset key="sectionInset" minX="75" minY="10" maxX="75" maxY="50"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UserCell" id="jC6-mL-LgL" customClass="UserCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UserCell" id="jC6-mL-LgL" customClass="Cell">
                                         <rect key="frame" x="75" y="10" width="150" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -179,17 +179,18 @@
                                 <action selector="viewPatients:" destination="JIo-j9-18j" id="OnE-V9-pem"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="New Recording" id="4Tb-Tx-xlG">
+                        <barButtonItem key="rightBarButtonItem" title="Start New Test" id="4Tb-Tx-xlG">
                             <connections>
-                                <action selector="createNewRecording:" destination="JIo-j9-18j" id="adx-bn-66v"/>
+                                <action selector="startNewRecording:" destination="JIo-j9-18j" id="mjH-ST-znj"/>
+                                <segue destination="tsB-sh-eJ0" kind="push" identifier="ShowTests" id="Hak-RM-EXO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="createNewRecordingButton" destination="4Tb-Tx-xlG" id="UMA-ZW-Hrq"/>
                         <outlet property="patientsButton" destination="rjX-WC-Bkm" id="3hx-4Y-0Mf"/>
                         <outlet property="searchBar" destination="oe8-wB-ISu" id="PXq-sP-Cc0"/>
                         <outlet property="searchDisplayController" destination="uqe-ys-Nuh" id="daH-3F-IvQ"/>
+                        <outlet property="startNewTestButton" destination="4Tb-Tx-xlG" id="oes-mo-a4r"/>
                         <outlet property="tableView" destination="D2Z-LY-hW5" id="yLn-Ov-DTo"/>
                     </connections>
                 </viewController>
@@ -205,23 +206,109 @@
             </objects>
             <point key="canvasLocation" x="-1605" y="-767"/>
         </scene>
+        <!--Tests View Controller-->
+        <scene sceneID="jKX-Fh-6D5">
+            <objects>
+                <viewController id="tsB-sh-eJ0" customClass="TestsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z1t-cP-FUh">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kYt-NH-y5h">
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uaA-sz-irS">
+                                    <size key="itemSize" width="150" height="190"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="75" minY="50" maxX="75" maxY="50"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TestCell" id="e8E-3i-6lX" customClass="Cell">
+                                        <rect key="frame" x="75" y="50" width="150" height="190"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="190"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSA-bQ-8ao">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="150" id="SUH-lC-hWp"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWw-UP-xu6">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="TWw-UP-xu6" firstAttribute="centerX" secondItem="hSA-bQ-8ao" secondAttribute="centerX" type="default" id="Qja-Zh-MV5"/>
+                                            <constraint firstItem="hSA-bQ-8ao" firstAttribute="top" secondItem="e8E-3i-6lX" secondAttribute="top" type="default" id="ZC0-rr-ft9"/>
+                                            <constraint firstItem="TWw-UP-xu6" firstAttribute="top" secondItem="hSA-bQ-8ao" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ZIY-qg-5hv"/>
+                                            <constraint firstItem="hSA-bQ-8ao" firstAttribute="leading" secondItem="e8E-3i-6lX" secondAttribute="leading" type="default" id="n2d-53-CsR"/>
+                                            <constraint firstItem="hSA-bQ-8ao" firstAttribute="trailing" secondItem="e8E-3i-6lX" secondAttribute="trailing" type="default" id="qbr-QW-pgr"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="userImage" destination="hSA-bQ-8ao" id="PxE-PU-BPt"/>
+                                            <outlet property="userLabel" destination="TWw-UP-xu6" id="lV9-VT-uEV"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="tsB-sh-eJ0" id="kGX-oC-aNG"/>
+                                    <outlet property="delegate" destination="tsB-sh-eJ0" id="dM8-Qg-Wtd"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kYt-NH-y5h" firstAttribute="bottom" secondItem="z1t-cP-FUh" secondAttribute="bottom" type="default" id="0oe-sl-woa"/>
+                            <constraint firstItem="kYt-NH-y5h" firstAttribute="leading" secondItem="z1t-cP-FUh" secondAttribute="leading" type="default" id="9pM-HR-GlS"/>
+                            <constraint firstItem="kYt-NH-y5h" firstAttribute="trailing" secondItem="z1t-cP-FUh" secondAttribute="trailing" type="default" id="GF6-AX-xaU"/>
+                            <constraint firstItem="kYt-NH-y5h" firstAttribute="top" secondItem="z1t-cP-FUh" secondAttribute="top" type="default" id="Lfa-sp-dPu"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="b3C-UZ-dvs"/>
+                    <connections>
+                        <outlet property="testsCollection" destination="kYt-NH-y5h" id="qpg-hX-SrR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JQm-LR-7wh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-549" y="-767"/>
+        </scene>
     </scenes>
     <resources>
         <image name="PlusSign.png" width="450" height="450"/>
     </resources>
     <classes>
+        <class className="Cell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Cell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="userImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="userLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
         <class className="RecordingsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RecordingsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="createNewRecording:"/>
+                <relationship kind="action" name="startNewRecording:"/>
                 <relationship kind="action" name="viewPatients:"/>
-                <relationship kind="outlet" name="createNewRecordingButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="patientsButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="startNewTestButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TestsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TestsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="testsCollection" candidateClass="UICollectionView"/>
             </relationships>
         </class>
         <class className="UICollectionReusableView" superclassName="UIView">
@@ -235,13 +322,6 @@
         </class>
         <class className="UICollectionViewLayout" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
-        </class>
-        <class className="UserCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="userImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="userLabel" candidateClass="UILabel"/>
-            </relationships>
         </class>
         <class className="UserViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UserViewController.h"/>

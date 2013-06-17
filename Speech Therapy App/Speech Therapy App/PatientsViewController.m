@@ -9,7 +9,6 @@
 #import "PatientsViewController.h"
 #import "NewPatientViewController.h"
 #import "Patient.h"
-#import "CoreDataUtil.h"
 
 @implementation PatientsViewController
 
@@ -26,7 +25,7 @@
         UIBarButtonItem *createNewPatientButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewPatient)];
         [self.navigationItem setLeftBarButtonItem:createNewPatientButton];
         
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:nil];
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonTouched)];
         UIBarButtonItem *removePatientButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removePatient)];
         [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:doneButton, removePatientButton, nil]];
         
@@ -69,7 +68,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [CoreDataUtil deleteObject:[self.patients objectAtIndex:[indexPath row]]];
+        [Patient removePatient:[self.patients objectAtIndex:[indexPath row]]];
         [self.patients removeObjectAtIndex:[indexPath row]];
         [self.patientsTable reloadData];
     }
@@ -99,6 +98,13 @@
         [self.patientsTable setEditing:NO animated:YES];
     } else {
         [self.patientsTable setEditing:YES animated:YES];
+    }
+}
+
+- (void)doneButtonTouched
+{
+    if ([self.delegate respondsToSelector:@selector(didDismissPatientsPopover:)]) {
+        [self.delegate didDismissPatientsPopover:self];
     }
 }
 

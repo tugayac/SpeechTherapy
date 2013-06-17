@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserCell : UICollectionViewCell
+@interface Cell : UICollectionViewCell
 
 @property (nonatomic, strong) IBOutlet UIImageView *userImage;
 @property (nonatomic, strong) IBOutlet UILabel *userLabel;

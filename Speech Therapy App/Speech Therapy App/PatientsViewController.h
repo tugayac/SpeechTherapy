@@ -11,7 +11,11 @@
 #import "ModalFormViewController.h"
 #import "User.h"
 
+@protocol PatientsPopoverDelegate;
+
 @interface PatientsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ModalFormViewControllerDelegate>
+
+@property (nonatomic, weak) id<PatientsPopoverDelegate> delegate;
 
 @property (nonatomic, strong) UITableView *patientsTable;
 
@@ -20,5 +24,13 @@
 
 - (void)createNewPatient;
 - (void)removePatient;
+- (void)doneButtonTouched;
+
+@end
+
+@protocol PatientsPopoverDelegate <NSObject>
+
+@optional
+- (void)didDismissPatientsPopover:(PatientsViewController *)pvc;
 
 @end

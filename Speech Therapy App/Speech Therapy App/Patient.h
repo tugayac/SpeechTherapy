@@ -23,5 +23,6 @@
 
 + (Patient *)addPatientWithUsername:(NSString *)username firstName:(NSString *)firstName lastName:(NSString *)lastName typeOfAutism:(NSString *)typeOfAutism supervisor:(User *)user;
 + (NSArray *)getPatientsForUser:(User *)user;
++ (BOOL)removePatient:(NSManagedObject *)patient;
 
 @end

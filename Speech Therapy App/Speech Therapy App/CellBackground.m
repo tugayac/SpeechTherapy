@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Arda Tugay. All rights reserved.
 //
 
-#import "UserCellBackground.h"
+#import "CellBackground.h"
 
-@implementation UserCellBackground
+@implementation CellBackground
 
 - (void)drawRect:(CGRect)rect
 {

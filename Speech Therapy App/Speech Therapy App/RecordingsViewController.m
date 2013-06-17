@@ -8,23 +8,14 @@
 
 #import "RecordingsViewController.h"
 #import "NewPatientViewController.h"
-#import "PatientsViewController.h"
+#import "TestsViewController.h"
 #import "Patient.h"
 #import "ViewConstants.h"
 
 @implementation RecordingsViewController
 
-@synthesize tableView, searchBar, createNewRecordingButton, patientsButton;
+@synthesize tableView, searchBar, startNewTestButton, patientsButton;
 @synthesize currentUser;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom init
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -32,6 +23,14 @@
     
     [self.navigationItem setLeftItemsSupplementBackButton:YES];
     [self.navigationItem setHidesBackButton:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if (self.patientsPopover) {
+        [self.patientsPopover dismissPopoverAnimated:YES];
+        self.patientsPopover = nil;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -49,9 +48,9 @@
     if (!self.patientsPopover) {
         PatientsViewController *patientsViewController = [[PatientsViewController alloc] init];
         patientsViewController.currentUser = self.currentUser;
+        patientsViewController.delegate = self;
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:patientsViewController];
         self.patientsPopover = [[UIPopoverController alloc] initWithContentViewController:navController];
-        [self.patientsPopover setDelegate:self];
         [self.patientsPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     } else {
         [self.patientsPopover dismissPopoverAnimated:YES];
@@ -59,7 +58,7 @@
     }
 }
 
-- (IBAction)createNewRecording:(id)sender
+- (IBAction)startNewRecording:(id)sender
 {
     
 }
@@ -67,6 +66,20 @@
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
     self.patientsPopover = nil;
+}
+
+- (void)didDismissPatientsPopover:(PatientsViewController *)pvc
+{
+    [self.patientsPopover dismissPopoverAnimated:YES];
+    self.patientsPopover = nil;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:kShowTests]) {
+        TestsViewController *testsViewController = segue.destinationViewController;
+        testsViewController.currentUser = self.currentUser;
+    }
 }
 
 @end

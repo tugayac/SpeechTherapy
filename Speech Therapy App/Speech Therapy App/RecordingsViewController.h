@@ -10,19 +10,20 @@
 
 #import "ModalFormViewController.h"
 #import "User.h"
+#import "PatientsViewController.h"
 
-@interface RecordingsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate>
+@interface RecordingsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate, PatientsPopoverDelegate>
 
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *patientsButton;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *createNewRecordingButton;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *startNewTestButton;
 
 @property (nonatomic, strong) UIPopoverController *patientsPopover;
 
 @property (nonatomic, weak) User *currentUser;
 
 - (IBAction)viewPatients:(id)sender;
-- (IBAction)createNewRecording:(id)sender;
+- (IBAction)startNewRecording:(id)sender;
 
 @end

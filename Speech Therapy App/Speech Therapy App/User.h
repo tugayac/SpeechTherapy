@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * password;
 @property (nonatomic, retain) NSString * imageURL;
-@property (nonatomic, retain) Patient * supervising;
+@property (nonatomic, retain) NSSet * supervising;
 
 + (User *)addUserWithUsername:(NSString *)username firstName:(NSString *)firstName lastName:(NSString *)lastName password:(NSString *)password imageFile:(NSString *)imageURL;
 + (NSArray *)getAllUsers;

@@ -19,5 +19,6 @@ NSString* const kUserCellIdentifier = @"UserCell";
 
 #pragma mark - segue identifiers
 NSString* const kUserLoggedIn = @"DisplayPatients";
+NSString* const kShowTests = @"ShowTests";
 
 @end

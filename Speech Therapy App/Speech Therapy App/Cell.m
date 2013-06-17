@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 Arda Tugay. All rights reserved.
 //
 
-#import "UserCell.h"
-#import "UserCellBackground.h"
+#import "Cell.h"
+#import "CellBackground.h"
 
-@implementation UserCell
+@implementation Cell
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self)
     {
-        UserCellBackground* backgroundView = [[UserCellBackground alloc] initWithFrame:CGRectZero];
+        CellBackground* backgroundView = [[CellBackground alloc] initWithFrame:CGRectZero];
         self.selectedBackgroundView = backgroundView;
     }
     return self;

@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		013D0BF4176AAB0C0090AD44 /* ModalFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D0BF3176AAB0C0090AD44 /* ModalFormViewController.m */; };
-		013D0BF7176B9C820090AD44 /* CoreDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D0BF6176B9C820090AD44 /* CoreDataUtil.m */; };
 		013D0BFD176BA6DF0090AD44 /* AutoCompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D0BFC176BA6DF0090AD44 /* AutoCompleteViewController.m */; };
 		013D0C01176BB99C0090AD44 /* VoiceRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D0BFF176BB99B0090AD44 /* VoiceRecordViewController.m */; };
-		013D0C02176BB99C0090AD44 /* VoiceRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013D0C00176BB99B0090AD44 /* VoiceRecordViewController.xib */; };
+		016389C0176E992C0023657C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016389BF176E992C0023657C /* AVFoundation.framework */; };
+		016389C2176F92540023657C /* Audio.png in Resources */ = {isa = PBXBuildFile; fileRef = 016389C1176F92540023657C /* Audio.png */; };
+		016389C8176F95060023657C /* TestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 016389C7176F95050023657C /* TestsViewController.m */; };
+		016389CD176F9DC70023657C /* VoiceRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 016389CC176F9DC70023657C /* VoiceRecordViewController.xib */; };
 		019B4B0E1766A70D001403C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 019B4B0D1766A70D001403C3 /* UIKit.framework */; };
 		019B4B101766A70D001403C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 019B4B0F1766A70D001403C3 /* Foundation.framework */; };
 		019B4B121766A70D001403C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 019B4B111766A70D001403C3 /* CoreGraphics.framework */; };
@@ -25,8 +27,8 @@
 		019B4B291766A70E001403C3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 019B4B271766A70E001403C3 /* MainStoryboard.storyboard */; };
 		019B4B2C1766A70E001403C3 /* Speech_Therapy_App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B2A1766A70E001403C3 /* Speech_Therapy_App.xcdatamodeld */; };
 		019B4B3B1766A95A001403C3 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B3A1766A95A001403C3 /* UserViewController.m */; };
-		019B4B3F1766AD22001403C3 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B3E1766AD22001403C3 /* UserCell.m */; };
-		019B4B421766B078001403C3 /* UserCellBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B411766B078001403C3 /* UserCellBackground.m */; };
+		019B4B3F1766AD22001403C3 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B3E1766AD22001403C3 /* Cell.m */; };
+		019B4B421766B078001403C3 /* CellBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B411766B078001403C3 /* CellBackground.m */; };
 		019B4B491766CA88001403C3 /* User.png in Resources */ = {isa = PBXBuildFile; fileRef = 019B4B481766CA88001403C3 /* User.png */; };
 		019B4B4B1766CA96001403C3 /* PlusSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 019B4B4A1766CA96001403C3 /* PlusSign.png */; };
 		019B4B4E1766D340001403C3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B4D1766D340001403C3 /* User.m */; };
@@ -44,13 +46,15 @@
 /* Begin PBXFileReference section */
 		013D0BF2176AAB0C0090AD44 /* ModalFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalFormViewController.h; sourceTree = "<group>"; };
 		013D0BF3176AAB0C0090AD44 /* ModalFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalFormViewController.m; sourceTree = "<group>"; };
-		013D0BF5176B9C820090AD44 /* CoreDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataUtil.h; sourceTree = "<group>"; };
-		013D0BF6176B9C820090AD44 /* CoreDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataUtil.m; sourceTree = "<group>"; };
 		013D0BFB176BA6DF0090AD44 /* AutoCompleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompleteViewController.h; sourceTree = "<group>"; };
 		013D0BFC176BA6DF0090AD44 /* AutoCompleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompleteViewController.m; sourceTree = "<group>"; };
 		013D0BFE176BB99B0090AD44 /* VoiceRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceRecordViewController.h; sourceTree = "<group>"; };
 		013D0BFF176BB99B0090AD44 /* VoiceRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceRecordViewController.m; sourceTree = "<group>"; };
-		013D0C00176BB99B0090AD44 /* VoiceRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoiceRecordViewController.xib; sourceTree = "<group>"; };
+		016389BF176E992C0023657C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		016389C1176F92540023657C /* Audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Audio.png; sourceTree = "<group>"; };
+		016389C6176F95050023657C /* TestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestsViewController.h; sourceTree = "<group>"; };
+		016389C7176F95050023657C /* TestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestsViewController.m; sourceTree = "<group>"; };
+		016389CC176F9DC70023657C /* VoiceRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoiceRecordViewController.xib; sourceTree = "<group>"; };
 		019B4B0A1766A70D001403C3 /* Speech Therapy App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Speech Therapy App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		019B4B0D1766A70D001403C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		019B4B0F1766A70D001403C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -69,10 +73,10 @@
 		019B4B2B1766A70E001403C3 /* Speech_Therapy_App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Speech_Therapy_App.xcdatamodel; sourceTree = "<group>"; };
 		019B4B391766A95A001403C3 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		019B4B3A1766A95A001403C3 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
-		019B4B3D1766AD22001403C3 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
-		019B4B3E1766AD22001403C3 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
-		019B4B401766B078001403C3 /* UserCellBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCellBackground.h; sourceTree = "<group>"; };
-		019B4B411766B078001403C3 /* UserCellBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCellBackground.m; sourceTree = "<group>"; };
+		019B4B3D1766AD22001403C3 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		019B4B3E1766AD22001403C3 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+		019B4B401766B078001403C3 /* CellBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellBackground.h; sourceTree = "<group>"; };
+		019B4B411766B078001403C3 /* CellBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellBackground.m; sourceTree = "<group>"; };
 		019B4B481766CA88001403C3 /* User.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = User.png; sourceTree = "<group>"; };
 		019B4B4A1766CA96001403C3 /* PlusSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlusSign.png; sourceTree = "<group>"; };
 		019B4B4C1766D340001403C3 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				016389C0176E992C0023657C /* AVFoundation.framework in Frameworks */,
 				019B4B0E1766A70D001403C3 /* UIKit.framework in Frameworks */,
 				019B4B101766A70D001403C3 /* Foundation.framework in Frameworks */,
 				019B4B121766A70D001403C3 /* CoreGraphics.framework in Frameworks */,
@@ -118,9 +123,30 @@
 			name = GSAutoComplete;
 			sourceTree = "<group>";
 		};
+		016389CA176F96DA0023657C /* Collection View Sources */ = {
+			isa = PBXGroup;
+			children = (
+				019B4B3D1766AD22001403C3 /* Cell.h */,
+				019B4B3E1766AD22001403C3 /* Cell.m */,
+				019B4B401766B078001403C3 /* CellBackground.h */,
+				019B4B411766B078001403C3 /* CellBackground.m */,
+			);
+			name = "Collection View Sources";
+			sourceTree = "<group>";
+		};
+		016389CB176F99F80023657C /* Test View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				013D0BFE176BB99B0090AD44 /* VoiceRecordViewController.h */,
+				013D0BFF176BB99B0090AD44 /* VoiceRecordViewController.m */,
+			);
+			name = "Test View Controllers";
+			sourceTree = "<group>";
+		};
 		019B4B011766A70D001403C3 = {
 			isa = PBXGroup;
 			children = (
+				016389BF176E992C0023657C /* AVFoundation.framework */,
 				019B4B151766A70D001403C3 /* Speech Therapy App */,
 				019B4B0C1766A70D001403C3 /* Frameworks */,
 				019B4B0B1766A70D001403C3 /* Products */,
@@ -166,9 +192,8 @@
 		019B4B161766A70D001403C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				013D0BF5176B9C820090AD44 /* CoreDataUtil.h */,
-				013D0BF6176B9C820090AD44 /* CoreDataUtil.m */,
 				01AA4558176982E10039F53B /* TypesOfAutism.plist */,
+				016389C1176F92540023657C /* Audio.png */,
 				019B4B4A1766CA96001403C3 /* PlusSign.png */,
 				019B4B481766CA88001403C3 /* User.png */,
 				019B4B171766A70D001403C3 /* Speech Therapy App-Info.plist */,
@@ -185,29 +210,19 @@
 		019B4B381766A92C001403C3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				016389CA176F96DA0023657C /* Collection View Sources */,
 				01C3D3471766FA2400ADCD42 /* Overlay View Controllers */,
-				019B4B3C1766ACEF001403C3 /* UserViewControllers */,
-				01AEB8F217695DCE00649A5F /* RecordingsViewController.h */,
-				01AEB8F317695DCE00649A5F /* RecordingsViewController.m */,
-				01AEB8F51769639800649A5F /* PatientsViewController.h */,
-				01AEB8F61769639800649A5F /* PatientsViewController.m */,
-				013D0BFE176BB99B0090AD44 /* VoiceRecordViewController.h */,
-				013D0BFF176BB99B0090AD44 /* VoiceRecordViewController.m */,
-			);
-			name = "View Controllers";
-			sourceTree = "<group>";
-		};
-		019B4B3C1766ACEF001403C3 /* UserViewControllers */ = {
-			isa = PBXGroup;
-			children = (
 				019B4B391766A95A001403C3 /* UserViewController.h */,
 				019B4B3A1766A95A001403C3 /* UserViewController.m */,
-				019B4B3D1766AD22001403C3 /* UserCell.h */,
-				019B4B3E1766AD22001403C3 /* UserCell.m */,
-				019B4B401766B078001403C3 /* UserCellBackground.h */,
-				019B4B411766B078001403C3 /* UserCellBackground.m */,
+				01AEB8F51769639800649A5F /* PatientsViewController.h */,
+				01AEB8F61769639800649A5F /* PatientsViewController.m */,
+				01AEB8F217695DCE00649A5F /* RecordingsViewController.h */,
+				01AEB8F317695DCE00649A5F /* RecordingsViewController.m */,
+				016389C6176F95050023657C /* TestsViewController.h */,
+				016389C7176F95050023657C /* TestsViewController.m */,
+				016389CB176F99F80023657C /* Test View Controllers */,
 			);
-			name = UserViewControllers;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		019B4B441766B244001403C3 /* Models */ = {
@@ -224,9 +239,9 @@
 		01C3D3461766F9E000ADCD42 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				013D0C00176BB99B0090AD44 /* VoiceRecordViewController.xib */,
 				01AA454C176973FD0039F53B /* NewPatientViewController.xib */,
 				01C3D34A1766FB7200ADCD42 /* NewUserViewController.xib */,
+				016389CC176F9DC70023657C /* VoiceRecordViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -314,7 +329,8 @@
 				01C3D34C1766FB7200ADCD42 /* NewUserViewController.xib in Resources */,
 				01AA454E176973FD0039F53B /* NewPatientViewController.xib in Resources */,
 				01AA4559176982E10039F53B /* TypesOfAutism.plist in Resources */,
-				013D0C02176BB99C0090AD44 /* VoiceRecordViewController.xib in Resources */,
+				016389C2176F92540023657C /* Audio.png in Resources */,
+				016389CD176F9DC70023657C /* VoiceRecordViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,8 +345,8 @@
 				019B4B201766A70D001403C3 /* AppDelegate.m in Sources */,
 				019B4B2C1766A70E001403C3 /* Speech_Therapy_App.xcdatamodeld in Sources */,
 				019B4B3B1766A95A001403C3 /* UserViewController.m in Sources */,
-				019B4B3F1766AD22001403C3 /* UserCell.m in Sources */,
-				019B4B421766B078001403C3 /* UserCellBackground.m in Sources */,
+				019B4B3F1766AD22001403C3 /* Cell.m in Sources */,
+				019B4B421766B078001403C3 /* CellBackground.m in Sources */,
 				019B4B4E1766D340001403C3 /* User.m in Sources */,
 				01C3D34B1766FB7200ADCD42 /* NewUserViewController.m in Sources */,
 				01C3D3501767BF1D00ADCD42 /* ViewConstants.m in Sources */,
@@ -339,9 +355,9 @@
 				01AEB8F81769639800649A5F /* PatientsViewController.m in Sources */,
 				01AA454D176973FD0039F53B /* NewPatientViewController.m in Sources */,
 				013D0BF4176AAB0C0090AD44 /* ModalFormViewController.m in Sources */,
-				013D0BF7176B9C820090AD44 /* CoreDataUtil.m in Sources */,
 				013D0BFD176BA6DF0090AD44 /* AutoCompleteViewController.m in Sources */,
 				013D0C01176BB99C0090AD44 /* VoiceRecordViewController.m in Sources */,
+				016389C8176F95060023657C /* TestsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

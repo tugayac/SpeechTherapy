@@ -18,20 +18,6 @@
     return [self initWithNibName:@"NewUserViewController" bundle:nil];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom intialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 - (IBAction)checkTextFieldContentLength:(id)sender
 {
     UITextField *textField = (UITextField *) sender;

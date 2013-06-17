@@ -9,7 +9,7 @@
 #import "UserViewController.h"
 #import "RecordingsViewController.h"
 #import "NewUserViewController.h"
-#import "UserCell.h"
+#import "Cell.h"
 #import "AppDelegate.h"
 #import "ViewConstants.h"
 
@@ -39,7 +39,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UserCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:kUserCellIdentifier forIndexPath:indexPath];
+    Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kUserCellIdentifier forIndexPath:indexPath];
     
     User *user = [self.users objectAtIndex:[indexPath row]];
     

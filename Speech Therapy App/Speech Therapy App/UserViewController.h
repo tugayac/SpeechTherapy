@@ -13,7 +13,7 @@
 
 @interface UserViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, ModalFormViewControllerDelegate, UIAlertViewDelegate>
 
-@property (nonatomic, strong) IBOutlet UICollectionView *userCollection;
+@property (nonatomic, weak) IBOutlet UICollectionView *userCollection;
 
 @property (nonatomic, strong) NSMutableArray *users;
 @property (nonatomic, strong) User *selectedUser;

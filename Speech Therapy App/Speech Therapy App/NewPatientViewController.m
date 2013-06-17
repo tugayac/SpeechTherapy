@@ -19,11 +19,6 @@
     return [self initWithNibName:@"NewPatientViewController" bundle:nil];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 - (IBAction)checkTextFieldContentLength:(id)sender
 {
     UITextField *textField = (UITextField *) sender;
