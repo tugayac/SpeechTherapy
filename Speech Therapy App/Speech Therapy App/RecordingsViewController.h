@@ -19,7 +19,7 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *patientsButton;
 
 @property (nonatomic, strong) UIPopoverController *patientsPopover;
-@property (nonatomic, strong) NSArray *tests;
+@property (nonatomic, strong) NSMutableArray *tests;
 @property (nonatomic, strong) Patient *currentPatient;
 @property (nonatomic, strong) User *currentUser;
 

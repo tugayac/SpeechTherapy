@@ -70,4 +70,18 @@
     return [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterShortStyle timeStyle:format];
 }
 
++ (BOOL)removeTest:(NSManagedObject *)test
+{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    [context deleteObject:test];
+    
+    NSError *error = nil;
+    if (![context save:&error]) {
+        return NO;
+    }
+    return YES;
+}
+
 @end

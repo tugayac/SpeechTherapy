@@ -91,24 +91,6 @@
             [self.audioPlayer play];
         }
     }
-    
-//    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *docsDir = dirPaths[0];
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    
-//    if ([fileManager fileExistsAtPath:docsDir]) {
-//        NSError *error;
-//        
-//        NSArray *listOfSoundFiles = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:docsDir error:nil]];
-//        if (error) {
-//            NSLog(@"error: %@", [error localizedDescription]);
-//        }
-//        
-//        for (NSString *file in listOfSoundFiles) {
-//            NSString *selectedSound = [docsDir stringByAppendingPathComponent:[listOfSoundFiles objectAtIndex:0]];
-//            NSLog(@"%@", selectedSound);
-//        }
-//    }
 }
 
 - (IBAction)stop:(id)sender

@@ -24,7 +24,7 @@
     NSMutableArray *rightButtonItems = [[NSMutableArray alloc] init];
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Start New Test" style:UIBarButtonItemStyleBordered target:self action:@selector(startNewTestButtonTouched)];
     [rightButtonItems addObject:button];
-    button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:nil];
+    button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeRecording)];
     [rightButtonItems addObject:button];
     [self.navigationItem setRightBarButtonItems:rightButtonItems];
     
@@ -34,7 +34,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.tests = [Test getTestsForPatient:self.currentPatient];
+    self.tests = [[Test getTestsForPatient:self.currentPatient] mutableCopy];
     [self.recordingsTable reloadData];
 }
 
@@ -49,6 +49,15 @@
 - (void)startNewTestButtonTouched
 {
     [self performSegueWithIdentifier:kShowTests sender:self];
+}
+
+- (void)removeRecording
+{
+    if ([self.recordingsTable isEditing]) {
+        [self.recordingsTable setEditing:NO animated:YES];
+    } else {
+        [self.recordingsTable setEditing:YES animated:YES];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -70,6 +79,37 @@
     cell.detailTextLabel.text = [Test dateToString:test.dateStarted withFormat:NSDateFormatterFullStyle];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docsDir = dirPaths[0];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+        if ([fileManager fileExistsAtPath:docsDir]) {
+            NSError *error;
+            
+            NSArray *listOfAllFiles = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:docsDir error:&error]];
+            if (error) {
+                NSLog(@"error: %@", [error localizedDescription]);
+                return;
+            }
+            NSArray *listOfExtensions = [NSArray arrayWithObject:@"wav"];
+            NSArray *listOfSoundFiles = [listOfAllFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"pathExtension IN %@", listOfExtensions]];
+            
+            for (NSString *file in listOfSoundFiles) {
+                Test *test = [self.tests objectAtIndex:[indexPath row]];
+                if ([file isEqualToString:test.resultsPath]) {
+                    [Test removeTest:[self.tests objectAtIndex:[indexPath row]]];
+                    [self.tests removeObjectAtIndex:[indexPath row]];
+                    [self.recordingsTable reloadData];
+                    return;
+                }
+            }
+        }
+    }
 }
 
 - (IBAction)viewPatients:(id)sender
@@ -103,7 +143,7 @@
 {
     self.currentPatient = patient;
     [self.navigationItem setTitle:[NSString stringWithFormat:@"Recordings for %@", patient.lastName]];
-    self.tests = [Test getTestsForPatient:self.currentPatient];
+    self.tests = [[Test getTestsForPatient:self.currentPatient] mutableCopy];
     [self.recordingsTable reloadData];
 }
 
