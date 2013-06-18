@@ -7,7 +7,7 @@
         <attribute name="lastTestDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="typeOfAutism" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="hasTaken" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Test" inverseName="takenBy" inverseEntity="Test" syncable="YES"/>
+        <relationship name="hasTaken" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Test" inverseName="takenBy" inverseEntity="Test" syncable="YES"/>
         <relationship name="supervisedBy" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="supervising" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Test" representedClassName="Test" syncable="YES">
@@ -29,8 +29,8 @@
         <userInfo/>
     </entity>
     <elements>
-        <element name="Patient" positionX="520" positionY="174" width="128" height="163"/>
-        <element name="User" positionX="261" positionY="189" width="128" height="135"/>
+        <element name="Patient" positionX="520" positionY="174" width="128" height="165"/>
         <element name="Test" positionX="792" positionY="207" width="128" height="148"/>
+        <element name="User" positionX="261" positionY="189" width="128" height="135"/>
     </elements>
 </model>

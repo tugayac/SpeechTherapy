@@ -23,5 +23,6 @@
 
 + (Test *)addNewResultForTest:(NSString *)testName takenBy:(Patient *)patient startingOn:(NSDate *)start endingOn:(NSDate *)end withResult:(NSString *)atPath withNotes:(NSString *)notes;
 + (NSArray *)getTestsForPatient:(Patient *)patient;
++ (NSString *)dateToString:(NSDate *)date withFormat:(NSDateFormatterStyle)format;
 
 @end

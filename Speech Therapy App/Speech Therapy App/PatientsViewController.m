@@ -79,6 +79,10 @@
     if ([self.delegate respondsToSelector:@selector(selectedPatient:)]) {
         [self.delegate selectedPatient:[self.patients objectAtIndex:[indexPath row]]];
     }
+    
+    if ([self.delegate respondsToSelector:@selector(didDismissPatientsPopover:)]) {
+        [self.delegate didDismissPatientsPopover:self];
+    }
 }
 
 - (CGSize)contentSizeForViewInPopover

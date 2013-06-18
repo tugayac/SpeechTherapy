@@ -16,6 +16,7 @@ NSString* const kUserImageURL = @"User.png";
 
 #pragma mark - cell identifiers
 NSString* const kUserCellIdentifier = @"UserCell";
+NSString* const kRecordingCellIdentifier = @"RecordingCell";
 
 #pragma mark - segue identifiers
 NSString* const kUserLoggedIn = @"DisplayPatients";

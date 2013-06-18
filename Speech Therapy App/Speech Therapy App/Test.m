@@ -65,4 +65,9 @@
     }
 }
 
++ (NSString *)dateToString:(NSDate *)date withFormat:(NSDateFormatterStyle)format
+{
+    return [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterShortStyle timeStyle:format];
+}
+
 @end

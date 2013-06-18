@@ -15,5 +15,6 @@ extern NSString* const kUserImageURL;
 extern NSString* const kUserCellIdentifier;
 extern NSString* const kUserLoggedIn;
 extern NSString* const kShowTests;
+extern NSString* const kRecordingCellIdentifier;
 
 @end

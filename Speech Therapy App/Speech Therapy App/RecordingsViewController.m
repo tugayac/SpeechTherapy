@@ -15,7 +15,7 @@
 
 @implementation RecordingsViewController
 
-@synthesize tableView, searchBar, startNewTestButton, patientsButton;
+@synthesize recordingsTable, searchBar, startNewTestButton, patientsButton;
 @synthesize currentPatient;
 
 - (void)viewDidLoad
@@ -29,6 +29,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.tests = [Test getTestsForPatient:self.currentPatient];
+    [self.recordingsTable reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -41,12 +42,23 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return [self.tests count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecordingCellIdentifier];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kRecordingCellIdentifier];
+    }
+    
+    Test *test = [self.tests objectAtIndex:[indexPath row]];
+    
+    cell.textLabel.text = test.testName;
+    cell.detailTextLabel.text = [Test dateToString:test.dateStarted withFormat:NSDateFormatterFullStyle];
+    
+    return cell;
 }
 
 - (IBAction)viewPatients:(id)sender
@@ -57,6 +69,7 @@
         patientsViewController.delegate = self;
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:patientsViewController];
         self.patientsPopover = [[UIPopoverController alloc] initWithContentViewController:navController];
+        self.patientsPopover.delegate = self;
         [self.patientsPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     } else {
         [self.patientsPopover dismissPopoverAnimated:YES];
@@ -78,6 +91,9 @@
 - (void)selectedPatient:(Patient *)patient
 {
     self.currentPatient = patient;
+    [self.navigationItem setTitle:[NSString stringWithFormat:@"Recordings for %@", patient.lastName]];
+    self.tests = [Test getTestsForPatient:self.currentPatient];
+    [self.recordingsTable reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
