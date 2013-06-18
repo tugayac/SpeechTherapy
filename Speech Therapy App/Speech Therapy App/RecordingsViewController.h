@@ -17,7 +17,6 @@
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, weak) IBOutlet UITableView *recordingsTable;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *patientsButton;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *startNewTestButton;
 
 @property (nonatomic, strong) UIPopoverController *patientsPopover;
 @property (nonatomic, strong) NSArray *tests;

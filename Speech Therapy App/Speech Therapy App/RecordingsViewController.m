@@ -15,12 +15,18 @@
 
 @implementation RecordingsViewController
 
-@synthesize recordingsTable, searchBar, startNewTestButton, patientsButton;
-@synthesize currentPatient;
+@synthesize recordingsTable, searchBar, patientsButton, currentPatient;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSMutableArray *rightButtonItems = [[NSMutableArray alloc] init];
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Start New Test" style:UIBarButtonItemStyleBordered target:self action:@selector(startNewTestButtonTouched)];
+    [rightButtonItems addObject:button];
+    button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:nil];
+    [rightButtonItems addObject:button];
+    [self.navigationItem setRightBarButtonItems:rightButtonItems];
     
     [self.navigationItem setLeftItemsSupplementBackButton:YES];
     [self.navigationItem setHidesBackButton:NO];
@@ -38,6 +44,11 @@
         [self.patientsPopover dismissPopoverAnimated:YES];
         self.patientsPopover = nil;
     }
+}
+
+- (void)startNewTestButtonTouched
+{
+    [self performSegueWithIdentifier:kShowTests sender:self];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
