@@ -14,6 +14,6 @@
 @property (nonatomic, weak) IBOutlet UICollectionView *testsCollection;
 
 @property (nonatomic, strong) NSMutableArray *tests;
-@property (nonatomic, strong) User *currentUser;
+@property (nonatomic, strong) Patient *currentPatient;
 
 @end

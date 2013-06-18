@@ -7,10 +7,18 @@
 //
 
 #import "VoiceRecordViewController.h"
+#import "Test.h"
+
+@interface VoiceRecordViewController ()
+
+@property (nonatomic, strong) NSDate *startTime;
+@property (nonatomic, strong) NSString *fileName;
+
+@end
 
 @implementation VoiceRecordViewController
 
-@synthesize audioPlayer, audioRecorder;
+@synthesize audioPlayer, audioRecorder, startTime;
 
 - (id)init
 {
@@ -23,15 +31,18 @@
     
     [self.playButton setEnabled:NO];
     [self.stopButton setEnabled:NO];
-    
+}
+
+- (IBAction)recordAudio:(id)sender
+{
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = dirPaths[0];
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"MMddYY_hhmmssa";
-    NSString *dateString = [[dateFormat stringFromDate:[NSDate date]] stringByAppendingString:@".wav"];
+    self.fileName = [[dateFormat stringFromDate:[NSDate date]] stringByAppendingString:@".wav"];
     
-    NSString *soundFilePath = [docsDir stringByAppendingPathComponent:dateString];
+    NSString *soundFilePath = [docsDir stringByAppendingPathComponent:self.fileName];
     
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     
@@ -40,7 +51,7 @@
                                     AVEncoderAudioQualityKey,
                                     [NSNumber numberWithInt:16],
                                     AVEncoderBitRateKey,
-                                    [NSNumber numberWithInt:2],
+                                    [NSNumber numberWithInt:128],
                                     AVNumberOfChannelsKey,
                                     [NSNumber numberWithFloat:44100.0],
                                     AVSampleRateKey,
@@ -54,13 +65,11 @@
     } else {
         [self.audioRecorder prepareToRecord];
     }
-}
-
-- (IBAction)recordAudio:(id)sender
-{
+    
     if (!self.audioRecorder.recording) {
         [self.playButton setEnabled:NO];
         [self.stopButton setEnabled:YES];
+        self.startTime = [NSDate date];
         [self.audioRecorder record];
     }
 }
@@ -83,23 +92,23 @@
         }
     }
     
-    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docsDir = dirPaths[0];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    if ([fileManager fileExistsAtPath:docsDir]) {
-        NSError *error;
-        
-        NSArray *listOfSoundFiles = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:docsDir error:nil]];
-        if (error) {
-            NSLog(@"error: %@", [error localizedDescription]);
-        }
-        
-        for (NSString *file in listOfSoundFiles) {
-            NSString *selectedSound = [docsDir stringByAppendingPathComponent:[listOfSoundFiles objectAtIndex:0]];
-            NSLog(@"%@", selectedSound);
-        }
-    }
+//    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *docsDir = dirPaths[0];
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    
+//    if ([fileManager fileExistsAtPath:docsDir]) {
+//        NSError *error;
+//        
+//        NSArray *listOfSoundFiles = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:docsDir error:nil]];
+//        if (error) {
+//            NSLog(@"error: %@", [error localizedDescription]);
+//        }
+//        
+//        for (NSString *file in listOfSoundFiles) {
+//            NSString *selectedSound = [docsDir stringByAppendingPathComponent:[listOfSoundFiles objectAtIndex:0]];
+//            NSLog(@"%@", selectedSound);
+//        }
+//    }
 }
 
 - (IBAction)stop:(id)sender
@@ -110,6 +119,7 @@
     
     if (self.audioRecorder.recording) {
         [self.audioRecorder stop];
+        [Test addNewResultForTest:@"Voice Recording" takenBy:self.currentPatient startingOn:self.startTime endingOn:[NSDate date] withResult:self.fileName withNotes:@"None"];
     } else if (self.audioPlayer.playing) {
         [self.audioPlayer stop];
     }

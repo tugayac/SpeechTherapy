@@ -41,6 +41,7 @@
 {
     if ([indexPath row] == 0) {
         VoiceRecordViewController *vrvc = [[VoiceRecordViewController alloc] init];
+        vrvc.currentPatient = self.currentPatient;
         [vrvc setModalPresentationStyle:UIModalPresentationFullScreen];
         [vrvc setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
         [self presentViewController:vrvc animated:YES completion:nil];

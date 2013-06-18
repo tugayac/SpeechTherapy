@@ -10,12 +10,13 @@
 #import "NewPatientViewController.h"
 #import "TestsViewController.h"
 #import "Patient.h"
+#import "Test.h"
 #import "ViewConstants.h"
 
 @implementation RecordingsViewController
 
 @synthesize tableView, searchBar, startNewTestButton, patientsButton;
-@synthesize currentUser;
+@synthesize currentPatient;
 
 - (void)viewDidLoad
 {
@@ -23,6 +24,11 @@
     
     [self.navigationItem setLeftItemsSupplementBackButton:YES];
     [self.navigationItem setHidesBackButton:NO];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.tests = [Test getTestsForPatient:self.currentPatient];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -58,11 +64,6 @@
     }
 }
 
-- (IBAction)startNewRecording:(id)sender
-{
-    
-}
-
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
     self.patientsPopover = nil;
@@ -74,11 +75,16 @@
     self.patientsPopover = nil;
 }
 
+- (void)selectedPatient:(Patient *)patient
+{
+    self.currentPatient = patient;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kShowTests]) {
         TestsViewController *testsViewController = segue.destinationViewController;
-        testsViewController.currentUser = self.currentUser;
+        testsViewController.currentPatient = self.currentPatient;
     }
 }
 

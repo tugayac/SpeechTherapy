@@ -32,5 +32,6 @@
 
 @optional
 - (void)didDismissPatientsPopover:(PatientsViewController *)pvc;
+- (void)selectedPatient:(Patient *)patient;
 
 @end

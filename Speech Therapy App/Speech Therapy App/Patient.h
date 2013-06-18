@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSDate * lastTestDate;
 @property (nonatomic, retain) NSString * typeOfAutism;
 @property (nonatomic, retain) User *supervisedBy;
+@property (nonatomic, retain) NSSet *hasTaken;
 
 + (Patient *)addPatientWithUsername:(NSString *)username firstName:(NSString *)firstName lastName:(NSString *)lastName typeOfAutism:(NSString *)typeOfAutism supervisor:(User *)user;
 + (NSArray *)getPatientsForUser:(User *)user;

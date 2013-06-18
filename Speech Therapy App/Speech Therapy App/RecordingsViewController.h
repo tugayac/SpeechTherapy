@@ -20,10 +20,10 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *startNewTestButton;
 
 @property (nonatomic, strong) UIPopoverController *patientsPopover;
-
-@property (nonatomic, weak) User *currentUser;
+@property (nonatomic, strong) NSArray *tests;
+@property (nonatomic, strong) Patient *currentPatient;
+@property (nonatomic, strong) User *currentUser;
 
 - (IBAction)viewPatients:(id)sender;
-- (IBAction)startNewRecording:(id)sender;
 
 @end

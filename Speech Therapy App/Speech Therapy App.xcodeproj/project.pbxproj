@@ -10,6 +10,7 @@
 		013D0BF4176AAB0C0090AD44 /* ModalFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D0BF3176AAB0C0090AD44 /* ModalFormViewController.m */; };
 		013D0BFD176BA6DF0090AD44 /* AutoCompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D0BFC176BA6DF0090AD44 /* AutoCompleteViewController.m */; };
 		013D0C01176BB99C0090AD44 /* VoiceRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D0BFF176BB99B0090AD44 /* VoiceRecordViewController.m */; };
+		01443285176FC780000F16C6 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 01443284176FC780000F16C6 /* Test.m */; };
 		016389C0176E992C0023657C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016389BF176E992C0023657C /* AVFoundation.framework */; };
 		016389C2176F92540023657C /* Audio.png in Resources */ = {isa = PBXBuildFile; fileRef = 016389C1176F92540023657C /* Audio.png */; };
 		016389C8176F95060023657C /* TestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 016389C7176F95050023657C /* TestsViewController.m */; };
@@ -50,6 +51,8 @@
 		013D0BFC176BA6DF0090AD44 /* AutoCompleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompleteViewController.m; sourceTree = "<group>"; };
 		013D0BFE176BB99B0090AD44 /* VoiceRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceRecordViewController.h; sourceTree = "<group>"; };
 		013D0BFF176BB99B0090AD44 /* VoiceRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceRecordViewController.m; sourceTree = "<group>"; };
+		01443283176FC780000F16C6 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		01443284176FC780000F16C6 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		016389BF176E992C0023657C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		016389C1176F92540023657C /* Audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Audio.png; sourceTree = "<group>"; };
 		016389C6176F95050023657C /* TestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestsViewController.h; sourceTree = "<group>"; };
@@ -228,10 +231,12 @@
 		019B4B441766B244001403C3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				01AEB8EF1769570500649A5F /* Patient.h */,
-				01AEB8F01769570500649A5F /* Patient.m */,
 				019B4B4C1766D340001403C3 /* User.h */,
 				019B4B4D1766D340001403C3 /* User.m */,
+				01AEB8EF1769570500649A5F /* Patient.h */,
+				01AEB8F01769570500649A5F /* Patient.m */,
+				01443283176FC780000F16C6 /* Test.h */,
+				01443284176FC780000F16C6 /* Test.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 				013D0BFD176BA6DF0090AD44 /* AutoCompleteViewController.m in Sources */,
 				013D0C01176BB99C0090AD44 /* VoiceRecordViewController.m in Sources */,
 				016389C8176F95060023657C /* TestsViewController.m in Sources */,
+				01443285176FC780000F16C6 /* Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

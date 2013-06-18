@@ -74,6 +74,13 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(selectedPatient:)]) {
+        [self.delegate selectedPatient:[self.patients objectAtIndex:[indexPath row]]];
+    }
+}
+
 - (CGSize)contentSizeForViewInPopover
 {
     return CGSizeMake(320, 600);
