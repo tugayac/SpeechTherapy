@@ -18,16 +18,6 @@
     return [self initWithNibName:@"NewUserViewController" bundle:nil];
 }
 
-- (IBAction)checkTextFieldContentLength:(id)sender
-{
-    UITextField *textField = (UITextField *) sender;
-    if (textField.text.length < 1) {
-        [self setTextFieldBorder:textField toColor:[UIColor redColor]];
-    } else {
-        [self setTextFieldBorder:textField toColor:[UIColor greenColor]];
-    }
-}
-
 - (IBAction)usernameAvailabilityCheck:(id)sender
 {
     NSArray *existingUsers = [User getAllUsers];
@@ -46,7 +36,7 @@
     [self setTextFieldBorder:self.usernameField toColor:[UIColor greenColor]];
 }
 
-- (IBAction)passwordValidityCheck:(id)sender
+- (BOOL)checkIfPasswordsMatch
 {
     if (![self.passwordField.text isEqualToString:self.passwordAgainField.text]) {
         UIAlertView *passwordMismatchAlert = [[UIAlertView alloc] initWithTitle:@"Password Mismatch" message:@"The passwords do not match. Please make sure you are entering the correct characters." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -54,6 +44,29 @@
         [passwordMismatchAlert show];
         
         [self setTextFieldBorder:self.passwordAgainField toColor:[UIColor redColor]];
+        
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (IBAction)submitButtonClicked:(id)sender
+{
+    if (![self checkIfPasswordsMatch]) {
+        return;
+    }
+    
+    if ([self text:self.firstNameField.text lengthLessThan:1] ||
+        [self text:self.lastNameField.text lengthLessThan:1] ||
+        [self text:self.usernameField.text lengthLessThan:1] ||
+        [self text:self.passwordField.text lengthLessThan:1] ||
+        [self text:self.passwordAgainField.text lengthLessThan:1]) {
+        UIAlertView *invalidEntryAlert = [[UIAlertView alloc] initWithTitle:@"Invalid Entry" message:@"One or more of the fields are empty. Please fill in all the fields." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [invalidEntryAlert setAlertViewStyle:UIAlertViewStyleDefault];
+        [invalidEntryAlert show];
+    } else {
+        [super submitButtonClicked:sender];
     }
 }
 

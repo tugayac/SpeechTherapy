@@ -12,18 +12,19 @@
 #import "AutoCompleteViewController.h"
 #import "User.h"
 
-@interface NewPatientViewController : ModalFormViewController
+@interface NewPatientViewController : ModalFormViewController<UIPopoverControllerDelegate, AutoCompleteViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *firstNameField;
 @property (nonatomic, weak) IBOutlet UITextField *lastNameField;
 @property (nonatomic, weak) IBOutlet UITextField *usernameField;
 @property (nonatomic, weak) IBOutlet UITextField *typeOfAutismField;
-@property (nonatomic, strong) AutoCompleteViewController *acvc;
 
 @property (nonatomic, strong) User *currentUser;
+@property (nonatomic, strong) UIPopoverController *autoCompletePopover;
+@property (nonatomic, strong) AutoCompleteViewController *acvc;
 
-- (IBAction)checkTextFieldContentLength:(id)sender;
 - (IBAction)usernameAvailabilityCheck:(id)sender;
-- (IBAction)typeOfAutismSuggestions:(id)sender;
+- (IBAction)autoCompleteTypeOfAutismField:(id)sender;
+- (IBAction)submitButtonClicked:(id)sender;
 
 @end

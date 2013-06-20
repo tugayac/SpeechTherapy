@@ -7,6 +7,7 @@
 //
 
 #import "NewPatientViewController.h"
+#import "AutoCompleteViewController.h"
 #import "Patient.h"
 
 @implementation NewPatientViewController
@@ -15,18 +16,7 @@
 
 - (id)init
 {
-    self.acvc = [[AutoCompleteViewController alloc] initWithFrame:CGRectZero];
     return [self initWithNibName:@"NewPatientViewController" bundle:nil];
-}
-
-- (IBAction)checkTextFieldContentLength:(id)sender
-{
-    UITextField *textField = (UITextField *) sender;
-    if (textField.text.length < 1) {
-        [self setTextFieldBorder:textField toColor:[UIColor redColor]];
-    } else {
-        [self setTextFieldBorder:textField toColor:[UIColor greenColor]];
-    }
 }
 
 - (IBAction)usernameAvailabilityCheck:(id)sender
@@ -47,11 +37,49 @@
     [self setTextFieldBorder:self.usernameField toColor:[UIColor greenColor]];
 }
 
-- (IBAction)typeOfAutismSuggestions:(id)sender
+- (IBAction)autoCompleteTypeOfAutismField:(id)sender
 {
-    CGRect frame = self.typeOfAutismField.frame;
-    AutoCompleteViewController *acvc = [[AutoCompleteViewController alloc] initWithFrame:frame];
-    [self.view addSubview:acvc.view];
+    if (!self.autoCompletePopover && !self.acvc) {
+        UITextField *textField = (UITextField *) sender;
+        
+        self.acvc = [[AutoCompleteViewController alloc] init];
+        self.acvc.delegate = self;
+        
+        self.autoCompletePopover = [[UIPopoverController alloc] initWithContentViewController:self.acvc];
+        self.autoCompletePopover.delegate = self;
+        [self.autoCompletePopover presentPopoverFromRect:textField.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [self.acvc updateSuggestionsBasedOnInput:self.typeOfAutismField.text];
+    } else {
+        [self.acvc updateSuggestionsBasedOnInput:self.typeOfAutismField.text];
+    }
+}
+
+- (IBAction)submitButtonClicked:(id)sender
+{
+    if ([self text:self.firstNameField.text lengthLessThan:1] ||
+        [self text:self.lastNameField.text lengthLessThan:1] ||
+        [self text:self.usernameField.text lengthLessThan:1] ||
+        [self text:self.typeOfAutismField.text lengthLessThan:1]) {
+        UIAlertView *invalidEntryAlert = [[UIAlertView alloc] initWithTitle:@"Invalid Entry" message:@"One or more of the fields are empty. Please fill in all the fields." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [invalidEntryAlert setAlertViewStyle:UIAlertViewStyleDefault];
+        [invalidEntryAlert show];
+    } else {
+        [super submitButtonClicked:sender];
+    }
+}
+
+- (void)autoCompleteSuggestionSelected:(NSString *)suggestion
+{
+    [self.typeOfAutismField setText:suggestion];
+    [self.autoCompletePopover dismissPopoverAnimated:YES];
+    self.autoCompletePopover = nil;
+    self.acvc = nil;
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.autoCompletePopover = nil;
+    self.acvc = nil;
 }
 
 @end

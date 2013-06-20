@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>Type 1</key>
-	<string>Autism 1</string>
-	<key>Type 2</key>
-	<string>Autism 2</string>
-	<key>Type 3</key>
-	<string>Autism 3</string>
-	<key>Type 4</key>
-	<string>Autism 4</string>
-</dict>
+<array>
+	<string>Autistic Disorder</string>
+	<string>Asperger&apos;s Syndrome</string>
+	<string>Pervasive Developmental Disorder</string>
+	<string>Rett Syndrome</string>
+	<string>Childhood Disintegrative Disorder</string>
+</array>
 </plist>

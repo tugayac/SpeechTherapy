@@ -4819,7 +4819,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">162</int>
+					<int key="connectionID">170</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -4858,12 +4858,12 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">typeOfAutismSuggestions:</string>
+						<string key="label">autoCompleteTypeOfAutismField:</string>
 						<reference key="source" ref="1010838475"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">18</int>
 					</object>
-					<int key="connectionID">167</int>
+					<int key="connectionID">169</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -5744,7 +5744,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">167</int>
+			<int key="maxID">170</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5753,11 +5753,16 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="cancelButtonClicked:">id</string>
+						<string key="checkTextFieldContentLength:">id</string>
 						<string key="submitButtonClicked:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="cancelButtonClicked:">
 							<string key="name">cancelButtonClicked:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="checkTextFieldContentLength:">
+							<string key="name">checkTextFieldContentLength:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="submitButtonClicked:">
@@ -5782,17 +5787,17 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<string key="className">NewPatientViewController</string>
 					<string key="superclassName">ModalFormViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="checkTextFieldContentLength:">id</string>
-						<string key="typeOfAutismSuggestions:">id</string>
+						<string key="autoCompleteTypeOfAutismField:">id</string>
+						<string key="submitButtonClicked:">id</string>
 						<string key="usernameAvailabilityCheck:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="checkTextFieldContentLength:">
-							<string key="name">checkTextFieldContentLength:</string>
+						<object class="IBActionInfo" key="autoCompleteTypeOfAutismField:">
+							<string key="name">autoCompleteTypeOfAutismField:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="typeOfAutismSuggestions:">
-							<string key="name">typeOfAutismSuggestions:</string>
+						<object class="IBActionInfo" key="submitButtonClicked:">
+							<string key="name">submitButtonClicked:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="usernameAvailabilityCheck:">

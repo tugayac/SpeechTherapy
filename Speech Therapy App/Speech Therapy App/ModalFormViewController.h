@@ -14,9 +14,11 @@
 
 @property (nonatomic, weak) id<ModalFormViewControllerDelegate> delegate;
 
+- (IBAction)checkTextFieldContentLength:(id)sender;
 - (IBAction)submitButtonClicked:(id)sender;
 - (IBAction)cancelButtonClicked:(id)sender;
 
+- (BOOL)text:(NSString *)text lengthLessThan:(NSUInteger)number;
 - (void)setTextFieldBorder:(UITextField *)textField toColor:(UIColor *)color;
 
 @end

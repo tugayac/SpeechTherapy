@@ -2,7 +2,7 @@
 //  AutoCompleteViewController.m
 //  Speech Therapy App
 //
-//  Created by Arda Tugay on 6/14/13.
+//  Created by Arda Tugay on 6/19/13.
 //  Copyright (c) 2013 Arda Tugay. All rights reserved.
 //
 
@@ -10,36 +10,63 @@
 
 @implementation AutoCompleteViewController
 
-@synthesize initialFrame, suggestions;
+@synthesize currentSuggestions, allSuggestions;
 
-- (id)initWithFrame:(CGRect)rect
+- (id)init
 {
-    self.suggestions = [[NSMutableArray alloc] init];
-    
-    self.tableOfSuggestions = [[UITableView alloc] init];
-    [self.tableOfSuggestions setDataSource:self];
-    [self.tableOfSuggestions setDelegate:self];
-    
-    self.initialFrame = rect;
+    self = [super init];
+    if (self) {
+        self.suggestionsTable = [[UITableView alloc] init];
+        [self.suggestionsTable setDataSource:self];
+        [self.suggestionsTable setDelegate:self];
+        
+        self.currentSuggestions = [[NSMutableArray alloc] init];
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"TypesOfAutism" ofType:@"plist"];
+        self.allSuggestions = [[NSArray alloc] initWithContentsOfFile:path];
+    }
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [self setView:self.tableOfSuggestions];
-    [self.suggestions addObject:@"Suggestion 1"];
-    [self.suggestions addObject:@"Suggestion 2"];
-    [self.suggestions addObject:@"Suggestion 3"];
     
-    CGRect frame = CGRectMake(self.initialFrame.origin.x, self.initialFrame.origin.y + self.initialFrame.size.height, self.initialFrame.size.width, [self.tableOfSuggestions rowHeight] * 3);
-    [self.view setFrame:frame];
+    [self setView:self.suggestionsTable];
+}
+
+- (void)updateSuggestionsBasedOnInput:(NSString *)textInput
+{
+    textInput = [textInput lowercaseString];
+    for (NSString *entry in self.allSuggestions) {
+        NSString *lowercaseEntry = [entry lowercaseString];
+        for (int i = 0; i < [textInput length]; i++) {
+            if (i + 1 > [entry length]) {
+                if (![self.currentSuggestions containsObject:entry]) {
+                    [self.currentSuggestions addObject:entry];
+                }
+                break;
+            }
+            
+            if ([textInput characterAtIndex:i] == [lowercaseEntry characterAtIndex:i]) {
+                if (i + 1 == [textInput length] && ![self.currentSuggestions containsObject:entry]) {
+                    [self.currentSuggestions addObject:entry];
+                } else {
+                    continue;
+                }
+            } else {
+                [self.currentSuggestions removeObject:entry];
+                break;
+            }
+        }
+    }
+    
+    [self.suggestionsTable reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.suggestions count];
+    return [self.currentSuggestions count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -50,14 +77,16 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SuggestionCell"];
     }
     
-    cell.textLabel.text = [self.suggestions objectAtIndex:[indexPath row]];
+    cell.textLabel.text = [self.currentSuggestions objectAtIndex:[indexPath row]];
     
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 28.0f;
+    if ([self.delegate respondsToSelector:@selector(autoCompleteSuggestionSelected:)]) {
+        [self.delegate autoCompleteSuggestionSelected:[self.currentSuggestions objectAtIndex:[indexPath row]]];
+    }
 }
 
 @end

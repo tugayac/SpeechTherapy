@@ -4932,21 +4932,12 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">passwordValidityCheck:</string>
-						<reference key="source" ref="245262579"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">19</int>
-					</object>
-					<int key="connectionID">304</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">submitButtonClicked:</string>
 						<reference key="source" ref="159392179"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">236</int>
+					<int key="connectionID">306</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -5972,7 +5963,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">304</int>
+			<int key="maxID">306</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5981,11 +5972,16 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="cancelButtonClicked:">id</string>
+						<string key="checkTextFieldContentLength:">id</string>
 						<string key="submitButtonClicked:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="cancelButtonClicked:">
 							<string key="name">cancelButtonClicked:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="checkTextFieldContentLength:">
+							<string key="name">checkTextFieldContentLength:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="submitButtonClicked:">
@@ -6010,17 +6006,12 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<string key="className">NewUserViewController</string>
 					<string key="superclassName">ModalFormViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="checkTextFieldContentLength:">id</string>
-						<string key="passwordValidityCheck:">id</string>
+						<string key="submitButtonClicked:">id</string>
 						<string key="usernameAvailabilityCheck:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="checkTextFieldContentLength:">
-							<string key="name">checkTextFieldContentLength:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="passwordValidityCheck:">
-							<string key="name">passwordValidityCheck:</string>
+						<object class="IBActionInfo" key="submitButtonClicked:">
+							<string key="name">submitButtonClicked:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="usernameAvailabilityCheck:">

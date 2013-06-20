@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[AutoCompleteViewController updateSuggestionsBasedOnInput:]:AutoCompleteViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[entry length]">
+            </PersistentString>
+            <PersistentString
+               value = "[textInput length]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

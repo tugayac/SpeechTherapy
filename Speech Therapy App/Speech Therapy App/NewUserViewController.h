@@ -18,8 +18,9 @@
 @property (nonatomic, weak) IBOutlet UITextField *passwordField;
 @property (nonatomic, weak) IBOutlet UITextField *passwordAgainField;
 
-- (IBAction)checkTextFieldContentLength:(id)sender;
 - (IBAction)usernameAvailabilityCheck:(id)sender;
-- (IBAction)passwordValidityCheck:(id)sender;
+- (IBAction)submitButtonClicked:(id)sender;
+
+- (BOOL)checkIfPasswordsMatch;
 
 @end

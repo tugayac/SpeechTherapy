@@ -2,19 +2,30 @@
 //  AutoCompleteViewController.h
 //  Speech Therapy App
 //
-//  Created by Arda Tugay on 6/14/13.
+//  Created by Arda Tugay on 6/19/13.
 //  Copyright (c) 2013 Arda Tugay. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
+@protocol AutoCompleteViewControllerDelegate;
+
 @interface AutoCompleteViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) UITableView *tableOfSuggestions;
+@property (nonatomic, weak) id<AutoCompleteViewControllerDelegate> delegate;
 
-@property (nonatomic) CGRect initialFrame;
-@property (nonatomic, strong) NSMutableArray *suggestions;
+@property (nonatomic, strong) UITableView *suggestionsTable;
 
-- (id)initWithFrame:(CGRect)rect;
+@property (nonatomic, strong) NSArray *allSuggestions;
+@property (nonatomic, strong) NSMutableArray *currentSuggestions;
+
+- (void)updateSuggestionsBasedOnInput:(NSString *)textInput;
+
+@end
+
+@protocol AutoCompleteViewControllerDelegate <NSObject>
+
+@optional
+- (void)autoCompleteSuggestionSelected:(NSString *)suggestion;
 
 @end

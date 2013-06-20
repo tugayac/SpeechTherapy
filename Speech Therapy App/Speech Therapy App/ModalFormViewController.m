@@ -12,12 +12,30 @@
 
 @implementation ModalFormViewController
 
+- (BOOL)text:(NSString *)text lengthLessThan:(NSUInteger)number {
+    if ([text length] < number) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 - (void)setTextFieldBorder:(UITextField *)textField toColor:(UIColor *)color
 {
     [textField.layer setCornerRadius:8.0f];
     [textField.layer setMasksToBounds:YES];
     [textField.layer setBorderColor:[color CGColor]];
     [textField.layer setBorderWidth:1.0f];
+}
+
+- (IBAction)checkTextFieldContentLength:(id)sender
+{
+    UITextField *textField = (UITextField *) sender;
+    if (textField.text.length < 1) {
+        [self setTextFieldBorder:textField toColor:[UIColor redColor]];
+    } else {
+        [self setTextFieldBorder:textField toColor:[UIColor greenColor]];
+    }
 }
 
 - (IBAction)submitButtonClicked:(id)sender
