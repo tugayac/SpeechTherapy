@@ -11,6 +11,8 @@
 		013D0C01176BB99C0090AD44 /* VoiceRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D0BFF176BB99B0090AD44 /* VoiceRecordViewController.m */; };
 		01443285176FC780000F16C6 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 01443284176FC780000F16C6 /* Test.m */; };
 		0144328E17725A1C000F16C6 /* AutoCompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0144328D17725A1B000F16C6 /* AutoCompleteViewController.m */; };
+		0144329017738517000F16C6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0144328F17738516000F16C6 /* QuartzCore.framework */; };
+		0144329217739838000F16C6 /* DeleteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0144329117739838000F16C6 /* DeleteIcon.png */; };
 		016389C0176E992C0023657C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016389BF176E992C0023657C /* AVFoundation.framework */; };
 		016389C2176F92540023657C /* Audio.png in Resources */ = {isa = PBXBuildFile; fileRef = 016389C1176F92540023657C /* Audio.png */; };
 		016389C8176F95060023657C /* TestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 016389C7176F95050023657C /* TestsViewController.m */; };
@@ -28,8 +30,8 @@
 		019B4B291766A70E001403C3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 019B4B271766A70E001403C3 /* MainStoryboard.storyboard */; };
 		019B4B2C1766A70E001403C3 /* Speech_Therapy_App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B2A1766A70E001403C3 /* Speech_Therapy_App.xcdatamodeld */; };
 		019B4B3B1766A95A001403C3 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B3A1766A95A001403C3 /* UserViewController.m */; };
-		019B4B3F1766AD22001403C3 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B3E1766AD22001403C3 /* Cell.m */; };
-		019B4B421766B078001403C3 /* CellBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B411766B078001403C3 /* CellBackground.m */; };
+		019B4B3F1766AD22001403C3 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B3E1766AD22001403C3 /* UserCell.m */; };
+		019B4B421766B078001403C3 /* UserCellBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B411766B078001403C3 /* UserCellBackground.m */; };
 		019B4B491766CA88001403C3 /* User.png in Resources */ = {isa = PBXBuildFile; fileRef = 019B4B481766CA88001403C3 /* User.png */; };
 		019B4B4B1766CA96001403C3 /* PlusSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 019B4B4A1766CA96001403C3 /* PlusSign.png */; };
 		019B4B4E1766D340001403C3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B4B4D1766D340001403C3 /* User.m */; };
@@ -42,6 +44,10 @@
 		01C3D34B1766FB7200ADCD42 /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C3D3491766FB7200ADCD42 /* NewUserViewController.m */; };
 		01C3D34C1766FB7200ADCD42 /* NewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01C3D34A1766FB7200ADCD42 /* NewUserViewController.xib */; };
 		01C3D3501767BF1D00ADCD42 /* ViewConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C3D34F1767BF1D00ADCD42 /* ViewConstants.m */; };
+		01E523441773B83100BC339E /* UserCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E523431773B83000BC339E /* UserCollectionViewLayout.m */; };
+		01E523471773B8B400BC339E /* UserCollectionViewLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E523461773B8B400BC339E /* UserCollectionViewLayoutAttributes.m */; };
+		01E5234A1773CB7800BC339E /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E523491773CB7800BC339E /* TestCell.m */; };
+		01E5234D1773CBDC00BC339E /* TestCellBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E5234C1773CBDC00BC339E /* TestCellBackground.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +59,8 @@
 		01443284176FC780000F16C6 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		0144328C17725A1B000F16C6 /* AutoCompleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompleteViewController.h; sourceTree = "<group>"; };
 		0144328D17725A1B000F16C6 /* AutoCompleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompleteViewController.m; sourceTree = "<group>"; };
+		0144328F17738516000F16C6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0144329117739838000F16C6 /* DeleteIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeleteIcon.png; sourceTree = "<group>"; };
 		016389BF176E992C0023657C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		016389C1176F92540023657C /* Audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Audio.png; sourceTree = "<group>"; };
 		016389C6176F95050023657C /* TestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestsViewController.h; sourceTree = "<group>"; };
@@ -76,10 +84,10 @@
 		019B4B2B1766A70E001403C3 /* Speech_Therapy_App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Speech_Therapy_App.xcdatamodel; sourceTree = "<group>"; };
 		019B4B391766A95A001403C3 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		019B4B3A1766A95A001403C3 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
-		019B4B3D1766AD22001403C3 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
-		019B4B3E1766AD22001403C3 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
-		019B4B401766B078001403C3 /* CellBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellBackground.h; sourceTree = "<group>"; };
-		019B4B411766B078001403C3 /* CellBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellBackground.m; sourceTree = "<group>"; };
+		019B4B3D1766AD22001403C3 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		019B4B3E1766AD22001403C3 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
+		019B4B401766B078001403C3 /* UserCellBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCellBackground.h; sourceTree = "<group>"; };
+		019B4B411766B078001403C3 /* UserCellBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCellBackground.m; sourceTree = "<group>"; };
 		019B4B481766CA88001403C3 /* User.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = User.png; sourceTree = "<group>"; };
 		019B4B4A1766CA96001403C3 /* PlusSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlusSign.png; sourceTree = "<group>"; };
 		019B4B4C1766D340001403C3 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -99,6 +107,14 @@
 		01C3D34A1766FB7200ADCD42 /* NewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserViewController.xib; sourceTree = "<group>"; };
 		01C3D34E1767BF1D00ADCD42 /* ViewConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewConstants.h; sourceTree = "<group>"; };
 		01C3D34F1767BF1D00ADCD42 /* ViewConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewConstants.m; sourceTree = "<group>"; };
+		01E523421773B83000BC339E /* UserCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectionViewLayout.h; sourceTree = "<group>"; };
+		01E523431773B83000BC339E /* UserCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectionViewLayout.m; sourceTree = "<group>"; };
+		01E523451773B8B400BC339E /* UserCollectionViewLayoutAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectionViewLayoutAttributes.h; sourceTree = "<group>"; };
+		01E523461773B8B400BC339E /* UserCollectionViewLayoutAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectionViewLayoutAttributes.m; sourceTree = "<group>"; };
+		01E523481773CB7800BC339E /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
+		01E523491773CB7800BC339E /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
+		01E5234B1773CBDB00BC339E /* TestCellBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCellBackground.h; sourceTree = "<group>"; };
+		01E5234C1773CBDC00BC339E /* TestCellBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCellBackground.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0144329017738517000F16C6 /* QuartzCore.framework in Frameworks */,
 				016389C0176E992C0023657C /* AVFoundation.framework in Frameworks */,
 				019B4B0E1766A70D001403C3 /* UIKit.framework in Frameworks */,
 				019B4B101766A70D001403C3 /* Foundation.framework in Frameworks */,
@@ -120,10 +137,18 @@
 		016389CA176F96DA0023657C /* Collection View Sources */ = {
 			isa = PBXGroup;
 			children = (
-				019B4B3D1766AD22001403C3 /* Cell.h */,
-				019B4B3E1766AD22001403C3 /* Cell.m */,
-				019B4B401766B078001403C3 /* CellBackground.h */,
-				019B4B411766B078001403C3 /* CellBackground.m */,
+				019B4B3D1766AD22001403C3 /* UserCell.h */,
+				019B4B3E1766AD22001403C3 /* UserCell.m */,
+				019B4B401766B078001403C3 /* UserCellBackground.h */,
+				019B4B411766B078001403C3 /* UserCellBackground.m */,
+				01E523421773B83000BC339E /* UserCollectionViewLayout.h */,
+				01E523431773B83000BC339E /* UserCollectionViewLayout.m */,
+				01E523451773B8B400BC339E /* UserCollectionViewLayoutAttributes.h */,
+				01E523461773B8B400BC339E /* UserCollectionViewLayoutAttributes.m */,
+				01E523481773CB7800BC339E /* TestCell.h */,
+				01E523491773CB7800BC339E /* TestCell.m */,
+				01E5234B1773CBDB00BC339E /* TestCellBackground.h */,
+				01E5234C1773CBDC00BC339E /* TestCellBackground.m */,
 			);
 			name = "Collection View Sources";
 			sourceTree = "<group>";
@@ -140,7 +165,6 @@
 		019B4B011766A70D001403C3 = {
 			isa = PBXGroup;
 			children = (
-				016389BF176E992C0023657C /* AVFoundation.framework */,
 				019B4B151766A70D001403C3 /* Speech Therapy App */,
 				019B4B0C1766A70D001403C3 /* Frameworks */,
 				019B4B0B1766A70D001403C3 /* Products */,
@@ -158,6 +182,8 @@
 		019B4B0C1766A70D001403C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0144328F17738516000F16C6 /* QuartzCore.framework */,
+				016389BF176E992C0023657C /* AVFoundation.framework */,
 				019B4B0D1766A70D001403C3 /* UIKit.framework */,
 				019B4B0F1766A70D001403C3 /* Foundation.framework */,
 				019B4B111766A70D001403C3 /* CoreGraphics.framework */,
@@ -185,6 +211,7 @@
 		019B4B161766A70D001403C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0144329117739838000F16C6 /* DeleteIcon.png */,
 				01AA4558176982E10039F53B /* TypesOfAutism.plist */,
 				016389C1176F92540023657C /* Audio.png */,
 				019B4B4A1766CA96001403C3 /* PlusSign.png */,
@@ -328,6 +355,7 @@
 				01AA4559176982E10039F53B /* TypesOfAutism.plist in Resources */,
 				016389C2176F92540023657C /* Audio.png in Resources */,
 				016389CD176F9DC70023657C /* VoiceRecordViewController.xib in Resources */,
+				0144329217739838000F16C6 /* DeleteIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,8 +370,8 @@
 				019B4B201766A70D001403C3 /* AppDelegate.m in Sources */,
 				019B4B2C1766A70E001403C3 /* Speech_Therapy_App.xcdatamodeld in Sources */,
 				019B4B3B1766A95A001403C3 /* UserViewController.m in Sources */,
-				019B4B3F1766AD22001403C3 /* Cell.m in Sources */,
-				019B4B421766B078001403C3 /* CellBackground.m in Sources */,
+				019B4B3F1766AD22001403C3 /* UserCell.m in Sources */,
+				019B4B421766B078001403C3 /* UserCellBackground.m in Sources */,
 				019B4B4E1766D340001403C3 /* User.m in Sources */,
 				01C3D34B1766FB7200ADCD42 /* NewUserViewController.m in Sources */,
 				01C3D3501767BF1D00ADCD42 /* ViewConstants.m in Sources */,
@@ -356,6 +384,10 @@
 				016389C8176F95060023657C /* TestsViewController.m in Sources */,
 				01443285176FC780000F16C6 /* Test.m in Sources */,
 				0144328E17725A1C000F16C6 /* AutoCompleteViewController.m in Sources */,
+				01E523441773B83100BC339E /* UserCollectionViewLayout.m in Sources */,
+				01E523471773B8B400BC339E /* UserCollectionViewLayoutAttributes.m in Sources */,
+				01E5234A1773CB7800BC339E /* TestCell.m in Sources */,
+				01E5234D1773CBDC00BC339E /* TestCellBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

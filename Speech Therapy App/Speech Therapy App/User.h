@@ -23,5 +23,6 @@
 + (User *)addUserWithUsername:(NSString *)username firstName:(NSString *)firstName lastName:(NSString *)lastName password:(NSString *)password imageFile:(NSString *)imageURL;
 + (NSArray *)getAllUsers;
 + (User *)getUser:(User *)user;
++ (BOOL)removeUser:(NSManagedObject *)user;
 
 @end

@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 #import "ModalFormViewController.h"
+#import "UserCollectionViewLayout.h"
 #import "User.h"
 
-@interface UserViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, ModalFormViewControllerDelegate, UIAlertViewDelegate>
+@interface UserViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, ModalFormViewControllerDelegate, UIAlertViewDelegate, UIGestureRecognizerDelegate, CollectionViewLayoutDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *userCollection;
 
@@ -19,5 +20,8 @@
 @property (nonatomic, strong) User *selectedUser;
 
 - (IBAction)addNewUser:(id)sender;
+- (void)enterDeletionMode:(UILongPressGestureRecognizer *)gr;
+- (void)exitDeletionMode:(UITapGestureRecognizer *)gr;
+- (void)removeUser:(UIButton *)button;
 
 @end

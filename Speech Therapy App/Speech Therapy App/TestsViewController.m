@@ -8,7 +8,7 @@
 
 #import "TestsViewController.h"
 #import "VoiceRecordViewController.h"
-#import "Cell.h"
+#import "TestCell.h"
 #import "ViewConstants.h"
 
 @implementation TestsViewController
@@ -29,10 +29,10 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TestCell" forIndexPath:indexPath];
+    TestCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TestCell" forIndexPath:indexPath];
     
-    cell.userLabel.text = [self.tests objectAtIndex:[indexPath row]];
-    cell.userImage.image = [UIImage imageNamed:@"Audio.png"];
+    cell.testLabel.text = [self.tests objectAtIndex:[indexPath row]];
+    cell.testImage.image = [UIImage imageNamed:@"Audio.png"];
     
     return cell;
 }

@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Cell : UICollectionViewCell
+#import "UserCollectionViewLayoutAttributes.h"
+
+@interface UserCell : UICollectionViewCell
 
 @property (nonatomic, strong) IBOutlet UIImageView *userImage;
 @property (nonatomic, strong) IBOutlet UILabel *userLabel;
+@property (nonatomic, strong) UIButton *deleteButton;
+
+- (void)applyLayoutAttributes:(UserCollectionViewLayoutAttributes *)layoutAttributes;
 
 @end

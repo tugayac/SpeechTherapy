@@ -82,4 +82,18 @@
     }
 }
 
++ (BOOL)removeUser:(NSManagedObject *)user
+{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    [context deleteObject:user];
+    
+    NSError *error = nil;
+    if (![context save:&error]) {
+        return NO;
+    }
+    return YES;
+}
+
 @end

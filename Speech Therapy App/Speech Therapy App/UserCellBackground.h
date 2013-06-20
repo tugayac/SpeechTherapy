@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CellBackground : UIView
+@interface UserCellBackground : UIView
 
 @end

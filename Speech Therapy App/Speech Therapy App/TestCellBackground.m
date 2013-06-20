@@ -1,14 +1,14 @@
 //
-//  UserCellBackground.m
+//  TestCellBackground.m
 //  Speech Therapy App
 //
-//  Created by Arda Tugay on 6/10/13.
+//  Created by Arda Tugay on 6/20/13.
 //  Copyright (c) 2013 Arda Tugay. All rights reserved.
 //
 
-#import "CellBackground.h"
+#import "TestCellBackground.h"
 
-@implementation CellBackground
+@implementation TestCellBackground
 
 - (void)drawRect:(CGRect)rect
 {

@@ -9,27 +9,37 @@
 #import "UserViewController.h"
 #import "RecordingsViewController.h"
 #import "NewUserViewController.h"
-#import "Cell.h"
+#import "UserCell.h"
 #import "AppDelegate.h"
 #import "ViewConstants.h"
 
+@interface UserViewController ()
+
+@property (nonatomic) BOOL deletionModeEnabled;
+
+@end
+
 @implementation UserViewController
 
-@synthesize userCollection, users;
+@synthesize userCollection, users, deletionModeEnabled;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UILongPressGestureRecognizer *enterDeletionModeGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(enterDeletionMode:)];
+    enterDeletionModeGesture.delegate = self;
+    [self.userCollection addGestureRecognizer:enterDeletionModeGesture];
+    UITapGestureRecognizer *exitDeletionModeGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(exitDeletionMode:)];
+    exitDeletionModeGesture.delegate = self;
+    [self.userCollection addGestureRecognizer:exitDeletionModeGesture];
+    
     self.users = [[NSMutableArray alloc] init];
-
     self.users = [[User getAllUsers] mutableCopy];
     
+    UserCollectionViewLayout *cvl = [[UserCollectionViewLayout alloc] init];
+    [self.userCollection setCollectionViewLayout:cvl];
     [self.userCollection reloadData];
-}
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return ceil([self.users count] / 3.0);
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -39,12 +49,14 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kUserCellIdentifier forIndexPath:indexPath];
+    UserCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kUserCellIdentifier forIndexPath:indexPath];
     
     User *user = [self.users objectAtIndex:[indexPath row]];
     
     cell.userLabel.text = [user username];
     cell.userImage.image = [UIImage imageNamed:[user imageURL]];
+    
+    [cell.deleteButton addTarget:self action:@selector(removeUser:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
@@ -53,28 +65,95 @@
 {
     self.selectedUser = [self.users objectAtIndex:[indexPath row]];
     
+//    UIAlertView *userRemovePrompt = [[UIAlertView alloc] initWithTitle:@"Remove User" message:@"Are you sure you want to remove this user? All information related to the user will be removed. This is an irreversible action!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+//    [userRemovePrompt setAlertViewStyle:UIAlertViewStyleDefault];
+//    [userRemovePrompt show];
+    
     UIAlertView *passwordPrompt = [[UIAlertView alloc] initWithTitle:@"Password" message:@"Please enter your password:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     [passwordPrompt setAlertViewStyle:UIAlertViewStyleSecureTextInput];
     [passwordPrompt show];
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.deletionModeEnabled) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)isDeletionModeActiveForCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
+{
+    return self.deletionModeEnabled;
+}
+
+- (void)removeUser:(UIButton *)button
+{
+    NSIndexPath *indexPath = [self.userCollection indexPathForCell:(UserCell *)button.superview.superview];
+    [User removeUser:[self.users objectAtIndex:[indexPath row]]];
+    [self.users removeObjectAtIndex:[indexPath row]];
+    [self.userCollection deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+}
+
+- (void)enterDeletionMode:(UILongPressGestureRecognizer *)gr
+{
+    if (gr.state == UIGestureRecognizerStateBegan) {
+        NSIndexPath *indexPath = [self.userCollection indexPathForItemAtPoint:[gr locationInView:self.userCollection]];
+        if (indexPath) {
+            self.deletionModeEnabled = YES;
+            UserCollectionViewLayout *layout = (UserCollectionViewLayout *) self.userCollection.collectionViewLayout;
+            [layout invalidateLayout];
+        }
+    }
+}
+
+- (void)exitDeletionMode:(UITapGestureRecognizer *)gr
+{
+    if (self.deletionModeEnabled) {
+        NSIndexPath *indexPath = [self.userCollection indexPathForItemAtPoint:[gr locationInView:self.userCollection]];
+        if (!indexPath) {
+            self.deletionModeEnabled = NO;
+            UserCollectionViewLayout *layout = (UserCollectionViewLayout *) self.userCollection.collectionViewLayout;
+            [layout invalidateLayout];
+        }
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    CGPoint touchPoint = [touch locationInView:self.userCollection];
+    NSIndexPath *indexPath = [self.userCollection indexPathForItemAtPoint:touchPoint];
+    if (indexPath && [gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
-        NSString *password = [[alertView textFieldAtIndex:0] text];
-        if ([password isEqualToString:self.selectedUser.password]) {
-            [self performSegueWithIdentifier:kUserLoggedIn sender:self];
-        } else {
-            UIAlertView *wrongPassword = [[UIAlertView alloc] initWithTitle:@"Invalid Password"
-                                                            message:@"The password does not match the username"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [wrongPassword setAlertViewStyle:UIAlertViewStyleDefault];
-            [wrongPassword show];
+    if ([alertView.title isEqualToString:@"Password"]) {
+        if (buttonIndex == 1) {
+            NSString *password = [[alertView textFieldAtIndex:0] text];
+            if ([password isEqualToString:self.selectedUser.password]) {
+                [self performSegueWithIdentifier:kUserLoggedIn sender:self];
+            } else {
+                UIAlertView *wrongPassword = [[UIAlertView alloc] initWithTitle:@"Invalid Password"
+                                                                message:@"The password does not match the username"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [wrongPassword setAlertViewStyle:UIAlertViewStyleDefault];
+                [wrongPassword show];
+            }
         }
-    } else {
-        // Do nothing
+    } else if ([alertView.title isEqualToString:@"Remove User"]) {
+        if (buttonIndex == 1) {
+            [User removeUser:self.selectedUser];
+            [self.users removeObject:self.selectedUser];
+            [self.userCollection reloadData];
+        }
     }
 }
 
