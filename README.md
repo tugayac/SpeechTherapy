@@ -13,8 +13,9 @@ This repository contains programs and applications that aim to diagnose differen
     2.1. [Running the Script](#aap_run)<br />
     2.2. [Further Improvements and Additions](#aap_imp)<br />
     2.3. [License](#aap_license)<br />
-3. [Contact](#contact)<br />
-4. [About the Project](#about)<br />
+3. [iPad Application for Audio Recording Tests](#app)<br />
+4. [Contact](#contact)<br />
+5. [About the Project](#about)<br />
 
 <a name="ae"/>
 ## Audio Extractor ##
@@ -114,6 +115,9 @@ A value of `--undefined--` indicates that no value exists at that time. Note tha
 <a name="aap_license"/>
 ### License ###
 The script uses the same license as Praat (GNU General Public License), since it can only be used with Praat. A copy of the license can be found on the [Praat License](http://www.fon.hum.uva.nl/praat/GNU_General_Public_License.txt) page.
+
+## iPad Application for Audio Recording Tests ##
+More information will be added soon. You can clone the code right now if you'd like to!
 
 <a name="contact"/>
 ## Contact ##
