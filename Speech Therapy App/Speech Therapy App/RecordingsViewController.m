@@ -6,12 +6,23 @@
 //  Copyright (c) 2013 Arda Tugay. All rights reserved.
 //
 
+#import <dropbox/dropbox.h>
+
 #import "RecordingsViewController.h"
 #import "NewPatientViewController.h"
 #import "TestsViewController.h"
 #import "Patient.h"
 #import "Test.h"
 #import "ViewConstants.h"
+
+@interface RecordingsViewController ()
+
+@property (nonatomic, strong) NSMutableArray *selectedRows;
+@property (nonatomic, strong) UIView *footerView;
+@property (nonatomic, strong) UIBarButtonItem *editButton;
+@property (nonatomic, strong) UIBarButtonItem *deleteButton;
+
+@end
 
 @implementation RecordingsViewController
 
@@ -21,11 +32,16 @@
 {
     [super viewDidLoad];
     
+    self.selectedRows = [[NSMutableArray alloc] init];
+    
+    [self.recordingsTable setAllowsMultipleSelectionDuringEditing:YES];
+    
     NSMutableArray *rightButtonItems = [[NSMutableArray alloc] init];
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Start New Test" style:UIBarButtonItemStyleBordered target:self action:@selector(startNewTestButtonTouched)];
     [rightButtonItems addObject:button];
-    button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeRecording)];
-    [rightButtonItems addObject:button];
+    self.editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enableEditMode)];
+    [self.editButton setEnabled:NO];
+    [rightButtonItems addObject:self.editButton];
     [self.navigationItem setRightBarButtonItems:rightButtonItems];
     
     [self.navigationItem setLeftItemsSupplementBackButton:YES];
@@ -46,18 +62,117 @@
     }
 }
 
-- (void)startNewTestButtonTouched
-{
-    [self performSegueWithIdentifier:kShowTests sender:self];
-}
-
-- (void)removeRecording
+- (void)enableEditMode
 {
     if ([self.recordingsTable isEditing]) {
         [self.recordingsTable setEditing:NO animated:YES];
+        [self.recordingsTable setFrame:CGRectMake(self.recordingsTable.frame.origin.x, self.recordingsTable.frame.origin.y, self.recordingsTable.frame.size.width, self.recordingsTable.frame.size.height + 44)];
+
+        CGAffineTransform translateOut = CGAffineTransformMakeTranslation(0, 44);
+        [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.footerView.transform = translateOut;
+        } completion:^(BOOL finished) {
+            [self.footerView setHidden:YES];
+            [self.view bringSubviewToFront:self.recordingsTable];
+        }];
     } else {
         [self.recordingsTable setEditing:YES animated:YES];
+        [self.recordingsTable setFrame:CGRectMake(self.recordingsTable.frame.origin.x, self.recordingsTable.frame.origin.y, self.recordingsTable.frame.size.width, self.recordingsTable.frame.size.height - 44)];
+        [self.footerView setHidden:NO];
+        [self.view bringSubviewToFront:self.footerView];
+        
+        CGAffineTransform translateIn = CGAffineTransformMakeTranslation(0, -44);
+        [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            self.footerView.transform = translateIn;
+        } completion:nil];
     }
+}
+
+- (UIView *)addFooterForEditMode
+{
+    UIToolbar *footerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.recordingsTable.frame.origin.y + self.recordingsTable.frame.size.height, self.recordingsTable.frame.size.width, 44)];
+    
+    NSMutableArray *buttons = [[NSMutableArray alloc] init];
+    UIBarButtonItem *fixedSpacingBeforeDeleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    [fixedSpacingBeforeDeleteButton setWidth:(([UIScreen mainScreen].bounds.size.width / 4.0) - (150 / 2.0) - 10)];
+    [buttons addObject:fixedSpacingBeforeDeleteButton];
+    self.deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStyleBordered target:self action:@selector(deleteTestsButtonTouched)];
+    [self.deleteButton setTintColor:[UIColor redColor]];
+    [self.deleteButton setWidth:150];
+    [buttons addObject:self.deleteButton];
+    UIBarButtonItem *fixedSpacingBeforeSendButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    [fixedSpacingBeforeSendButton setWidth:(([UIScreen mainScreen].bounds.size.width / 2) - 150 - 20)];
+    [buttons addObject:fixedSpacingBeforeSendButton];
+    UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send to Dropbox" style:UIBarButtonItemStyleDone target:self action:nil];
+    [sendButton setWidth:150];
+    [buttons addObject:sendButton];
+    [footerToolbar setItems:buttons animated:YES];
+    
+    [footerToolbar setHidden:YES];
+    
+    return footerToolbar;
+}
+
+- (void)deleteTestsButtonTouched
+{
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsDir = dirPaths[0];
+    
+    NSArray *listOfSoundFiles = [self listOfSoundFilesAtDirectory:docsDir];
+    for (Test *test in self.selectedRows) {            
+        for (NSString *file in listOfSoundFiles) {
+            if ([file isEqualToString:test.resultsPath]) {
+                [Test removeTest:test];
+                [self.tests removeObject:test];
+                
+                NSError *error;
+                [[NSFileManager defaultManager] removeItemAtPath:[docsDir stringByAppendingPathComponent:file] error:&error];
+                if (error) {
+                    NSLog(@"error: %@", [error localizedDescription]);
+                    return;
+                }
+            }
+        }
+    }
+    
+    [self.recordingsTable reloadData];
+}
+
+- (NSArray *)listOfSoundFilesAtDirectory:(NSString *)dir
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath:dir]) {
+        NSError *error;
+        
+        NSArray *listOfAllFiles = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:dir error:&error]];
+        if (error) {
+            NSLog(@"error: %@", [error localizedDescription]);
+            return nil;
+        }
+        NSArray *listOfExtensions = [NSArray arrayWithObject:@"wav"];
+        NSArray *listOfSoundFiles = [listOfAllFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"pathExtension IN %@", listOfExtensions]];
+        
+        return listOfSoundFiles;
+    } else {
+        return nil;
+    }
+}
+
+- (void)startNewTestButtonTouched
+{
+    if (!self.currentPatient) {
+        UIAlertView *patientNotSelected = [[UIAlertView alloc] initWithTitle:@"Patient not Selected" message:@"Please select a patient before starting a new test." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [patientNotSelected setAlertViewStyle:UIAlertViewStyleDefault];
+        [patientNotSelected show];
+    } else {
+        [self performSegueWithIdentifier:kShowTests sender:self];
+    }
+}
+
+- (void)sendToDropbox
+{
+    [[DBAccountManager sharedManager] linkFromController:self.navigationController];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -81,34 +196,19 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *docsDir = dirPaths[0];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        
-        if ([fileManager fileExistsAtPath:docsDir]) {
-            NSError *error;
-            
-            NSArray *listOfAllFiles = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:docsDir error:&error]];
-            if (error) {
-                NSLog(@"error: %@", [error localizedDescription]);
-                return;
-            }
-            NSArray *listOfExtensions = [NSArray arrayWithObject:@"wav"];
-            NSArray *listOfSoundFiles = [listOfAllFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"pathExtension IN %@", listOfExtensions]];
-            
-            for (NSString *file in listOfSoundFiles) {
-                Test *test = [self.tests objectAtIndex:[indexPath row]];
-                if ([file isEqualToString:test.resultsPath]) {
-                    [Test removeTest:[self.tests objectAtIndex:[indexPath row]]];
-                    [self.tests removeObjectAtIndex:[indexPath row]];
-                    [self.recordingsTable reloadData];
-                    return;
-                }
-            }
-        }
+    if (self.recordingsTable.isEditing) {
+        [self.selectedRows removeObject:[self.tests objectAtIndex:[indexPath row]]];
+        [self.deleteButton setTitle:[NSString stringWithFormat:@"Delete (%d)", [self.selectedRows count]]];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.recordingsTable.isEditing) {
+        [self.selectedRows addObject:[self.tests objectAtIndex:[indexPath row]]];
+        [self.deleteButton setTitle:[NSString stringWithFormat:@"Delete (%d)", [self.selectedRows count]]];
     }
 }
 
@@ -145,11 +245,17 @@
     [self.navigationItem setTitle:[NSString stringWithFormat:@"Recordings for %@", patient.lastName]];
     self.tests = [[Test getTestsForPatient:self.currentPatient] mutableCopy];
     [self.recordingsTable reloadData];
+    
+    if (!self.footerView) {
+        self.footerView = [self addFooterForEditMode];
+        [self.view addSubview:self.footerView];
+        [self.editButton setEnabled:YES];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:kShowTests]) {
+    if ([segue.identifier isEqualToString:kShowTests] && self.currentPatient) {
         TestsViewController *testsViewController = segue.destinationViewController;
         testsViewController.currentPatient = self.currentPatient;
     }

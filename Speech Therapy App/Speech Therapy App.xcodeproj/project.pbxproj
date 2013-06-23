@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		013D0BF4176AAB0C0090AD44 /* ModalFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D0BF3176AAB0C0090AD44 /* ModalFormViewController.m */; };
 		013D0C01176BB99C0090AD44 /* VoiceRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D0BFF176BB99B0090AD44 /* VoiceRecordViewController.m */; };
+		014038A7177649AF00D67632 /* dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014038A6177649AF00D67632 /* dropbox.framework */; };
+		014038A9177649D000D67632 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014038A8177649D000D67632 /* CFNetwork.framework */; };
+		014038AB177649D700D67632 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014038AA177649D700D67632 /* Security.framework */; };
+		014038AD177649DD00D67632 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014038AC177649DD00D67632 /* SystemConfiguration.framework */; };
 		01443285176FC780000F16C6 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 01443284176FC780000F16C6 /* Test.m */; };
 		0144328E17725A1C000F16C6 /* AutoCompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0144328D17725A1B000F16C6 /* AutoCompleteViewController.m */; };
 		0144329017738517000F16C6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0144328F17738516000F16C6 /* QuartzCore.framework */; };
@@ -55,6 +59,10 @@
 		013D0BF3176AAB0C0090AD44 /* ModalFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalFormViewController.m; sourceTree = "<group>"; };
 		013D0BFE176BB99B0090AD44 /* VoiceRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceRecordViewController.h; sourceTree = "<group>"; };
 		013D0BFF176BB99B0090AD44 /* VoiceRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceRecordViewController.m; sourceTree = "<group>"; };
+		014038A6177649AF00D67632 /* dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = dropbox.framework; sourceTree = "<group>"; };
+		014038A8177649D000D67632 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		014038AA177649D700D67632 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		014038AC177649DD00D67632 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		01443283176FC780000F16C6 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
 		01443284176FC780000F16C6 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		0144328C17725A1B000F16C6 /* AutoCompleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompleteViewController.h; sourceTree = "<group>"; };
@@ -122,12 +130,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				014038AD177649DD00D67632 /* SystemConfiguration.framework in Frameworks */,
+				014038AB177649D700D67632 /* Security.framework in Frameworks */,
+				014038A9177649D000D67632 /* CFNetwork.framework in Frameworks */,
 				0144329017738517000F16C6 /* QuartzCore.framework in Frameworks */,
 				016389C0176E992C0023657C /* AVFoundation.framework in Frameworks */,
 				019B4B0E1766A70D001403C3 /* UIKit.framework in Frameworks */,
 				019B4B101766A70D001403C3 /* Foundation.framework in Frameworks */,
 				019B4B121766A70D001403C3 /* CoreGraphics.framework in Frameworks */,
 				019B4B141766A70D001403C3 /* CoreData.framework in Frameworks */,
+				014038A7177649AF00D67632 /* dropbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +194,10 @@
 		019B4B0C1766A70D001403C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				014038AC177649DD00D67632 /* SystemConfiguration.framework */,
+				014038AA177649D700D67632 /* Security.framework */,
+				014038A8177649D000D67632 /* CFNetwork.framework */,
+				014038A6177649AF00D67632 /* dropbox.framework */,
 				0144328F17738516000F16C6 /* QuartzCore.framework */,
 				016389BF176E992C0023657C /* AVFoundation.framework */,
 				019B4B0D1766A70D001403C3 /* UIKit.framework */,
@@ -475,6 +491,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Arda Tugay (LGVSWSKSC4)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Speech Therapy App/Speech Therapy App-Prefix.pch";
 				INFOPLIST_FILE = "Speech Therapy App/Speech Therapy App-Info.plist";
@@ -489,6 +509,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Arda Tugay (LGVSWSKSC4)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Speech Therapy App/Speech Therapy App-Prefix.pch";
 				INFOPLIST_FILE = "Speech Therapy App/Speech Therapy App-Info.plist";

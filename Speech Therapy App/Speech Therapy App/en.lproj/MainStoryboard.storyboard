@@ -317,8 +317,8 @@
         <class className="TestCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TestCell.h"/>
             <relationships>
-                <relationship kind="outlet" name="userImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="userLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="testImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="testLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="TestsViewController" superclassName="UIViewController">
@@ -335,6 +335,9 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
         <class className="UserCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UserCell.h"/>

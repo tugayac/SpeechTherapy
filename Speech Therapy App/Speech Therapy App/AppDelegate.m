@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "UserViewController.h"
+#import <dropbox/dropbox.h>
 
 @implementation AppDelegate
 
@@ -28,6 +29,9 @@
     
     UINavigationController *mainNavigationController = [[UINavigationController alloc] initWithRootViewController:userViewController];
     self.navigationController = mainNavigationController;
+    
+    DBAccountManager *accountMgr = [[DBAccountManager alloc] initWithAppKey:@"l20knbpkk2j64k8" secret:@"abe5ibjqnukfpog"];
+    [DBAccountManager setSharedManager:accountMgr];
     
     return YES;
 }
@@ -58,6 +62,17 @@
 {
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
+    if (account) {
+        NSLog(@"App linked successfully!");
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 - (void)saveContext
