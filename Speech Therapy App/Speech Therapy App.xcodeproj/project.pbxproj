@@ -13,6 +13,8 @@
 		014038A9177649D000D67632 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014038A8177649D000D67632 /* CFNetwork.framework */; };
 		014038AB177649D700D67632 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014038AA177649D700D67632 /* Security.framework */; };
 		014038AD177649DD00D67632 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014038AC177649DD00D67632 /* SystemConfiguration.framework */; };
+		014038B317778E2D00D67632 /* UploadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 014038B117778E2D00D67632 /* UploadingViewController.m */; };
+		014038B417778E2D00D67632 /* UploadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 014038B217778E2D00D67632 /* UploadingViewController.xib */; };
 		01443285176FC780000F16C6 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 01443284176FC780000F16C6 /* Test.m */; };
 		0144328E17725A1C000F16C6 /* AutoCompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0144328D17725A1B000F16C6 /* AutoCompleteViewController.m */; };
 		0144329017738517000F16C6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0144328F17738516000F16C6 /* QuartzCore.framework */; };
@@ -63,6 +65,9 @@
 		014038A8177649D000D67632 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		014038AA177649D700D67632 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		014038AC177649DD00D67632 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		014038B017778E2D00D67632 /* UploadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadingViewController.h; sourceTree = "<group>"; };
+		014038B117778E2D00D67632 /* UploadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadingViewController.m; sourceTree = "<group>"; };
+		014038B217778E2D00D67632 /* UploadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadingViewController.xib; sourceTree = "<group>"; };
 		01443283176FC780000F16C6 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
 		01443284176FC780000F16C6 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		0144328C17725A1B000F16C6 /* AutoCompleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompleteViewController.h; sourceTree = "<group>"; };
@@ -258,6 +263,8 @@
 				01AEB8F317695DCE00649A5F /* RecordingsViewController.m */,
 				016389C6176F95050023657C /* TestsViewController.h */,
 				016389C7176F95050023657C /* TestsViewController.m */,
+				014038B017778E2D00D67632 /* UploadingViewController.h */,
+				014038B117778E2D00D67632 /* UploadingViewController.m */,
 				016389CB176F99F80023657C /* Test View Controllers */,
 			);
 			name = "View Controllers";
@@ -282,6 +289,7 @@
 				01AA454C176973FD0039F53B /* NewPatientViewController.xib */,
 				01C3D34A1766FB7200ADCD42 /* NewUserViewController.xib */,
 				016389CC176F9DC70023657C /* VoiceRecordViewController.xib */,
+				014038B217778E2D00D67632 /* UploadingViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -372,6 +380,7 @@
 				016389C2176F92540023657C /* Audio.png in Resources */,
 				016389CD176F9DC70023657C /* VoiceRecordViewController.xib in Resources */,
 				0144329217739838000F16C6 /* DeleteIcon.png in Resources */,
+				014038B417778E2D00D67632 /* UploadingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +413,7 @@
 				01E523471773B8B400BC339E /* UserCollectionViewLayoutAttributes.m in Sources */,
 				01E5234A1773CB7800BC339E /* TestCell.m in Sources */,
 				01E5234D1773CBDC00BC339E /* TestCellBackground.m in Sources */,
+				014038B317778E2D00D67632 /* UploadingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

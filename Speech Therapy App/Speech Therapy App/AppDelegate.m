@@ -67,6 +67,10 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
+    if ([account isLinked]) {
+        NSLog(@"Account is already linked.");
+        return YES;
+    }
     if (account) {
         NSLog(@"App linked successfully!");
         return YES;

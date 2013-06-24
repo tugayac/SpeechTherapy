@@ -11,8 +11,9 @@
 #import "ModalFormViewController.h"
 #import "User.h"
 #import "PatientsViewController.h"
+#import "UploadingViewController.h"
 
-@interface RecordingsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate, PatientsPopoverDelegate>
+@interface RecordingsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate, PatientsPopoverDelegate, UploadingViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, weak) IBOutlet UITableView *recordingsTable;

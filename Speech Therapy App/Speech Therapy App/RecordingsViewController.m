@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) UIBarButtonItem *editButton;
 @property (nonatomic, strong) UIBarButtonItem *deleteButton;
+@property (nonatomic, strong) UploadingViewController *uvc;
 
 @end
 
@@ -103,7 +104,7 @@
     UIBarButtonItem *fixedSpacingBeforeSendButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
     [fixedSpacingBeforeSendButton setWidth:(([UIScreen mainScreen].bounds.size.width / 2) - 150 - 20)];
     [buttons addObject:fixedSpacingBeforeSendButton];
-    UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send to Dropbox" style:UIBarButtonItemStyleDone target:self action:nil];
+    UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send to Dropbox" style:UIBarButtonItemStyleDone target:self action:@selector(sendToDropbox)];
     [sendButton setWidth:150];
     [buttons addObject:sendButton];
     [footerToolbar setItems:buttons animated:YES];
@@ -172,7 +173,24 @@
 
 - (void)sendToDropbox
 {
-    [[DBAccountManager sharedManager] linkFromController:self.navigationController];
+    DBAccount *account = [DBAccountManager sharedManager].linkedAccount;
+    if (account) {
+        DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
+        [DBFilesystem setSharedFilesystem:filesystem];
+        
+        if ([self.selectedRows count] > 0) {
+            self.uvc = [[UploadingViewController alloc] initWithFileToUpload:self.selectedRows];
+            [self.view addSubview:self.uvc.view];
+        }
+    } else {
+        [[DBAccountManager sharedManager] linkFromController:self.navigationController];
+    }
+}
+
+-(void)uploadComplete:(UploadingViewController *)uvc
+{
+    [self.uvc.view removeFromSuperview];
+    self.uvc.view = nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

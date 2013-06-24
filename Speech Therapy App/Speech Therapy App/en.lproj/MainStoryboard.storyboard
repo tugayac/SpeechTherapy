@@ -30,7 +30,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Asy-tK-CWG">
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="763" id="2eM-6B-zTO"/>
+                                    <constraint firstAttribute="height" constant="763" id="oQd-7X-Ell"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="50" minimumInteritemSpacing="50" id="Clf-Ww-2ci">
                                     <size key="itemSize" width="160" height="200"/>
@@ -88,17 +88,18 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="PlusSign.png" translatesAutoresizingMaskIntoConstraints="NO" id="wUw-p4-cQg"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="PlusSign.png" translatesAutoresizingMaskIntoConstraints="NO" id="wUw-p4-cQg">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="0M1-CN-Brs"/>
+                                    <constraint firstAttribute="width" constant="75" id="DLM-P6-jNi"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Add New User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFs-Yn-8q5">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yiN-gO-u5A">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="Mgd-zo-nAb"/>
-                                    <constraint firstAttribute="width" constant="75" id="NIr-id-0px"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -114,21 +115,21 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Asy-tK-CWG" firstAttribute="bottom" secondItem="Rdz-ZT-2wL" secondAttribute="bottom" type="default" id="AIW-g7-LWD"/>
+                            <constraint firstItem="wUw-p4-cQg" firstAttribute="centerX" secondItem="303-Be-j4j" secondAttribute="centerX" type="default" id="6Yp-Jw-sd3"/>
                             <constraint firstItem="yiN-gO-u5A" firstAttribute="leading" secondItem="wUw-p4-cQg" secondAttribute="leading" type="default" id="BK8-vK-8Rt"/>
                             <constraint firstItem="826-Xo-6gH" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="21" id="FHg-Ng-Bof"/>
                             <constraint firstItem="303-Be-j4j" firstAttribute="centerX" secondItem="826-Xo-6gH" secondAttribute="centerX" type="default" id="Jaa-UW-vmx"/>
                             <constraint firstItem="yiN-gO-u5A" firstAttribute="top" secondItem="wUw-p4-cQg" secondAttribute="top" type="default" id="SDp-Rt-hr3"/>
                             <constraint firstItem="yiN-gO-u5A" firstAttribute="trailing" secondItem="wUw-p4-cQg" secondAttribute="trailing" type="default" id="SDz-P7-Ytg"/>
+                            <constraint firstItem="Asy-tK-CWG" firstAttribute="bottom" secondItem="Rdz-ZT-2wL" secondAttribute="bottom" type="default" id="bc9-8O-rSe"/>
                             <constraint firstItem="303-Be-j4j" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="47" id="cNE-BK-tLI"/>
+                            <constraint firstItem="yiN-gO-u5A" firstAttribute="centerX" secondItem="BFs-Yn-8q5" secondAttribute="centerX" type="default" id="dV3-Wg-1G0"/>
                             <constraint firstItem="wUw-p4-cQg" firstAttribute="bottom" secondItem="yiN-gO-u5A" secondAttribute="bottom" type="default" id="dW3-RI-cqE"/>
                             <constraint firstItem="BFs-Yn-8q5" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="160" id="hR4-Ws-20C"/>
                             <constraint firstItem="Asy-tK-CWG" firstAttribute="trailing" secondItem="Rdz-ZT-2wL" secondAttribute="trailing" type="default" id="kwP-v1-sLM"/>
-                            <constraint firstItem="wUw-p4-cQg" firstAttribute="centerX" secondItem="303-Be-j4j" secondAttribute="centerX" type="default" id="nqh-K6-0DV"/>
-                            <constraint firstItem="yiN-gO-u5A" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="78" id="r7Y-w2-0WV"/>
+                            <constraint firstItem="yiN-gO-u5A" firstAttribute="top" secondItem="Rdz-ZT-2wL" secondAttribute="top" constant="78" id="m2T-kM-vXG"/>
                             <constraint firstItem="Asy-tK-CWG" firstAttribute="leading" secondItem="Rdz-ZT-2wL" secondAttribute="leading" type="default" id="v8V-27-FLT"/>
                             <constraint firstItem="Asy-tK-CWG" firstAttribute="centerX" secondItem="BFs-Yn-8q5" secondAttribute="centerX" type="default" id="zoc-R9-PtL"/>
-                            <constraint firstItem="yiN-gO-u5A" firstAttribute="centerX" secondItem="BFs-Yn-8q5" secondAttribute="centerX" type="default" id="zpK-SF-UyQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="User Login" id="3aT-XH-eG2"/>
