@@ -1,6 +1,23 @@
 # Speech Therapy Application #
 This repository contains programs and applications that aim to diagnose different types of Autism using speech methods.
 
+## Table of Contents ##
+1. [Audio Extractor](#ae)<br />
+    1.1. [Running the Program](#ae_running)<br />
+    1.2. [Requirements](#ae_req)<br />
+    1.3. [Features](#ae_feat)<br />
+    1.4. [Known Issues](#ae_issues)<br />
+    1.5. [Possible Features](#ae_pos_feat)<br />
+    1.6. [External Libraries and License](#ae_license)<br />
+2. [Audio Analysis with Praat](#aap)<br />
+    2.1. [Running the Script](#aap_run)<br />
+    2.2. [Further Improvements and Additions](#aap_imp)<br />
+    2.3. [License](#aap_license)<br />
+3. [iPad Application for Audio Recording Tests](#app)<br />
+4. [Contact](#contact)<br />
+5. [About the Project](#about)<br />
+
+<a name="ae"/>
 ## Audio Extractor ##
 The audio extractor allows users to extract audio from several different video filetypes. The audio extracted from the videos are meant to be used to compare with speech samples from users with no Autism.
 
@@ -8,6 +25,7 @@ Decoding and encoding are done using the [Java Audio Video Encoder](http://www.s
 
 The most current version is v0.1
 
+<a name="ae_running"/>
 ### Running the Program ###
 To run the audio extractor, go to AudioExtractor/dist/ and run AudioExtractor.jar by double-clicking on it. Alternatively, you can run it from the command line using:
     
@@ -15,13 +33,14 @@ To run the audio extractor, go to AudioExtractor/dist/ and run AudioExtractor.ja
     
 You can also open up the project in NetBeans and change it as you like.
 
+<a name="ae_req"/>
 ### Requirements ###
 * Java 7
-
 * The program has been tested on Windows 8 and does run. It should run properly on earlier versions of Windows; however, there is no guarantee.
 * The program has been tested on Mac OSX 10.7.5 and <b>does not run</b>. This is because JAVE does not provide an ffmpeg executable for MAC OSX. Latest versions of ffmpeg executables do not work. Apple Mac users can check out [ffmpegX](http://www.ffmpegx.com/download.html) as an alternative.
 * The program has been tested on Linux (Ubuntu 12.04) and does run. It should run properly on other versions of Ubuntu/Debian based Linux systems; however, there is no guarantee. 
 
+<a name="ae_feat"/>
 ### Features ###
 The Audio Extractor features the following:
 * Supports multiple video file types (Currently MP4, M4A, MPEG, MPG, MOV, FLV, AVI)
@@ -34,12 +53,14 @@ The Audio Extractor features the following:
     + File Type (Currently MP3, AAC, FLAC, WAV, OGG)
 * Progress of the files displayed for the convenience of the user.
 
+<a name="ae_issues"/>
 ### Known Issues ###
 * Properties of video files can be changed in the table, although this has no effect to the file's metadata.
 * Stop Button is grayed out due to some issues with Java Threads. This feature will be fixed in the future.
 * Extract button can be clicked multiple times, even when the extrator is running. This will cause it to run the same job again. For now, refrain from clicking the Extract button before the current extraction process is complete.
 * An exception is thrown if the program is closed before extraction is completed. However, this exception should not affect the user.
 
+<a name="ae_pos_feat"/>
 ### Possible Features ###
 * Allow the user to choose the FFmpeg executable that they would like to use.
 * Ability to stop the encoding process.
@@ -47,12 +68,15 @@ The Audio Extractor features the following:
 * Ability to run multiple extraction threads at the same time for multiple files.
 * Expanding the project to make it a full-fledged Audio-Video Converter.
 
+<a name="ae_license"/>
 ### External Libraries and License ###
 This software is released under the General Public License (GPL) because the JAVE external library uses the GPL license. A copy of the license is included with the program.
 
+<a name="aap"/>
 ## Audio Analysis with Praat ##
 After extracting the audio from the video, [Formant Analysis](http://en.wikipedia.org/wiki/Formant) can be performed to extract vowel information using a software called [Praat](http://www.fon.hum.uva.nl/praat/). A script is included under the Praat/Scripts folder.
 
+<a name="aap_run"/>
 ### Running the Script ###
 The script provided with the project will allow you to extract the formant frequencies from audio files in a given folder. The information will be extracted into a text file.
 
@@ -80,6 +104,7 @@ You can follow the links for more information on [Pitch Settings](http://www.fon
 
 A value of `--undefined--` indicates that no value exists at that time. Note that there are a lot less pitch values. These pitch values indicate which formant frequency values are valid to use.
 
+<a name="aap_imp"/>
 ### Further Improvements and Additions ###
 * Running the script on Windows and Mac OSX Machines.
 * Running the script using the Praat GUI.
@@ -87,12 +112,18 @@ A value of `--undefined--` indicates that no value exists at that time. Note tha
 * Changing command line arguments based on patient's age.
 * Extracting different number of formant frequencies.
 
+<a name="aap_license"/>
 ### License ###
-<TODO>
-    
+The script uses the same license as Praat (GNU General Public License), since it can only be used with Praat. A copy of the license can be found on the [Praat License](http://www.fon.hum.uva.nl/praat/GNU_General_Public_License.txt) page.
+
+## iPad Application for Audio Recording Tests ##
+More information will be added soon. You can clone the code right now if you'd like to!
+
+<a name="contact"/>
 ## Contact ##
 Please contact Arda C. Tugay at arda.tugay@gmail.com for any questions, concerns, or suggestions.
-    
+
+<a name = "about"/>
 ## About the Project ##
 The applications in this project are developed by Arda C. Tugay, an undergraduate Computer Science & Software Engineering student from Rose-Hulman Institute of Technology. The project is part of the ERWiN REU program funded by the National Science Foundation.
 
