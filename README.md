@@ -82,14 +82,16 @@ The script provided with the project will allow you to extract the formant frequ
 
 1. First of all, you will need to install [Praat](http://www.fon.hum.uva.nl/praat/).
 2. Assuming you are running a Linux machine, run the script by executing the following command from the terminal (The example below assumes that you're in the same folder as the script:
-    
-    ``$ praat sound_data.praat /home/user/Documents/SpeechTherapy/Praat/Test_Files .wav 0.001 75 600 4 5000 0.025 50``
+
+```
+$ praat sound_data.praat /home/user/Documents/SpeechTherapy/Praat/Test_Files .wav 0.001 50 300 4 5000 0.025 50
+```
 
 This command will run the praat script `sound_data.praat` on the files located in `/home/user/Documents/SpeechTherapy/Praat/Test_Files`, which are `.wav` files. Numeric parameters represent the following:
 * Pitch Settings
     + Time Step (s) - Default: 0.001 => The time step between each value sampled from the audio file. Also used for extracting formant frequencies.
-    + Pitch Floor (Hz) - Default: 75 => Candidates below this frequency will be ignored.
-    + Pitch Ceiling (Hz) - Default: 600 => Candidates above this frequency will be ignored.
+    + Pitch Floor (Hz) - Default: 50 => Candidates below this frequency will be ignored. The deeper a person's voice, the lower the value should be, such as 50 Hz.
+    + Pitch Ceiling (Hz) - Default: 150 => Candidates above this frequency will be ignored. The higher a person's voice, the higher the value should be, such as 300 Hz.
 * Formant Settings
     + Maximum Number of Formants - Default: 4 => Number of formant frequencies that will be extracted. Changing this feature will not affect anything as it is <b>Not Yet Implemented!</b>
     + Maximum Formant (Hz) - Default: 5000 => Maximum value for Formant searching. The value has to be different depending on who the speaker is. Default value for males is 5000 and females is 5500.
@@ -100,7 +102,9 @@ You can follow the links for more information on [Pitch Settings](http://www.fon
 
 3. The output file has the following format (no headers are included in output files to make is easier for parsing):
 
-`Time   Pitch   F1  F2  F3  F4`
+```
+Time   Pitch   F1  F2  F3  F4
+```
 
 A value of `--undefined--` indicates that no value exists at that time. Note that there are a lot less pitch values. These pitch values indicate which formant frequency values are valid to use.
 
