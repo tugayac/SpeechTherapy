@@ -84,7 +84,7 @@ The script provided with the project will allow you to extract the formant frequ
 2. Assuming you are running a Linux machine, run the script by executing the following command from the terminal (The example below assumes that you're in the same folder as the script:
 
 ```
-$ praat sound_data.praat /home/user/Documents/SpeechTherapy/Praat/Test_Files .wav 0.001 50 300 4 5000 0.025 50
+$ praat sound_data.praat /home/user/Documents/SpeechTherapy/Praat/Test_Files .wav 0.001 50 150 4 5000 0.025 50
 ```
 
 This command will run the praat script `sound_data.praat` on the files located in `/home/user/Documents/SpeechTherapy/Praat/Test_Files`, which are `.wav` files. Numeric parameters represent the following:
