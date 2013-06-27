@@ -7,9 +7,9 @@ form Enter the directory of the file
 	comment Time Step (s)
 	positive timeStep 0.001
 	comment Pitch Floor (Hz)
-	positive pitchFloor 75.0
+	positive pitchFloor 25.0
 	comment Pitch Ceiling (Hz)
-	positive pitchCeiling 600.0
+	positive pitchCeiling 300.0
 	comment Maximum Number of Formants
 	positive maxFormants 4
 	comment Maximum Formant (Hz)
