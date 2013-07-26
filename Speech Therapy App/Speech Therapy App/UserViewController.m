@@ -65,10 +65,6 @@
 {
     self.selectedUser = [self.users objectAtIndex:[indexPath row]];
     
-//    UIAlertView *userRemovePrompt = [[UIAlertView alloc] initWithTitle:@"Remove User" message:@"Are you sure you want to remove this user? All information related to the user will be removed. This is an irreversible action!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-//    [userRemovePrompt setAlertViewStyle:UIAlertViewStyleDefault];
-//    [userRemovePrompt show];
-    
     UIAlertView *passwordPrompt = [[UIAlertView alloc] initWithTitle:@"Password" message:@"Please enter your password:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     [passwordPrompt setAlertViewStyle:UIAlertViewStyleSecureTextInput];
     [passwordPrompt show];

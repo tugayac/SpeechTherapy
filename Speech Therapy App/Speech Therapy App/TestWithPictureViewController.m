@@ -105,17 +105,13 @@ int imageCounter = 0;
             }];
         }];
     } else {
-        UIAlertView *doneAlertView = [[UIAlertView alloc] initWithTitle:@"Good Job!" message:@"You've completed the test. Awesome Job!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *doneAlertView = [[UIAlertView alloc] initWithTitle:@"Awesome Job!" message:@"You've completed the test. You can enter notes here if you want to: "delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [doneAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
         [doneAlertView show];
         
         if (self.audioRecorder.recording) {
             [self.audioRecorder stop];
-            [Test addNewResultForTest:self.testName takenBy:self.currentPatient startingOn:self.startTime endingOn:[NSDate date] withResult:self.fileName withNotes:@"None"];
-        } else if (self.audioPlayer.playing) {
-            [self.audioPlayer stop];
         }
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -131,8 +127,21 @@ int imageCounter = 0;
 
 - (IBAction)stopRecordButtonPressed:(id)sender
 {
-    UIAlertView *interruptAlertView = [[UIAlertView alloc] initWithTitle:@"Audio Recording Stopped" message:@"Audio recording was interrupted by user." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *interruptAlertView = [[UIAlertView alloc] initWithTitle:@"Audio Recording Stopped" message:@"Audio recording was interrupted by user." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [interruptAlertView show];
+    
+    [self.audioRecorder stop];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsDir = dirPaths[0];
+    NSString *soundFilePath = [docsDir stringByAppendingPathComponent:self.fileName];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    NSError *error;
+    [fm removeItemAtURL:soundFileURL error:&error];
+    if (error) {
+        NSLog(@"Error occured while deleting: %@", error.localizedDescription);
+    }
+    self.audioRecorder = nil;
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -141,6 +150,9 @@ int imageCounter = 0;
 {
     if ([alertView.title isEqualToString:@"Test Name"]) {
         self.testName = [[alertView textFieldAtIndex:0] text];
+    } else if ([alertView.title isEqualToString:@"Awesome Job!"]) {
+        [Test addNewResultForTest:self.testName takenBy:self.currentPatient startingOn:self.startTime endingOn:[NSDate date] withResult:self.fileName withNotes:[[alertView textFieldAtIndex:0] text]];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

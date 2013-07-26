@@ -41,7 +41,7 @@
     NSMutableArray *rightButtonItems = [[NSMutableArray alloc] init];
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Start New Test" style:UIBarButtonItemStyleBordered target:self action:@selector(startNewTestButtonTouched)];
     [rightButtonItems addObject:button];
-    self.editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(enableEditMode)];
+    self.editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(enableEditMode)];
     [self.editButton setEnabled:NO];
     [rightButtonItems addObject:self.editButton];
     [self.navigationItem setRightBarButtonItems:rightButtonItems];
@@ -67,6 +67,8 @@
 - (void)enableEditMode
 {
     if ([self.recordingsTable isEditing]) {
+        [self.editButton setStyle:UIBarButtonItemStyleBordered];
+        [self.editButton setTitle:@"Edit"];
         [self.recordingsTable setEditing:NO animated:YES];
         [self.recordingsTable setFrame:CGRectMake(self.recordingsTable.frame.origin.x, self.recordingsTable.frame.origin.y, self.recordingsTable.frame.size.width, self.recordingsTable.frame.size.height + 44)];
 
@@ -78,6 +80,9 @@
             [self.view bringSubviewToFront:self.recordingsTable];
         }];
     } else {
+        [self.deleteButton setTitle:@"Delete"];
+        [self.editButton setStyle:UIBarButtonItemStyleDone];
+        [self.editButton setTitle:@"Done"];
         [self.recordingsTable setEditing:YES animated:YES];
         [self.recordingsTable setFrame:CGRectMake(self.recordingsTable.frame.origin.x, self.recordingsTable.frame.origin.y, self.recordingsTable.frame.size.width, self.recordingsTable.frame.size.height - 44)];
         [self.footerView setHidden:NO];

@@ -20,6 +20,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *totalDuration;
 @property (nonatomic, weak) IBOutlet UILabel *dateStarted;
 @property (nonatomic, weak) IBOutlet UILabel *dateCompleted;
+@property (nonatomic, weak) IBOutlet UITextView *notesView;
 
 @property (nonatomic, strong) Test *currentTest;
 

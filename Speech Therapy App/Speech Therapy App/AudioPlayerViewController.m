@@ -8,6 +8,8 @@
 
 #import "AudioPlayerViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @interface AudioPlayerViewController ()
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
@@ -45,6 +47,12 @@
     [self.totalDuration setText:[NSString stringWithFormat:@"%.0f:%02.0f", time / 60.0, fmod(time, 60.0)]];
     [self.dateStarted setText:[self.currentTest.dateStarted descriptionWithLocale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
     [self.dateCompleted setText:[self.currentTest.dateStarted descriptionWithLocale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
+    
+    [self.notesView.layer setCornerRadius:5.0f];
+    [self.notesView.layer setMasksToBounds:YES];
+    [self.notesView.layer setBorderColor:[UIColor grayColor].CGColor];
+    [self.notesView.layer setBorderWidth:1.0f];
+    [self.notesView setText:self.currentTest.notes];
     
     [self.audioProgressSlider setMaximumValue:time];
     [self.timeLeft setText:[NSString stringWithFormat:@"%.0f:%02.0f", time / 60.0, fmod(time, 60.0)]];
