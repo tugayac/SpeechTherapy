@@ -7,7 +7,7 @@
 //
 
 #import "TestsViewController.h"
-#import "VoiceRecordViewController.h"
+#import "TestWithPictureViewController.h"
 #import "TestCell.h"
 #import "ViewConstants.h"
 
@@ -40,11 +40,11 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([indexPath row] == 0) {
-        VoiceRecordViewController *vrvc = [[VoiceRecordViewController alloc] init];
-        vrvc.currentPatient = self.currentPatient;
-        [vrvc setModalPresentationStyle:UIModalPresentationFullScreen];
-        [vrvc setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-        [self presentViewController:vrvc animated:YES completion:nil];
+        TestWithPictureViewController *tpvc = [[TestWithPictureViewController alloc] init];
+        tpvc.currentPatient = self.currentPatient;
+        [tpvc setModalPresentationStyle:UIModalPresentationFullScreen];
+        [tpvc setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+        [self presentViewController:tpvc animated:YES completion:nil];
     }
 }
 
