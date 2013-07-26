@@ -11,6 +11,7 @@
 #import "RecordingsViewController.h"
 #import "NewPatientViewController.h"
 #import "TestsViewController.h"
+#import "AudioPlayerViewController.h"
 #import "Patient.h"
 #import "Test.h"
 #import "ViewConstants.h"
@@ -227,6 +228,10 @@
     if (self.recordingsTable.isEditing) {
         [self.selectedRows addObject:[self.tests objectAtIndex:[indexPath row]]];
         [self.deleteButton setTitle:[NSString stringWithFormat:@"Delete (%d)", [self.selectedRows count]]];
+    } else {
+        AudioPlayerViewController *apvc = [[AudioPlayerViewController alloc] init];
+        apvc.currentTest = [self.tests objectAtIndex:[indexPath row]];
+        [self.navigationController pushViewController:apvc animated:YES];
     }
 }
 

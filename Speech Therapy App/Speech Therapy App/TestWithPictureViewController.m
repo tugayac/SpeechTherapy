@@ -18,6 +18,7 @@ int imageCounter = 0;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, strong) NSString *fileName;
+@property (nonatomic, strong) NSString *testName;
 
 - (void)handleSwipeGestureFrom:(UIGestureRecognizer *)gestureRecognizer;
 - (IBAction)recordAudioButtonPressed:(id)sender;
@@ -76,10 +77,16 @@ int imageCounter = 0;
     [self.revolvingImage setImage:[UIImage imageNamed:[self.listOfImageFiles objectAtIndex:imageCounter]]];
     [self.revolvingImage setContentMode:UIViewContentModeScaleAspectFit];
     [self.imageTitle setText:@"Head"];
+    
+    UIAlertView *testNameAlertView  = [[UIAlertView alloc] initWithTitle:@"Test Name" message:@"Please enter a name for the test:" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [testNameAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    [testNameAlertView show];
 }
 
 - (void)handleSwipeGestureFrom:(UIGestureRecognizer *)gestureRecognizer
 {
+    [self recordAudioButtonPressed:nil];
+    
     imageCounter++;
     if (imageCounter < 10) {
         NSMutableString *imageTitleString = [[NSMutableString alloc] initWithString:[self.listOfImageFiles objectAtIndex:imageCounter]];
@@ -98,13 +105,12 @@ int imageCounter = 0;
             }];
         }];
     } else {
-        UIAlertView *doneAlertView = [[UIAlertView alloc] initWithTitle:@"Good Job!" message:@"You've completed the test. Awesome Job!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *doneAlertView = [[UIAlertView alloc] initWithTitle:@"Good Job!" message:@"You've completed the test. Awesome Job!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [doneAlertView show];
         
         if (self.audioRecorder.recording) {
-            NSLog(@"Done Recording...");
             [self.audioRecorder stop];
-            [Test addNewResultForTest:@"Voice Recording" takenBy:self.currentPatient startingOn:self.startTime endingOn:[NSDate date] withResult:self.fileName withNotes:@"None"];
+            [Test addNewResultForTest:self.testName takenBy:self.currentPatient startingOn:self.startTime endingOn:[NSDate date] withResult:self.fileName withNotes:@"None"];
         } else if (self.audioPlayer.playing) {
             [self.audioPlayer stop];
         }
@@ -116,7 +122,6 @@ int imageCounter = 0;
 - (IBAction)recordAudioButtonPressed:(id)sender
 {
     if (!self.audioRecorder.recording) {
-        NSLog(@"Started Recording...");
         [self.stopButton setEnabled:YES];
         [self.recordButton setEnabled:NO];
         self.startTime = [NSDate date];
@@ -130,6 +135,13 @@ int imageCounter = 0;
     [interruptAlertView show];
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([alertView.title isEqualToString:@"Test Name"]) {
+        self.testName = [[alertView textFieldAtIndex:0] text];
+    }
 }
 
 - (void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error

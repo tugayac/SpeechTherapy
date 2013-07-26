@@ -10,7 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "User.h"
 
-@interface TestWithPictureViewController : UIViewController<AVAudioRecorderDelegate>
+@interface TestWithPictureViewController : UIViewController<AVAudioRecorderDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIImageView *revolvingImage;
 @property (nonatomic, weak) IBOutlet UIButton *recordButton;
