@@ -11,6 +11,9 @@
 #import "ModalFormViewController.h"
 #import "User.h"
 
+extern int const PopoverWidth;
+extern int const PopoverHeight;
+
 @protocol PatientsPopoverDelegate;
 
 @interface PatientsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ModalFormViewControllerDelegate>
@@ -21,10 +24,6 @@
 
 @property (nonatomic, strong) NSMutableArray *patients;
 @property (nonatomic, strong) User *currentUser;
-
-- (void)createNewPatient;
-- (void)removePatient;
-- (void)doneButtonTouched;
 
 @end
 

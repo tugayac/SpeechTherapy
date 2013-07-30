@@ -36,13 +36,19 @@
     return [UserCollectionViewLayoutAttributes class];
 }
 
+- (void)hideDeleteButtonIfDeletionModeActive:(UserCollectionViewLayoutAttributes *)attributes
+{
+    if ([self isDeletionModeOn]) {
+        attributes.deleteButtonHidden = NO;
+    } else {
+        attributes.deleteButtonHidden = YES;
+    }
+}
+
 - (UserCollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UserCollectionViewLayoutAttributes *attributes = (UserCollectionViewLayoutAttributes *) [super layoutAttributesForItemAtIndexPath:indexPath];
-    if ([self isDeletionModeOn])
-        attributes.deleteButtonHidden = NO;
-    else
-        attributes.deleteButtonHidden = YES;
+    [self hideDeleteButtonIfDeletionModeActive:attributes];
     return attributes;
 }
 
@@ -50,13 +56,8 @@
 {
     NSArray *attributesArrayInRect = [super layoutAttributesForElementsInRect:rect];
     
-    for (UserCollectionViewLayoutAttributes *attributes in attributesArrayInRect)
-    {
-        if ([self isDeletionModeOn]) {
-            attributes.deleteButtonHidden = NO;
-        } else {
-            attributes.deleteButtonHidden = YES;
-        }
+    for (UserCollectionViewLayoutAttributes *attributes in attributesArrayInRect) {
+        [self hideDeleteButtonIfDeletionModeActive:attributes];
     }
     return attributesArrayInRect;
 }

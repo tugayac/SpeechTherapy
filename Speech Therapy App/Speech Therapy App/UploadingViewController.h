@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern float const ModalViewCornerRadius;
+
 @protocol UploadingViewControllerDelegate;
 
 @interface UploadingViewController : UIViewController
@@ -17,7 +19,7 @@
 @property (nonatomic, weak) IBOutlet UIProgressView *uploadProgress;
 @property (nonatomic, weak) IBOutlet UILabel *uploadLabel;
 
-- (id)initWithFileToUpload:(NSArray *)files;
+- (id)initWithFilesToUpload:(NSArray *)files;
 
 @end
 

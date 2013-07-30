@@ -72,8 +72,7 @@
 {
     [self.typeOfAutismField setText:suggestion];
     [self.autoCompletePopover dismissPopoverAnimated:YES];
-    self.autoCompletePopover = nil;
-    self.acvc = nil;
+    [self popoverControllerDidDismissPopover:nil];
 }
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController

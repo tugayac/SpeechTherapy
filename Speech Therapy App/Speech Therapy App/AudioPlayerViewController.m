@@ -10,6 +10,12 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+double const SecondsInAMinute = 60.0;
+float const NotesCornerRadius = 5.0f;
+float const NotesBorderWidth = 1.0f;
+NSString *const PlayButtonImageFileName = @"play.png";
+NSString *const StopButtonImageFileName = @"stopLarge.png";
+
 @interface AudioPlayerViewController ()
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
@@ -28,12 +34,8 @@
     return [self initWithNibName:@"AudioPlayerViewController" bundle:nil];
 }
 
-- (void)viewDidLoad
+- (void)setupAudioPlayer
 {
-    [super viewDidLoad];
-    
-    [self.pauseButton setEnabled:NO];
-    
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = dirPaths[0];
     NSString *soundFilePath = [docsDir stringByAppendingPathComponent:self.currentTest.resultsPath];
@@ -42,41 +44,74 @@
     NSError *error;
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
     self.audioPlayer.delegate = self;
-
-    NSTimeInterval time = [self.audioPlayer duration];
-    [self.totalDuration setText:[NSString stringWithFormat:@"%.0f:%02.0f", time / 60.0, fmod(time, 60.0)]];
-    [self.dateStarted setText:[self.currentTest.dateStarted descriptionWithLocale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
-    [self.dateCompleted setText:[self.currentTest.dateStarted descriptionWithLocale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
-    
-    [self.notesView.layer setCornerRadius:5.0f];
-    [self.notesView.layer setMasksToBounds:YES];
-    [self.notesView.layer setBorderColor:[UIColor grayColor].CGColor];
-    [self.notesView.layer setBorderWidth:1.0f];
-    [self.notesView setText:self.currentTest.notes];
-    
-    [self.audioProgressSlider setMaximumValue:time];
-    [self.timeLeft setText:[NSString stringWithFormat:@"%.0f:%02.0f", time / 60.0, fmod(time, 60.0)]];
     
     if (error) {
         NSLog(@"error: %@", [error localizedDescription]);
     }
 }
 
+- (void)setupNotesTextView
+{
+    [self.notesView.layer setCornerRadius:NotesCornerRadius];
+    [self.notesView.layer setMasksToBounds:YES];
+    [self.notesView.layer setBorderColor:[UIColor grayColor].CGColor];
+    [self.notesView.layer setBorderWidth:NotesBorderWidth];
+}
+
+- (void)setTimeLabelsWithTotalDuration:(NSTimeInterval)totalDuration andCurrentTime:(NSTimeInterval)currentTime
+{
+    [self.timeLeft setText:[NSString stringWithFormat:@"%.0f:%02.0f", (totalDuration - currentTime) / SecondsInAMinute, fmod(totalDuration - currentTime, SecondsInAMinute)]];
+    [self.timeElapsed setText:[NSString stringWithFormat:@"%.0f:%02.0f", currentTime / SecondsInAMinute, fmod(currentTime, SecondsInAMinute)]];
+}
+
+- (void)setValuesOfUIElements
+{
+    NSTimeInterval time = [self.audioPlayer duration];
+    [self setTimeLabelsWithTotalDuration:time andCurrentTime:0.0];
+    [self.totalDuration setText:[NSString stringWithFormat:@"%.0f:%02.0f", time / SecondsInAMinute, fmod(time, SecondsInAMinute)]];
+    [self.audioProgressSlider setMaximumValue:time];
+    [self.dateStarted setText:[self.currentTest.dateStarted descriptionWithLocale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
+    [self.dateCompleted setText:[self.currentTest.dateStarted descriptionWithLocale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
+    [self.notesView setText:self.currentTest.notes];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self.pauseButton setEnabled:NO];
+    
+    [self setupAudioPlayer];
+    [self setupNotesTextView];
+    [self setValuesOfUIElements];
+}
+
+- (void)setPlayAndStopButtonImageTo:(UIImage *)image AndEnablePauseButton:(BOOL)enable
+{
+    [self.playAndStopButton setImage:image forState:UIControlStateNormal];
+    [self.pauseButton setEnabled:enable];
+}
+
+- (void)resetAudioPlayer
+{
+    [self.audioProgressSliderTimer invalidate];
+    self.audioProgressSliderTimer = nil;
+    [self.audioPlayer setCurrentTime:0.0];
+    [self.audioProgressSlider setValue:0.0 animated:YES];
+}
+
 - (IBAction)playAndStopButtonPressed:(id)sender
 {
     if (!self.audioPlayer.playing) {
-        [self.playAndStopButton setImage:[UIImage imageNamed:@"stopLarge.png"] forState:UIControlStateNormal];
+        [self setPlayAndStopButtonImageTo:[UIImage imageNamed:StopButtonImageFileName] AndEnablePauseButton:YES];
         self.audioProgressSliderTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateProgressSlider) userInfo:nil repeats:YES];
         [self.audioPlayer play];
-        [self.pauseButton setEnabled:YES];
     } else {
-        [self.playAndStopButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
-        [self.audioProgressSliderTimer invalidate];
-        self.audioProgressSliderTimer = nil;
-        [self.audioPlayer setCurrentTime:0.0];
-        [self.audioProgressSlider setValue:0.0 animated:YES];
+        NSTimeInterval time = [self.audioPlayer duration];
+        [self setTimeLabelsWithTotalDuration:time andCurrentTime:0.0];
+        [self setPlayAndStopButtonImageTo:[UIImage imageNamed:PlayButtonImageFileName] AndEnablePauseButton:NO];
+        [self resetAudioPlayer];
         [self.audioPlayer stop];
-        [self.pauseButton setEnabled:NO];
     }
 }
 
@@ -94,21 +129,15 @@
 - (void)updateProgressSlider
 {
     NSTimeInterval currentTime = [self.audioPlayer currentTime];
-    [self.audioProgressSlider setValue:currentTime animated:YES];
-    
     NSTimeInterval totalDuration = [self.audioPlayer duration];
-    [self.timeElapsed setText:[NSString stringWithFormat:@"%.0f:%02.0f", currentTime / 60.0, fmod(currentTime, 60.0)]];
-    [self.timeLeft setText:[NSString stringWithFormat:@"%.0f:%02.0f", (totalDuration - currentTime) / 60.0, fmod(totalDuration - currentTime, 60.0)]];
+    [self.audioProgressSlider setValue:currentTime animated:YES];
+    [self setTimeLabelsWithTotalDuration:totalDuration andCurrentTime:currentTime];
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-    [self.pauseButton setEnabled:NO];
-    [self.playAndStopButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
-    [self.audioPlayer setCurrentTime:0.0];
-    [self.audioProgressSlider setValue:0.0 animated:YES];
-    [self.audioProgressSliderTimer invalidate];
-    self.audioProgressSliderTimer = nil;
+    [self setPlayAndStopButtonImageTo:[UIImage imageNamed:PlayButtonImageFileName] AndEnablePauseButton:NO];
+    [self resetAudioPlayer];
 }
 
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error

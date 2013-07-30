@@ -13,6 +13,8 @@
 #import "PatientsViewController.h"
 #import "UploadingViewController.h"
 
+extern int const EditingModeBottomToolbarHeight;
+
 @interface RecordingsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate, PatientsPopoverDelegate, UploadingViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;

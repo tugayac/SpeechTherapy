@@ -8,8 +8,8 @@
 
 #import "TestsViewController.h"
 #import "TestWithPictureViewController.h"
+#import "SecondTestViewController.h"
 #import "TestCell.h"
-#import "ViewConstants.h"
 
 @implementation TestsViewController
 
@@ -19,7 +19,9 @@
 {
     self.tests = [[NSMutableArray alloc] init];
     
-    [self.tests addObject:@"Voice Recording"];
+    // Add new test name here
+    [self.tests addObject:@"Voice Test 1"];
+    [self.tests addObject:@"Voice Test 2"];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -37,15 +39,24 @@
     return cell;
 }
 
+- (void)initializeAndDisplayTestWithPictureViewController:(TestWithPictureViewController *)vc
+{
+    vc.currentPatient = self.currentPatient;
+    [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+    [vc setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([indexPath row] == 0) {
         TestWithPictureViewController *tpvc = [[TestWithPictureViewController alloc] init];
-        tpvc.currentPatient = self.currentPatient;
-        [tpvc setModalPresentationStyle:UIModalPresentationFullScreen];
-        [tpvc setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-        [self presentViewController:tpvc animated:YES completion:nil];
+        [self initializeAndDisplayTestWithPictureViewController:tpvc];
+    } else if ([indexPath row] == 1) {
+        SecondTestViewController *stvc = [[SecondTestViewController alloc] init];
+        [self initializeAndDisplayTestWithPictureViewController:stvc];
     }
+    // Add the next else if statement here
 }
 
 @end

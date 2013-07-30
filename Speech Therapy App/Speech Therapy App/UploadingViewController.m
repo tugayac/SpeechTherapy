@@ -12,6 +12,8 @@
 #import "UploadingViewController.h"
 #import "Test.h"
 
+float const ModalViewCornerRadius = 5.0f;
+
 @interface UploadingViewController ()
 
 @property (nonatomic, strong) NSArray *filesToUpload;
@@ -20,7 +22,7 @@
 
 @implementation UploadingViewController
 
-- (id)initWithFileToUpload:(NSArray *)files
+- (id)initWithFilesToUpload:(NSArray *)files
 {
     self = [super initWithNibName:@"UploadingViewController" bundle:nil];
     if (self) {
@@ -34,13 +36,20 @@
 {
     [super viewDidLoad];
     
-    [self.view.layer setCornerRadius:5.0f];
-    
+    [self.view.layer setCornerRadius:ModalViewCornerRadius];
     [self.uploadProgress setProgress:0.0f];
-    
     [self.uploadLabel setText:[NSString stringWithFormat:@"File 1 of %d", [self.filesToUpload count]]];
     
     [self performSelectorInBackground:@selector(uploadFiles) withObject:nil];
+}
+
+- (NSData *)getAudioBytesForTest:(Test *)test
+{
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsDir = dirPaths[0];
+    NSString *audioFile = [docsDir stringByAppendingPathComponent:test.resultsPath];
+    NSData *audioBytes = [NSData dataWithContentsOfFile:audioFile];
+    return audioBytes;
 }
 
 - (void)uploadFiles
@@ -49,11 +58,8 @@
         Test *test = self.filesToUpload[i];
         DBPath *path =[[DBPath root] childPath:test.resultsPath];
         DBFile *file = [[DBFilesystem sharedFilesystem] createFile:path error:nil];
-        
-        NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *docsDir = dirPaths[0];
-        NSString *audioFile = [docsDir stringByAppendingPathComponent:test.resultsPath];
-        NSData *audioBytes = [NSData dataWithContentsOfFile:audioFile];
+
+        NSData *audioBytes = [self getAudioBytesForTest:test];
         
         [file writeData:audioBytes error:nil];
         

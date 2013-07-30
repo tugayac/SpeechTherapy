@@ -72,6 +72,7 @@
 		AE2B9ABA17A229400015FA60 /* AudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE2B9AB817A2293F0015FA60 /* AudioPlayerViewController.xib */; };
 		AE2B9ABC17A2395A0015FA60 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2B9ABB17A2395A0015FA60 /* play.png */; };
 		AE2B9ABE17A2404B0015FA60 /* stopLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2B9ABD17A2404B0015FA60 /* stopLarge.png */; };
+		AE4A69CF17A80F330095BE0C /* SecondTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE4A69CE17A80F330095BE0C /* SecondTestViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,6 +166,8 @@
 		AE2B9AB817A2293F0015FA60 /* AudioPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioPlayerViewController.xib; sourceTree = "<group>"; };
 		AE2B9ABB17A2395A0015FA60 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		AE2B9ABD17A2404B0015FA60 /* stopLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopLarge.png; sourceTree = "<group>"; };
+		AE4A69CD17A80F330095BE0C /* SecondTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondTestViewController.h; sourceTree = "<group>"; };
+		AE4A69CE17A80F330095BE0C /* SecondTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondTestViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +215,8 @@
 			children = (
 				AE2B9A8617A0D45F0015FA60 /* TestWithPictureViewController.h */,
 				AE2B9A8717A0D45F0015FA60 /* TestWithPictureViewController.m */,
+				AE4A69CD17A80F330095BE0C /* SecondTestViewController.h */,
+				AE4A69CE17A80F330095BE0C /* SecondTestViewController.m */,
 			);
 			name = "Test View Controllers";
 			sourceTree = "<group>";
@@ -496,6 +501,7 @@
 				014038B317778E2D00D67632 /* UploadingViewController.m in Sources */,
 				AE2B9A8917A0D45F0015FA60 /* TestWithPictureViewController.m in Sources */,
 				AE2B9AB917A229400015FA60 /* AudioPlayerViewController.m in Sources */,
+				AE4A69CF17A80F330095BE0C /* SecondTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

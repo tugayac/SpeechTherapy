@@ -16,6 +16,8 @@
 #import "Test.h"
 #import "ViewConstants.h"
 
+int const EditingModeBottomToolbarHeight = 44;
+
 @interface RecordingsViewController ()
 
 @property (nonatomic, strong) NSMutableArray *selectedRows;
@@ -30,6 +32,17 @@
 
 @synthesize recordingsTable, searchBar, patientsButton, currentPatient;
 
+- (void)setNavigationBarRightButtonItems
+{
+    NSMutableArray *rightButtonItems = [[NSMutableArray alloc] init];
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Start New Test" style:UIBarButtonItemStyleBordered target:self action:@selector(startNewTestButtonTouched)];
+    [rightButtonItems addObject:button];
+    self.editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(enableEditMode)];
+    [self.editButton setEnabled:NO];
+    [rightButtonItems addObject:self.editButton];
+    [self.navigationItem setRightBarButtonItems:rightButtonItems];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -38,14 +51,7 @@
     
     [self.recordingsTable setAllowsMultipleSelectionDuringEditing:YES];
     
-    NSMutableArray *rightButtonItems = [[NSMutableArray alloc] init];
-    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Start New Test" style:UIBarButtonItemStyleBordered target:self action:@selector(startNewTestButtonTouched)];
-    [rightButtonItems addObject:button];
-    self.editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(enableEditMode)];
-    [self.editButton setEnabled:NO];
-    [rightButtonItems addObject:self.editButton];
-    [self.navigationItem setRightBarButtonItems:rightButtonItems];
-    
+    [self setNavigationBarRightButtonItems];
     [self.navigationItem setLeftItemsSupplementBackButton:YES];
     [self.navigationItem setHidesBackButton:NO];
 }
@@ -64,15 +70,25 @@
     }
 }
 
+- (void)prepareForEditingModeWithEditButtonStyle:(UIBarButtonItemStyle)style title:(NSString *)title recordingsTableIsEditing:(BOOL)editing frame:(CGRect)rect
+{
+    [self.editButton setStyle:style];
+    [self.editButton setTitle:title];
+    [self.recordingsTable setEditing:editing animated:YES];
+    [self.recordingsTable setFrame:rect];
+}
+
 - (void)enableEditMode
 {
     if ([self.recordingsTable isEditing]) {
-        [self.editButton setStyle:UIBarButtonItemStyleBordered];
-        [self.editButton setTitle:@"Edit"];
-        [self.recordingsTable setEditing:NO animated:YES];
-        [self.recordingsTable setFrame:CGRectMake(self.recordingsTable.frame.origin.x, self.recordingsTable.frame.origin.y, self.recordingsTable.frame.size.width, self.recordingsTable.frame.size.height + 44)];
-
-        CGAffineTransform translateOut = CGAffineTransformMakeTranslation(0, 44);
+        [self prepareForEditingModeWithEditButtonStyle:UIBarButtonItemStyleBordered
+                                                 title:@"Edit"
+                              recordingsTableIsEditing:NO
+                                                 frame:CGRectMake(self.recordingsTable.frame.origin.x,
+                                                                  self.recordingsTable.frame.origin.y,
+                                                                  self.recordingsTable.frame.size.width,
+                                                                  self.recordingsTable.frame.size.height + EditingModeBottomToolbarHeight)];
+        CGAffineTransform translateOut = CGAffineTransformMakeTranslation(0, EditingModeBottomToolbarHeight);
         [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             self.footerView.transform = translateOut;
         } completion:^(BOOL finished) {
@@ -81,18 +97,35 @@
         }];
     } else {
         [self.deleteButton setTitle:@"Delete"];
-        [self.editButton setStyle:UIBarButtonItemStyleDone];
-        [self.editButton setTitle:@"Done"];
-        [self.recordingsTable setEditing:YES animated:YES];
-        [self.recordingsTable setFrame:CGRectMake(self.recordingsTable.frame.origin.x, self.recordingsTable.frame.origin.y, self.recordingsTable.frame.size.width, self.recordingsTable.frame.size.height - 44)];
+        [self prepareForEditingModeWithEditButtonStyle:UIBarButtonItemStyleDone
+                                                 title:@"Done"
+                              recordingsTableIsEditing:YES
+                                                 frame:CGRectMake(self.recordingsTable.frame.origin.x,
+                                                                  self.recordingsTable.frame.origin.y,
+                                                                  self.recordingsTable.frame.size.width,
+                                                                  self.recordingsTable.frame.size.height - EditingModeBottomToolbarHeight)];
         [self.footerView setHidden:NO];
         [self.view bringSubviewToFront:self.footerView];
         
-        CGAffineTransform translateIn = CGAffineTransformMakeTranslation(0, -44);
+        CGAffineTransform translateIn = CGAffineTransformMakeTranslation(0, -EditingModeBottomToolbarHeight);
         [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             self.footerView.transform = translateIn;
         } completion:nil];
     }
+}
+
+- (UIBarButtonItem *)generateFixedSpaceBeforeButtonWithWidth:(CGFloat)width
+{
+    UIBarButtonItem *fixedSpacingBeforeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    [fixedSpacingBeforeButton setWidth:width];
+    return fixedSpacingBeforeButton;
+}
+
+- (UIBarButtonItem *)generateEditingModeToolbarButtonWithName:(NSString *)name style:(UIBarButtonItemStyle)style selector:(SEL)selector width:(CGFloat)width
+{
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:name style:style target:self action:selector];
+    [barButton setWidth:width];
+    return barButton;
 }
 
 - (UIView *)addFooterForEditMode
@@ -100,24 +133,44 @@
     UIToolbar *footerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.recordingsTable.frame.origin.y + self.recordingsTable.frame.size.height, self.recordingsTable.frame.size.width, 44)];
     
     NSMutableArray *buttons = [[NSMutableArray alloc] init];
-    UIBarButtonItem *fixedSpacingBeforeDeleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
-    [fixedSpacingBeforeDeleteButton setWidth:(([UIScreen mainScreen].bounds.size.width / 4.0) - (150 / 2.0) - 10)];
-    [buttons addObject:fixedSpacingBeforeDeleteButton];
-    self.deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStyleBordered target:self action:@selector(deleteTestsButtonTouched)];
+    [buttons addObject:[self generateFixedSpaceBeforeButtonWithWidth:(([UIScreen mainScreen].bounds.size.width / 4.0) - (150 / 2.0) - 10)]];
+    
+    self.deleteButton = [self generateEditingModeToolbarButtonWithName:@"Delete"
+                                                                 style:UIBarButtonItemStyleBordered
+                                                              selector:@selector(deleteTestsButtonTouched)
+                                                                 width:150];
     [self.deleteButton setTintColor:[UIColor redColor]];
-    [self.deleteButton setWidth:150];
     [buttons addObject:self.deleteButton];
-    UIBarButtonItem *fixedSpacingBeforeSendButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
-    [fixedSpacingBeforeSendButton setWidth:(([UIScreen mainScreen].bounds.size.width / 2) - 150 - 20)];
-    [buttons addObject:fixedSpacingBeforeSendButton];
-    UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send to Dropbox" style:UIBarButtonItemStyleDone target:self action:@selector(sendToDropbox)];
-    [sendButton setWidth:150];
-    [buttons addObject:sendButton];
+    [buttons addObject:[self generateFixedSpaceBeforeButtonWithWidth:(([UIScreen mainScreen].bounds.size.width / 2) - 150 - 20)]];
+    
+    [buttons addObject:[self generateEditingModeToolbarButtonWithName:@"Send to Dropbox"
+                                                                style:UIBarButtonItemStyleDone
+                                                             selector:@selector(sendToDropbox)
+                                                                width:150]];
+    
     [footerToolbar setItems:buttons animated:YES];
-    
     [footerToolbar setHidden:YES];
-    
     return footerToolbar;
+}
+
+- (NSArray *)listOfSoundFilesAtDirectory:(NSString *)dir
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath:dir]) {
+        NSError *error;
+        NSArray *listOfAllFiles = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:dir error:&error]];
+        if (error) {
+            NSLog(@"error: %@", [error localizedDescription]);
+            return nil;
+        }
+        NSArray *listOfExtensions = [NSArray arrayWithObject:@"wav"];
+        NSArray *listOfSoundFiles = [listOfAllFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"pathExtension IN %@", listOfExtensions]];
+        
+        return listOfSoundFiles;
+    } else {
+        return nil;
+    }
 }
 
 - (void)deleteTestsButtonTouched
@@ -145,27 +198,6 @@
     [self.recordingsTable reloadData];
 }
 
-- (NSArray *)listOfSoundFilesAtDirectory:(NSString *)dir
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    if ([fileManager fileExistsAtPath:dir]) {
-        NSError *error;
-        
-        NSArray *listOfAllFiles = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:dir error:&error]];
-        if (error) {
-            NSLog(@"error: %@", [error localizedDescription]);
-            return nil;
-        }
-        NSArray *listOfExtensions = [NSArray arrayWithObject:@"wav"];
-        NSArray *listOfSoundFiles = [listOfAllFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"pathExtension IN %@", listOfExtensions]];
-        
-        return listOfSoundFiles;
-    } else {
-        return nil;
-    }
-}
-
 - (void)startNewTestButtonTouched
 {
     if (!self.currentPatient) {
@@ -185,7 +217,7 @@
         [DBFilesystem setSharedFilesystem:filesystem];
         
         if ([self.selectedRows count] > 0) {
-            self.uvc = [[UploadingViewController alloc] initWithFileToUpload:self.selectedRows];
+            self.uvc = [[UploadingViewController alloc] initWithFilesToUpload:self.selectedRows];
             [self.view addSubview:self.uvc.view];
         }
     } else {
@@ -251,8 +283,7 @@
         self.patientsPopover.delegate = self;
         [self.patientsPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     } else {
-        [self.patientsPopover dismissPopoverAnimated:YES];
-        self.patientsPopover = nil;
+        [self didDismissPatientsPopover:nil];
     }
 }
 

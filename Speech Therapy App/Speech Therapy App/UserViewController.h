@@ -20,8 +20,5 @@
 @property (nonatomic, strong) User *selectedUser;
 
 - (IBAction)addNewUser:(id)sender;
-- (void)enterDeletionMode:(UILongPressGestureRecognizer *)gr;
-- (void)exitDeletionMode:(UITapGestureRecognizer *)gr;
-- (void)removeUser:(UIButton *)button;
 
 @end

@@ -10,6 +10,9 @@
 #import "NewPatientViewController.h"
 #import "Patient.h"
 
+int const PopoverWidth = 320;
+int const PopoverHeight = 600;
+
 @implementation PatientsViewController
 
 @synthesize patientsTable, currentUser;
@@ -87,7 +90,7 @@
 
 - (CGSize)contentSizeForViewInPopover
 {
-    return CGSizeMake(320, 600);
+    return CGSizeMake(PopoverWidth, PopoverHeight);
 }
 
 - (void)createNewPatient

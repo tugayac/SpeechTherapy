@@ -10,6 +10,9 @@
 
 #import "ModalFormViewController.h"
 
+float const TextFieldCornerRadius = 8.0f;
+float const TextFieldBorderWidth = 1.0f;
+
 @implementation ModalFormViewController
 
 - (BOOL)text:(NSString *)text lengthLessThan:(NSUInteger)number {
@@ -22,10 +25,10 @@
 
 - (void)setTextFieldBorder:(UITextField *)textField toColor:(UIColor *)color
 {
-    [textField.layer setCornerRadius:8.0f];
+    [textField.layer setCornerRadius:TextFieldCornerRadius];
     [textField.layer setMasksToBounds:YES];
     [textField.layer setBorderColor:[color CGColor]];
-    [textField.layer setBorderWidth:1.0f];
+    [textField.layer setBorderWidth:TextFieldBorderWidth];
 }
 
 - (IBAction)checkTextFieldContentLength:(id)sender

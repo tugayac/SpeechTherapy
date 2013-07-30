@@ -10,6 +10,12 @@
 #import <AVFoundation/AVFoundation.h>
 #import "Test.h"
 
+extern double const SecondsInAMinute;
+extern float const NotesCornerRadius;
+extern float const NotesBorderWidth;
+extern NSString *const PlayButtonImageFileName;
+extern NSString *const StopButtonImageFileName;
+
 @interface AudioPlayerViewController : UIViewController<AVAudioPlayerDelegate>
 
 @property (nonatomic, weak) IBOutlet UIButton *playAndStopButton;

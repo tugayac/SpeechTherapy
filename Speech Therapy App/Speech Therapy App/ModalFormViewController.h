@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+extern float const TextFieldCornerRadius;
+extern float const TextFieldBorderWidth;
+
 @protocol ModalFormViewControllerDelegate;
 
 @interface ModalFormViewController : UIViewController<UITextFieldDelegate>

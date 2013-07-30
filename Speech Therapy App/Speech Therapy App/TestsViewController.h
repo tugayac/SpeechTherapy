@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "User.h"
+#import "Patient.h"
 
 @interface TestsViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
 

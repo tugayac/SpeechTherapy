@@ -9,51 +9,56 @@
 #import "TestWithPictureViewController.h"
 #import "Test.h"
 
-int imageCounter = 0;
+int const BitRate = 16;
+int const Channels = 2;
+float const SampleRate = 44100.0f;
 
-@interface TestWithPictureViewController ()
-
-@property (nonatomic, strong) NSArray *listOfImageFiles;
-@property (nonatomic, strong) AVAudioRecorder *audioRecorder;
-@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-@property (nonatomic, strong) NSDate *startTime;
-@property (nonatomic, strong) NSString *fileName;
-@property (nonatomic, strong) NSString *testName;
-
-- (void)handleSwipeGestureFrom:(UIGestureRecognizer *)gestureRecognizer;
-- (IBAction)recordAudioButtonPressed:(id)sender;
-- (IBAction)stopRecordButtonPressed:(id)sender;
-
-@end
+int imageCounter;
 
 @implementation TestWithPictureViewController
 
 @synthesize listOfImageFiles, stopButton, recordButton;
 
-- (id)init
+- (void)setImages
 {
     self.listOfImageFiles = [[NSArray alloc] initWithObjects:@"head.png", @"tree.png", @"green.png", @"sleep.png", @"ear.png", @"teeth.png", @"needle.png", @"cheese.png", @"sneeze.png", @"wheel.png", nil];
-    
-    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docsDir = dirPaths[0];
+}
+
+- (void)generateStringFromCurrentDate
+{
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"MMddYY_hhmmssa";
     self.fileName = [[dateFormat stringFromDate:[NSDate date]] stringByAppendingString:@".wav"];
+}
+
+- (NSURL *)generateSoundFileURL
+{
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsDir = dirPaths[0];
     NSString *soundFilePath = [docsDir stringByAppendingPathComponent:self.fileName];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    return soundFileURL;
+}
+
+- (id)init
+{
+    imageCounter = 0;
+    [self setImages];
+
+    [self generateStringFromCurrentDate];
+    NSURL *soundFileURL = [self generateSoundFileURL];
     NSDictionary *recordSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                     [NSNumber numberWithInt:AVAudioQualityHigh],
                                     AVEncoderAudioQualityKey,
-                                    [NSNumber numberWithInt:16],
+                                    [NSNumber numberWithInt:BitRate],
                                     AVEncoderBitRateKey,
-                                    [NSNumber numberWithInt:2],
+                                    [NSNumber numberWithInt:Channels],
                                     AVNumberOfChannelsKey,
-                                    [NSNumber numberWithFloat:44100.0],
+                                    [NSNumber numberWithFloat:SampleRate],
                                     AVSampleRateKey,
                                     nil];
     
-    NSError *error = nil;
-    
+    NSError *error;
     self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:soundFileURL settings:recordSettings error:&error];
     if (error) {
         NSLog(@"error: %@", [error localizedDescription]);
@@ -64,23 +69,35 @@ int imageCounter = 0;
     return [self initWithNibName:@"TestWithPictureViewController" bundle:nil];
 }
 
-- (void)viewDidLoad
+- (void)setupRevolvingImageView
 {
-    [super viewDidLoad];
-    
-    [self.stopButton setEnabled:NO];
-    
     UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGestureFrom:)];
     [swipeGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
     [self.view addGestureRecognizer:swipeGestureRecognizer];
     
-    [self.revolvingImage setImage:[UIImage imageNamed:[self.listOfImageFiles objectAtIndex:imageCounter]]];
-    [self.revolvingImage setContentMode:UIViewContentModeScaleAspectFit];
+    [self.revolvingImageView setImage:[UIImage imageNamed:[self.listOfImageFiles objectAtIndex:imageCounter]]];
+    [self.revolvingImageView setContentMode:UIViewContentModeScaleAspectFit];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self setupRevolvingImageView];
     [self.imageTitle setText:@"Head"];
+    [self.stopButton setEnabled:NO];
     
     UIAlertView *testNameAlertView  = [[UIAlertView alloc] initWithTitle:@"Test Name" message:@"Please enter a name for the test:" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [testNameAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
     [testNameAlertView show];
+}
+
+- (NSMutableString *)generateImageTitleFromImageFileName
+{
+    NSMutableString *imageTitleString = [[NSMutableString alloc] initWithString:[self.listOfImageFiles objectAtIndex:imageCounter]];
+    [imageTitleString deleteCharactersInRange:NSMakeRange(imageTitleString.length - 4, 4)];
+    [imageTitleString replaceCharactersInRange:NSMakeRange(0, 1) withString:[[imageTitleString substringToIndex:1] capitalizedString]];
+    return imageTitleString;
 }
 
 - (void)handleSwipeGestureFrom:(UIGestureRecognizer *)gestureRecognizer
@@ -88,19 +105,17 @@ int imageCounter = 0;
     [self recordAudioButtonPressed:nil];
     
     imageCounter++;
-    if (imageCounter < 10) {
-        NSMutableString *imageTitleString = [[NSMutableString alloc] initWithString:[self.listOfImageFiles objectAtIndex:imageCounter]];
-        [imageTitleString deleteCharactersInRange:NSMakeRange(imageTitleString.length - 4, 4)];
-        [imageTitleString replaceCharactersInRange:NSMakeRange(0, 1) withString:[[imageTitleString substringToIndex:1] capitalizedString]];
+    if (imageCounter < [self.listOfImageFiles count]) {
+        NSMutableString *imageTitleString = [self generateImageTitleFromImageFileName];
         
         [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            self.revolvingImage.alpha = 0.0f;
+            self.revolvingImageView.alpha = 0.0f;
             self.imageTitle.alpha = 0.0f;
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.25 animations:^{
-                [self.revolvingImage setImage:[UIImage imageNamed:[self.listOfImageFiles objectAtIndex:imageCounter]]];
+                [self.revolvingImageView setImage:[UIImage imageNamed:[self.listOfImageFiles objectAtIndex:imageCounter]]];
                 [self.imageTitle setText:imageTitleString];
-                self.revolvingImage.alpha = 1.0f;
+                self.revolvingImageView.alpha = 1.0f;
                 self.imageTitle.alpha = 1.0f;
             }];
         }];
@@ -131,16 +146,14 @@ int imageCounter = 0;
     [interruptAlertView show];
     
     [self.audioRecorder stop];
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docsDir = dirPaths[0];
-    NSString *soundFilePath = [docsDir stringByAppendingPathComponent:self.fileName];
-    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    
+    NSURL *soundFileURL = [self generateSoundFileURL];
     NSError *error;
-    [fm removeItemAtURL:soundFileURL error:&error];
+    [[NSFileManager defaultManager] removeItemAtURL:soundFileURL error:&error];
     if (error) {
         NSLog(@"Error occured while deleting: %@", error.localizedDescription);
     }
+    
     self.audioRecorder = nil;
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -151,6 +164,9 @@ int imageCounter = 0;
     if ([alertView.title isEqualToString:@"Test Name"]) {
         self.testName = [[alertView textFieldAtIndex:0] text];
     } else if ([alertView.title isEqualToString:@"Awesome Job!"]) {
+        if ([self.fileName length] == 0) {
+            [self generateStringFromCurrentDate];
+        }
         [Test addNewResultForTest:self.testName takenBy:self.currentPatient startingOn:self.startTime endingOn:[NSDate date] withResult:self.fileName withNotes:[[alertView textFieldAtIndex:0] text]];
         [self dismissViewControllerAnimated:YES completion:nil];
     }

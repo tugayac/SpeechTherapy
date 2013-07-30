@@ -23,16 +23,21 @@
 
 @synthesize userCollection, users, deletionModeEnabled;
 
-- (void)viewDidLoad
+- (void)initializeGestureRecognizers
 {
-    [super viewDidLoad];
-    
     UILongPressGestureRecognizer *enterDeletionModeGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(enterDeletionMode:)];
     enterDeletionModeGesture.delegate = self;
     [self.userCollection addGestureRecognizer:enterDeletionModeGesture];
     UITapGestureRecognizer *exitDeletionModeGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(exitDeletionMode:)];
     exitDeletionModeGesture.delegate = self;
     [self.userCollection addGestureRecognizer:exitDeletionModeGesture];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self initializeGestureRecognizers];
     
     self.users = [[NSMutableArray alloc] init];
     self.users = [[User getAllUsers] mutableCopy];
@@ -92,27 +97,28 @@
     [self.userCollection deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
 }
 
+- (void)deletionModeToggleSettingsFor:(NSIndexPath *)indexPath
+{
+    if (indexPath) {
+        self.deletionModeEnabled = YES;
+    } else {
+        self.deletionModeEnabled = NO;
+    }
+    UserCollectionViewLayout *layout = (UserCollectionViewLayout *) self.userCollection.collectionViewLayout;
+    [layout invalidateLayout];
+}
+
 - (void)enterDeletionMode:(UILongPressGestureRecognizer *)gr
 {
     if (gr.state == UIGestureRecognizerStateBegan) {
-        NSIndexPath *indexPath = [self.userCollection indexPathForItemAtPoint:[gr locationInView:self.userCollection]];
-        if (indexPath) {
-            self.deletionModeEnabled = YES;
-            UserCollectionViewLayout *layout = (UserCollectionViewLayout *) self.userCollection.collectionViewLayout;
-            [layout invalidateLayout];
-        }
+        [self deletionModeToggleSettingsFor:[self.userCollection indexPathForItemAtPoint:[gr locationInView:self.userCollection]]];
     }
 }
 
 - (void)exitDeletionMode:(UITapGestureRecognizer *)gr
 {
     if (self.deletionModeEnabled) {
-        NSIndexPath *indexPath = [self.userCollection indexPathForItemAtPoint:[gr locationInView:self.userCollection]];
-        if (!indexPath) {
-            self.deletionModeEnabled = NO;
-            UserCollectionViewLayout *layout = (UserCollectionViewLayout *) self.userCollection.collectionViewLayout;
-            [layout invalidateLayout];
-        }
+        [self deletionModeToggleSettingsFor:[self.userCollection indexPathForItemAtPoint:[gr locationInView:self.userCollection]]];
     }
 }
 
@@ -156,13 +162,13 @@
 - (IBAction)addNewUser:(id)sender
 {
     NewUserViewController *newUserViewController = [[NewUserViewController alloc] init];
-    newUserViewController.delegate = self; // Set delegation
+    newUserViewController.delegate = self;
     CGRect xibBounds = newUserViewController.view.bounds;
     [newUserViewController setModalPresentationStyle:UIModalPresentationFormSheet];
     [newUserViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self presentViewController:newUserViewController animated:YES completion:nil];
     
-    newUserViewController.view.superview.bounds = xibBounds; // Change size of form sheet
+    newUserViewController.view.superview.bounds = xibBounds;
     newUserViewController.view.superview.center = self.view.center;
 }
 
