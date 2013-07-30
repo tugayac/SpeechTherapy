@@ -13,7 +13,10 @@ This repository contains programs and applications that aim to diagnose differen
     2.1. [Running the Script](#aap_run)<br />
     2.2. [Further Improvements and Additions](#aap_imp)<br />
     2.3. [License](#aap_license)<br />
-3. [iPad Application for Audio Recording Tests](#app)<br />
+3. [iPad Application for Audio Recording Tests](#ipad_app)<br />
+    3.1. [How to Create New Voice Recording Tests](#ipad_app_new_test)<br />
+    3.2. [Limitations of the Application](#ipad_app_limit)<br />
+    3.3. [License](#ipad_app_license)<br />
 4. [Contact](#contact)<br />
 5. [About the Project](#about)<br />
 
@@ -120,8 +123,119 @@ A value of `--undefined--` indicates that no value exists at that time. Note tha
 ### License ###
 The script uses the same license as Praat (GNU General Public License), since it can only be used with Praat. A copy of the license can be found on the [Praat License](http://www.fon.hum.uva.nl/praat/GNU_General_Public_License.txt) page.
 
+<a name="ipad_app"/>
 ## iPad Application for Audio Recording Tests ##
-More information will be added soon. You can clone the code right now if you'd like to!
+App usage should be intuative for anyone who is familiar with voice recording on the iPad. If you need more information on how to use the app, you can watch the [YouTube Tutorial](http://youtu.be/Mlpd7l-lAdg).
+
+<a name="ipad_app_new_test"/>
+### How to Create New Voice Recording Tests ###
+Creating a new voice recording test is fairly easy for anyone who is experienced with object-oriented programming.<br />
+1. Find the TestWithPictureViewController.h file, which contains the source code for "Voice Test 1". The related .m and .xib files have the same file name, if you want to view them.<br />
+2. Now find the SecondTestViewController.h file. Notice that this class inherits the TestWithPictureViewController class. This means that SecondTestViewController has all the properties that TestWithPictureViewController class has. If you switch to the corresponding .m file, you will notice the original -setImages method being overriden. It should look like this:
+
+``` objective-c
+- (void)setImages
+{
+    self.listOfImageFiles = [[NSArray alloc] initWithObjects:@"head.png", @"tree.png", @"green.png", @"sleep.png", @"ear.png", nil];
+}
+```
+
+Recall that the original method looks like this:
+
+``` objective-c
+- (void)setImages
+{
+    self.listOfImageFiles = [[NSArray alloc] initWithObjects:@"head.png", @"tree.png", @"green.png", @"sleep.png", @"ear.png", @"teeth.png", @"needle.png", @"cheese.png", @"sneeze.png", @"wheel.png", nil];
+}
+```
+
+3. Therefore, in order to create a new test, create a new Objective-C Class and make it a Subclass of TestWithPictureViewController. For the sake of this tutorial, we will call the new test class <b>ThirdTestViewController</b>.<br />
+4. Once the class is created, go to the .m file of your new class and override the -setImages method as you see above. <b>Make sure that the image file names refer to what the picture shows. For example, if the image is a tree, then the file name should be tree.png or tree.jpg</b> (make sure you use either PNG or JPG images). This is important because the app generates the text label for each image based on the file name. Also, make sure that the image files are added to the project. This is all you have to do to create the new test!<br />
+5. Now you need to get your new test to show up on the new tests view. Go to TestsViewController.m and find the -viewDidLoad method. It should look something like this:
+
+``` objective-c
+- (void)viewDidLoad
+{
+    self.tests = [[NSMutableArray alloc] init];
+    
+    // Add new test name here
+    [self.tests addObject:@"Voice Test 1"];
+    [self.tests addObject:@"Voice Test 2"];
+}
+```
+
+Now add the name of your new test after the line:
+``` objective-c 
+[self.tests addObject:@"Voice Test 2"];
+```
+
+-viewDidLoad should now look something like this (I named the new test "Voice Test 3")
+``` objective-c
+- (void)viewDidLoad
+{
+    self.tests = [[NSMutableArray alloc] init];
+    
+    // Add new test name here
+    [self.tests addObject:@"Voice Test 1"];
+    [self.tests addObject:@"Voice Test 2"];
+    [self.tests addObject:@"Voice Test 3"];
+}
+```
+
+6. Finally, the test has to be called whenever it's touched on the view. Again in TestsViewController.m, go to the -collectionView:collectionView didSelectItemAtIndexPath:indexPath method. It should look something like this:
+
+``` objective-c
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath row] == 0) {
+        TestWithPictureViewController *tpvc = [[TestWithPictureViewController alloc] init];
+        [self initializeAndDisplayTestWithPictureViewController:tpvc];
+    } else if ([indexPath row] == 1) {
+        SecondTestViewController *stvc = [[SecondTestViewController alloc] init];
+        [self initializeAndDisplayTestWithPictureViewController:stvc];
+    }
+    // Add the next else if statement here
+}
+```
+
+Since the new test is added after the second test, we will need to check when the indexPath.row value equals 2 (indices start at 0) and fill in the body for that else-if statement. The body of the else-if statement should look something like this:
+
+``` objective-c
+ThirdTestViewController *ttvc = [[ThirdTestViewController alloc] init];
+[self initializeAndDisplayTestWithPictureViewController:ttvc];
+```
+
+-collectionView:collectionView didSelectItemAtIndexPath:indexPath should now look something like this:
+
+``` objective-c
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath row] == 0) {
+        TestWithPictureViewController *tpvc = [[TestWithPictureViewController alloc] init];
+        [self initializeAndDisplayTestWithPictureViewController:tpvc];
+    } else if ([indexPath row] == 1) {
+        SecondTestViewController *stvc = [[SecondTestViewController alloc] init];
+        [self initializeAndDisplayTestWithPictureViewController:stvc];
+    } else if ([indexPath row] == 2) {
+       ThirdTestViewController *ttvc = [[ThirdTestViewController alloc] init];
+        [self initializeAndDisplayTestWithPictureViewController:ttvc]; 
+    }
+    // Add the next else if statement here
+}
+```
+
+You're done! The new test should now be functioning properly. If it's not, make sure the image files are added to the project and that all the syntax is correct.
+
+<a name="ipad_app_limit">
+### Limitations of the Application ###
+* The application is designed to work only in portrait mode. As such, you won't be able to flip it into Landscape mode. This can be changed from the project settings, but there is no guarantee that anything will function properly.
+* There are no settings for the audio recording. Right now, the application records at a sampling rate of 44100 Hz, very high quality, and 2 channels.
+* The audio can only be uploaded to Dropbox, given that the user has a Dropbox account to use with the application
+* It is distributed as-is and has been tested to work on an iPad 2 with iOS 6.1. The results are unknown for newer or older versions of the iPads, but it is guarenteed to <b>not work</b> with iOS versions older than 6.1. 
+
+<a name="ipad_app_license">
+### License ###
+This software is released under the General Public License (GPL). By using this application, you agree that this software may not work as intended. The developer cannot be held responsible for any damage caused to the device by this software.
 
 <a name="contact"/>
 ## Contact ##
