@@ -255,11 +255,11 @@ This software is released under the General Public License (GPL). By using this 
 <a name="contact"/>
 
 ## Contact ##
-Please contact Arda C. Tugay at arda.tugay@gmail.com for any questions, concerns, or suggestions.
+Please contact Arda C. Tugay at ardactugay@gmail.com for any questions, concerns, or suggestions.
 
 <a name = "about"/>
 
 ## About the Project ##
-The applications in this project are developed by Arda C. Tugay, an undergraduate Computer Science & Software Engineering student from Rose-Hulman Institute of Technology. The project is part of the ERWiN REU program funded by the National Science Foundation.
+The applications in this project were developed in 2013, by Arda C. Tugay, then undergraduate Computer Science & Software Engineering student from Rose-Hulman Institute of Technology. The project was part of the ERWiN REU program funded by the National Science Foundation.
 
-The project is supervised by Dr. Poellabauer and Dr. Flynn of the Computer Science & Engineering department at University of Notre Dame.
+The project was supervised by Dr. Poellabauer and Dr. Flynn of the Computer Science & Engineering department at University of Notre Dame.
