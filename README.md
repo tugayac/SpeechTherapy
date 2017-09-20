@@ -21,6 +21,7 @@ This repository contains programs and applications that aim to help diagnose dif
 5. [About the Project](#about)<br />
 
 <a name="ae"/>
+
 ## Audio Extractor ##
 The audio extractor allows users to extract audio from several different video filetypes. The audio extracted from the videos are meant to be used to compare with speech samples from users with no Autism.
 
@@ -29,6 +30,7 @@ Decoding and encoding are done using the [Java Audio Video Encoder](http://www.s
 The most current version is v0.1
 
 <a name="ae_running"/>
+
 ### Running the Program ###
 To run the audio extractor, go to AudioExtractor/dist/ and run AudioExtractor.jar by double-clicking on it. Alternatively, you can run it from the command line using:
     
@@ -38,12 +40,14 @@ You can also open up the project in NetBeans and change it as you like.
 
 <a name="ae_req"/>
 ### Requirements ###
+
 * Java 7
 * The program has been tested on Windows 8 and does run. It should run properly on earlier versions of Windows; however, there is no guarantee.
 * The program has been tested on Mac OSX 10.7.5 and <b>does not run</b>. This is because JAVE does not provide an ffmpeg executable for MAC OSX. Latest versions of ffmpeg executables do not work. Apple Mac users can check out [ffmpegX](http://www.ffmpegx.com/download.html) as an alternative.
 * The program has been tested on Linux (Ubuntu 12.04) and does run. It should run properly on other versions of Ubuntu/Debian based Linux systems; however, there is no guarantee. 
 
 <a name="ae_feat"/>
+
 ### Features ###
 The Audio Extractor features the following:
 * Supports multiple video file types (Currently MP4, M4A, MPEG, MPG, MOV, FLV, AVI)
@@ -57,6 +61,7 @@ The Audio Extractor features the following:
 * Progress of the files displayed for the convenience of the user.
 
 <a name="ae_issues"/>
+
 ### Known Issues ###
 * Properties of video files can be changed in the table, although this has no effect to the file's metadata.
 * Stop Button is grayed out due to some issues with Java Threads. This feature will be fixed in the future.
@@ -64,6 +69,7 @@ The Audio Extractor features the following:
 * An exception is thrown if the program is closed before extraction is completed. However, this exception should not affect the user.
 
 <a name="ae_pos_feat"/>
+
 ### Possible Features ###
 * Allow the user to choose the FFmpeg executable that they would like to use.
 * Ability to stop the encoding process.
@@ -72,14 +78,17 @@ The Audio Extractor features the following:
 * Expanding the project to make it a full-fledged Audio-Video Converter.
 
 <a name="ae_license"/>
+
 ### External Libraries and License ###
 This software is released under the General Public License (GPL) because the JAVE external library uses the GPL license. A copy of the license is included with the program.
 
 <a name="aap"/>
+
 ## Audio Analysis with Praat ##
 After extracting the audio from the video, [Formant Analysis](http://en.wikipedia.org/wiki/Formant) can be performed to extract vowel information using a software called [Praat](http://www.fon.hum.uva.nl/praat/). A script is included under the Praat/Scripts folder.
 
 <a name="aap_run"/>
+
 ### Running the Script ###
 The script provided with the project will allow you to extract the formant frequencies from audio files in a given folder. The information will be extracted into a text file.
 
@@ -112,6 +121,7 @@ Time   Pitch   F1  F2  F3  F4
 A value of `--undefined--` indicates that no value exists at that time. Note that there are a lot less pitch values. These pitch values indicate which formant frequency values are valid to use.
 
 <a name="aap_imp"/>
+
 ### Further Improvements and Additions ###
 * Running the script on Windows and Mac OSX Machines.
 * Running the script using the Praat GUI.
@@ -120,14 +130,17 @@ A value of `--undefined--` indicates that no value exists at that time. Note tha
 * Extracting different number of formant frequencies.
 
 <a name="aap_license"/>
+
 ### License ###
 The script uses the same license as Praat (GNU General Public License), since it can only be used with Praat. A copy of the license can be found on the [Praat License](http://www.fon.hum.uva.nl/praat/GNU_General_Public_License.txt) page.
 
 <a name="ipad_app"/>
+
 ## iPad Application for Audio Recording Tests ##
 App usage should be intuative for anyone who is familiar with voice recording on the iPad. If you need more information on how to use the app, you can watch the [YouTube Tutorial](http://youtu.be/Mlpd7l-lAdg).
 
 <a name="ipad_app_new_test"/>
+
 ### How to Create New Voice Recording Tests ###
 Creating a new voice recording test is fairly easy for anyone who is experienced with object-oriented programming.<br />
 1. Find the TestWithPictureViewController.h file, which contains the source code for "Voice Test 1". The related .m and .xib files have the same file name, if you want to view them.<br />
@@ -227,6 +240,7 @@ ThirdTestViewController *ttvc = [[ThirdTestViewController alloc] init];
 You're done! The new test should now be functioning properly. If it's not, make sure the image files are added to the project and that all the syntax is correct.
 
 <a name="ipad_app_limit">
+
 ### Limitations of the Application ###
 * The application is designed to work only in portrait mode. As such, you won't be able to flip it into Landscape mode. This can be changed from the project settings, but there is no guarantee that anything will function properly.
 * There are no settings for the audio recording. Right now, the application records at a sampling rate of 44100 Hz, very high quality, and 2 channels.
@@ -234,14 +248,17 @@ You're done! The new test should now be functioning properly. If it's not, make 
 * It is distributed as-is and has been tested to work on an iPad 2 with iOS 6.1. The results are unknown for newer or older versions of the iPads, but it is guarenteed to <b>not work</b> with iOS versions older than 6.1. 
 
 <a name="ipad_app_license">
+
 ### License ###
 This software is released under the General Public License (GPL). By using this application, you agree that this software may not work as intended. The developer cannot be held responsible for any damage caused to the device by this software.
 
 <a name="contact"/>
+
 ## Contact ##
 Please contact Arda C. Tugay at arda.tugay@gmail.com for any questions, concerns, or suggestions.
 
 <a name = "about"/>
+
 ## About the Project ##
 The applications in this project are developed by Arda C. Tugay, an undergraduate Computer Science & Software Engineering student from Rose-Hulman Institute of Technology. The project is part of the ERWiN REU program funded by the National Science Foundation.
 
