@@ -39,6 +39,7 @@ To run the audio extractor, go to AudioExtractor/dist/ and run AudioExtractor.ja
 You can also open up the project in NetBeans and change it as you like.
 
 <a name="ae_req"/>
+
 ### Requirements ###
 
 * Java 7
