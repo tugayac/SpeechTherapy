@@ -1,5 +1,5 @@
 # Speech Therapy Application #
-This repository contains programs and applications that aim to help diagnose different types of Autism using speech methods. Please note that this is only research and anything below is aimed to help with diagnosis (and does not outright diagnose Autism).
+This repository contains programs and applications that were used for research in using speech methods to help diagnose different types of Autism. Please note this is only research and programs and applications provided in this repository have not been proven to solely diagnose Autism.
 
 ## Table of Contents ##
 1. [Audio Extractor](#ae)<br />
